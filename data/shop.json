@@ -1,0 +1,852 @@
+[
+  {
+    "id": 1,
+    "title": "Apple Smartphone Pro 2024",
+    "description": "High-quality smartphone from Apple. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Electronics",
+    "price": 45000,
+    "brand": "Apple",
+    "rating": 4.0,
+    "stock": 6,
+    "sku": "VEX-APP-SMA-1",
+    "image": "https://picsum.photos/seed/vexa1/600/600",
+    "tags": [
+      "smartphone",
+      "electronics",
+      "apple"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Sony Laptop Pro 2025",
+    "description": "High-quality laptop from Sony. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Electronics",
+    "price": 90000,
+    "brand": "Sony",
+    "rating": 4.1,
+    "stock": 9,
+    "sku": "VEX-SON-LAP-2",
+    "image": "https://picsum.photos/seed/vexa2/600/600",
+    "tags": [
+      "laptop",
+      "electronics",
+      "sony"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Nike Headphones Pro 2024",
+    "description": "High-quality headphones from Nike. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Electronics",
+    "price": 135000,
+    "brand": "Nike",
+    "rating": 4.2,
+    "stock": 12,
+    "sku": "VEX-NIK-HEA-3",
+    "image": "https://picsum.photos/seed/vexa3/600/600",
+    "tags": [
+      "headphones",
+      "electronics",
+      "nike"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Adidas Smartwatch Pro 2025",
+    "description": "High-quality smartwatch from Adidas. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Electronics",
+    "price": 180000,
+    "brand": "Adidas",
+    "rating": 4.3,
+    "stock": 15,
+    "sku": "VEX-ADI-SMA-4",
+    "image": "https://picsum.photos/seed/vexa4/600/600",
+    "tags": [
+      "smartwatch",
+      "electronics",
+      "adidas"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "HP Tablet Pro 2024",
+    "description": "High-quality tablet from HP. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Electronics",
+    "price": 225000,
+    "brand": "HP",
+    "rating": 4.4,
+    "stock": 18,
+    "sku": "VEX-HP-TAB-5",
+    "image": "https://picsum.photos/seed/vexa5/600/600",
+    "tags": [
+      "tablet",
+      "electronics",
+      "hp"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Dell Smartphone Pro 2025",
+    "description": "High-quality smartphone from Dell. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Electronics",
+    "price": 270000,
+    "brand": "Dell",
+    "rating": 4.5,
+    "stock": 21,
+    "sku": "VEX-DEL-SMA-6",
+    "image": "https://picsum.photos/seed/vexa6/600/600",
+    "tags": [
+      "smartphone",
+      "electronics",
+      "dell"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Lenovo Laptop Pro 2024",
+    "description": "High-quality laptop from Lenovo. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Electronics",
+    "price": 315000,
+    "brand": "Lenovo",
+    "rating": 4.6,
+    "stock": 24,
+    "sku": "VEX-LEN-LAP-7",
+    "image": "https://picsum.photos/seed/vexa7/600/600",
+    "tags": [
+      "laptop",
+      "electronics",
+      "lenovo"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "LG Headphones Pro 2025",
+    "description": "High-quality headphones from LG. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Electronics",
+    "price": 360000,
+    "brand": "LG",
+    "rating": 4.7,
+    "stock": 27,
+    "sku": "VEX-LG-HEA-8",
+    "image": "https://picsum.photos/seed/vexa8/600/600",
+    "tags": [
+      "headphones",
+      "electronics",
+      "lg"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Canon Smartwatch Pro 2024",
+    "description": "High-quality smartwatch from Canon. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Electronics",
+    "price": 405000,
+    "brand": "Canon",
+    "rating": 4.8,
+    "stock": 30,
+    "sku": "VEX-CAN-SMA-9",
+    "image": "https://picsum.photos/seed/vexa9/600/600",
+    "tags": [
+      "smartwatch",
+      "electronics",
+      "canon"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Samsung Tablet Pro 2025",
+    "description": "High-quality tablet from Samsung. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Electronics",
+    "price": 450000,
+    "brand": "Samsung",
+    "rating": 4.9,
+    "stock": 33,
+    "sku": "VEX-SAM-TAB-10",
+    "image": "https://picsum.photos/seed/vexa10/600/600",
+    "tags": [
+      "tablet",
+      "electronics",
+      "samsung"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Lenovo Sneakers Pro 2024",
+    "description": "High-quality sneakers from Lenovo. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Fashion",
+    "price": 45000,
+    "brand": "Lenovo",
+    "rating": 4.0,
+    "stock": 6,
+    "sku": "VEX-LEN-SNE-11",
+    "image": "https://picsum.photos/seed/vexa11/600/600",
+    "tags": [
+      "sneakers",
+      "fashion",
+      "lenovo"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "LG Hoodie Pro 2025",
+    "description": "High-quality hoodie from LG. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Fashion",
+    "price": 90000,
+    "brand": "LG",
+    "rating": 4.1,
+    "stock": 9,
+    "sku": "VEX-LG-HOO-12",
+    "image": "https://picsum.photos/seed/vexa12/600/600",
+    "tags": [
+      "hoodie",
+      "fashion",
+      "lg"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Canon T-Shirt Pro 2024",
+    "description": "High-quality t-shirt from Canon. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Fashion",
+    "price": 135000,
+    "brand": "Canon",
+    "rating": 4.2,
+    "stock": 12,
+    "sku": "VEX-CAN-T-S-13",
+    "image": "https://picsum.photos/seed/vexa13/600/600",
+    "tags": [
+      "t-shirt",
+      "fashion",
+      "canon"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Samsung Jeans Pro 2025",
+    "description": "High-quality jeans from Samsung. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Fashion",
+    "price": 180000,
+    "brand": "Samsung",
+    "rating": 4.3,
+    "stock": 15,
+    "sku": "VEX-SAM-JEA-14",
+    "image": "https://picsum.photos/seed/vexa14/600/600",
+    "tags": [
+      "jeans",
+      "fashion",
+      "samsung"
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Apple Jacket Pro 2024",
+    "description": "High-quality jacket from Apple. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Fashion",
+    "price": 225000,
+    "brand": "Apple",
+    "rating": 4.4,
+    "stock": 18,
+    "sku": "VEX-APP-JAC-15",
+    "image": "https://picsum.photos/seed/vexa15/600/600",
+    "tags": [
+      "jacket",
+      "fashion",
+      "apple"
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Sony Sneakers Pro 2025",
+    "description": "High-quality sneakers from Sony. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Fashion",
+    "price": 270000,
+    "brand": "Sony",
+    "rating": 4.5,
+    "stock": 21,
+    "sku": "VEX-SON-SNE-16",
+    "image": "https://picsum.photos/seed/vexa16/600/600",
+    "tags": [
+      "sneakers",
+      "fashion",
+      "sony"
+    ]
+  },
+  {
+    "id": 17,
+    "title": "Nike Hoodie Pro 2024",
+    "description": "High-quality hoodie from Nike. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Fashion",
+    "price": 315000,
+    "brand": "Nike",
+    "rating": 4.6,
+    "stock": 24,
+    "sku": "VEX-NIK-HOO-17",
+    "image": "https://picsum.photos/seed/vexa17/600/600",
+    "tags": [
+      "hoodie",
+      "fashion",
+      "nike"
+    ]
+  },
+  {
+    "id": 18,
+    "title": "Adidas T-Shirt Pro 2025",
+    "description": "High-quality t-shirt from Adidas. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Fashion",
+    "price": 360000,
+    "brand": "Adidas",
+    "rating": 4.7,
+    "stock": 27,
+    "sku": "VEX-ADI-T-S-18",
+    "image": "https://picsum.photos/seed/vexa18/600/600",
+    "tags": [
+      "t-shirt",
+      "fashion",
+      "adidas"
+    ]
+  },
+  {
+    "id": 19,
+    "title": "HP Jeans Pro 2024",
+    "description": "High-quality jeans from HP. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Fashion",
+    "price": 405000,
+    "brand": "HP",
+    "rating": 4.8,
+    "stock": 30,
+    "sku": "VEX-HP-JEA-19",
+    "image": "https://picsum.photos/seed/vexa19/600/600",
+    "tags": [
+      "jeans",
+      "fashion",
+      "hp"
+    ]
+  },
+  {
+    "id": 20,
+    "title": "Dell Jacket Pro 2025",
+    "description": "High-quality jacket from Dell. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Fashion",
+    "price": 450000,
+    "brand": "Dell",
+    "rating": 4.9,
+    "stock": 33,
+    "sku": "VEX-DEL-JAC-20",
+    "image": "https://picsum.photos/seed/vexa20/600/600",
+    "tags": [
+      "jacket",
+      "fashion",
+      "dell"
+    ]
+  },
+  {
+    "id": 21,
+    "title": "Adidas Blender Pro 2024",
+    "description": "High-quality blender from Adidas. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Home & Kitchen",
+    "price": 45000,
+    "brand": "Adidas",
+    "rating": 4.0,
+    "stock": 6,
+    "sku": "VEX-ADI-BLE-21",
+    "image": "https://picsum.photos/seed/vexa21/600/600",
+    "tags": [
+      "blender",
+      "home & kitchen",
+      "adidas"
+    ]
+  },
+  {
+    "id": 22,
+    "title": "HP Microwave Pro 2025",
+    "description": "High-quality microwave from HP. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Home & Kitchen",
+    "price": 90000,
+    "brand": "HP",
+    "rating": 4.1,
+    "stock": 9,
+    "sku": "VEX-HP-MIC-22",
+    "image": "https://picsum.photos/seed/vexa22/600/600",
+    "tags": [
+      "microwave",
+      "home & kitchen",
+      "hp"
+    ]
+  },
+  {
+    "id": 23,
+    "title": "Dell Cookware Set Pro 2024",
+    "description": "High-quality cookware set from Dell. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Home & Kitchen",
+    "price": 135000,
+    "brand": "Dell",
+    "rating": 4.2,
+    "stock": 12,
+    "sku": "VEX-DEL-COO-23",
+    "image": "https://picsum.photos/seed/vexa23/600/600",
+    "tags": [
+      "cookware set",
+      "home & kitchen",
+      "dell"
+    ]
+  },
+  {
+    "id": 24,
+    "title": "Lenovo Vacuum Cleaner Pro 2025",
+    "description": "High-quality vacuum cleaner from Lenovo. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Home & Kitchen",
+    "price": 180000,
+    "brand": "Lenovo",
+    "rating": 4.3,
+    "stock": 15,
+    "sku": "VEX-LEN-VAC-24",
+    "image": "https://picsum.photos/seed/vexa24/600/600",
+    "tags": [
+      "vacuum cleaner",
+      "home & kitchen",
+      "lenovo"
+    ]
+  },
+  {
+    "id": 25,
+    "title": "LG Air Fryer Pro 2024",
+    "description": "High-quality air fryer from LG. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Home & Kitchen",
+    "price": 225000,
+    "brand": "LG",
+    "rating": 4.4,
+    "stock": 18,
+    "sku": "VEX-LG-AIR-25",
+    "image": "https://picsum.photos/seed/vexa25/600/600",
+    "tags": [
+      "air fryer",
+      "home & kitchen",
+      "lg"
+    ]
+  },
+  {
+    "id": 26,
+    "title": "Canon Blender Pro 2025",
+    "description": "High-quality blender from Canon. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Home & Kitchen",
+    "price": 270000,
+    "brand": "Canon",
+    "rating": 4.5,
+    "stock": 21,
+    "sku": "VEX-CAN-BLE-26",
+    "image": "https://picsum.photos/seed/vexa26/600/600",
+    "tags": [
+      "blender",
+      "home & kitchen",
+      "canon"
+    ]
+  },
+  {
+    "id": 27,
+    "title": "Samsung Microwave Pro 2024",
+    "description": "High-quality microwave from Samsung. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Home & Kitchen",
+    "price": 315000,
+    "brand": "Samsung",
+    "rating": 4.6,
+    "stock": 24,
+    "sku": "VEX-SAM-MIC-27",
+    "image": "https://picsum.photos/seed/vexa27/600/600",
+    "tags": [
+      "microwave",
+      "home & kitchen",
+      "samsung"
+    ]
+  },
+  {
+    "id": 28,
+    "title": "Apple Cookware Set Pro 2025",
+    "description": "High-quality cookware set from Apple. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Home & Kitchen",
+    "price": 360000,
+    "brand": "Apple",
+    "rating": 4.7,
+    "stock": 27,
+    "sku": "VEX-APP-COO-28",
+    "image": "https://picsum.photos/seed/vexa28/600/600",
+    "tags": [
+      "cookware set",
+      "home & kitchen",
+      "apple"
+    ]
+  },
+  {
+    "id": 29,
+    "title": "Sony Vacuum Cleaner Pro 2024",
+    "description": "High-quality vacuum cleaner from Sony. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Home & Kitchen",
+    "price": 405000,
+    "brand": "Sony",
+    "rating": 4.8,
+    "stock": 30,
+    "sku": "VEX-SON-VAC-29",
+    "image": "https://picsum.photos/seed/vexa29/600/600",
+    "tags": [
+      "vacuum cleaner",
+      "home & kitchen",
+      "sony"
+    ]
+  },
+  {
+    "id": 30,
+    "title": "Nike Air Fryer Pro 2025",
+    "description": "High-quality air fryer from Nike. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Home & Kitchen",
+    "price": 450000,
+    "brand": "Nike",
+    "rating": 4.9,
+    "stock": 33,
+    "sku": "VEX-NIK-AIR-30",
+    "image": "https://picsum.photos/seed/vexa30/600/600",
+    "tags": [
+      "air fryer",
+      "home & kitchen",
+      "nike"
+    ]
+  },
+  {
+    "id": 31,
+    "title": "Dell Face Cream Pro 2024",
+    "description": "High-quality face cream from Dell. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Beauty",
+    "price": 45000,
+    "brand": "Dell",
+    "rating": 4.0,
+    "stock": 6,
+    "sku": "VEX-DEL-FAC-31",
+    "image": "https://picsum.photos/seed/vexa31/600/600",
+    "tags": [
+      "face cream",
+      "beauty",
+      "dell"
+    ]
+  },
+  {
+    "id": 32,
+    "title": "Lenovo Perfume Pro 2025",
+    "description": "High-quality perfume from Lenovo. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Beauty",
+    "price": 90000,
+    "brand": "Lenovo",
+    "rating": 4.1,
+    "stock": 9,
+    "sku": "VEX-LEN-PER-32",
+    "image": "https://picsum.photos/seed/vexa32/600/600",
+    "tags": [
+      "perfume",
+      "beauty",
+      "lenovo"
+    ]
+  },
+  {
+    "id": 33,
+    "title": "LG Lipstick Pro 2024",
+    "description": "High-quality lipstick from LG. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Beauty",
+    "price": 135000,
+    "brand": "LG",
+    "rating": 4.2,
+    "stock": 12,
+    "sku": "VEX-LG-LIP-33",
+    "image": "https://picsum.photos/seed/vexa33/600/600",
+    "tags": [
+      "lipstick",
+      "beauty",
+      "lg"
+    ]
+  },
+  {
+    "id": 34,
+    "title": "Canon Hair Dryer Pro 2025",
+    "description": "High-quality hair dryer from Canon. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Beauty",
+    "price": 180000,
+    "brand": "Canon",
+    "rating": 4.3,
+    "stock": 15,
+    "sku": "VEX-CAN-HAI-34",
+    "image": "https://picsum.photos/seed/vexa34/600/600",
+    "tags": [
+      "hair dryer",
+      "beauty",
+      "canon"
+    ]
+  },
+  {
+    "id": 35,
+    "title": "Samsung Skincare Kit Pro 2024",
+    "description": "High-quality skincare kit from Samsung. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Beauty",
+    "price": 225000,
+    "brand": "Samsung",
+    "rating": 4.4,
+    "stock": 18,
+    "sku": "VEX-SAM-SKI-35",
+    "image": "https://picsum.photos/seed/vexa35/600/600",
+    "tags": [
+      "skincare kit",
+      "beauty",
+      "samsung"
+    ]
+  },
+  {
+    "id": 36,
+    "title": "Apple Face Cream Pro 2025",
+    "description": "High-quality face cream from Apple. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Beauty",
+    "price": 270000,
+    "brand": "Apple",
+    "rating": 4.5,
+    "stock": 21,
+    "sku": "VEX-APP-FAC-36",
+    "image": "https://picsum.photos/seed/vexa36/600/600",
+    "tags": [
+      "face cream",
+      "beauty",
+      "apple"
+    ]
+  },
+  {
+    "id": 37,
+    "title": "Sony Perfume Pro 2024",
+    "description": "High-quality perfume from Sony. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Beauty",
+    "price": 315000,
+    "brand": "Sony",
+    "rating": 4.6,
+    "stock": 24,
+    "sku": "VEX-SON-PER-37",
+    "image": "https://picsum.photos/seed/vexa37/600/600",
+    "tags": [
+      "perfume",
+      "beauty",
+      "sony"
+    ]
+  },
+  {
+    "id": 38,
+    "title": "Nike Lipstick Pro 2025",
+    "description": "High-quality lipstick from Nike. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Beauty",
+    "price": 360000,
+    "brand": "Nike",
+    "rating": 4.7,
+    "stock": 27,
+    "sku": "VEX-NIK-LIP-38",
+    "image": "https://picsum.photos/seed/vexa38/600/600",
+    "tags": [
+      "lipstick",
+      "beauty",
+      "nike"
+    ]
+  },
+  {
+    "id": 39,
+    "title": "Adidas Hair Dryer Pro 2024",
+    "description": "High-quality hair dryer from Adidas. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Beauty",
+    "price": 405000,
+    "brand": "Adidas",
+    "rating": 4.8,
+    "stock": 30,
+    "sku": "VEX-ADI-HAI-39",
+    "image": "https://picsum.photos/seed/vexa39/600/600",
+    "tags": [
+      "hair dryer",
+      "beauty",
+      "adidas"
+    ]
+  },
+  {
+    "id": 40,
+    "title": "HP Skincare Kit Pro 2025",
+    "description": "High-quality skincare kit from HP. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Beauty",
+    "price": 450000,
+    "brand": "HP",
+    "rating": 4.9,
+    "stock": 33,
+    "sku": "VEX-HP-SKI-40",
+    "image": "https://picsum.photos/seed/vexa40/600/600",
+    "tags": [
+      "skincare kit",
+      "beauty",
+      "hp"
+    ]
+  },
+  {
+    "id": 41,
+    "title": "Dell Gaming Console Pro 2024",
+    "description": "High-quality gaming console from Dell. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Gaming",
+    "price": 45000,
+    "brand": "Dell",
+    "rating": 4.0,
+    "stock": 6,
+    "sku": "VEX-DEL-GAM-41",
+    "image": "https://picsum.photos/seed/vexa41/600/600",
+    "tags": [
+      "gaming console",
+      "gaming",
+      "dell"
+    ]
+  },
+  {
+    "id": 42,
+    "title": "Lenovo Controller Pro 2025",
+    "description": "High-quality controller from Lenovo. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Gaming",
+    "price": 90000,
+    "brand": "Lenovo",
+    "rating": 4.1,
+    "stock": 9,
+    "sku": "VEX-LEN-CON-42",
+    "image": "https://picsum.photos/seed/vexa42/600/600",
+    "tags": [
+      "controller",
+      "gaming",
+      "lenovo"
+    ]
+  },
+  {
+    "id": 43,
+    "title": "LG Gaming Chair Pro 2024",
+    "description": "High-quality gaming chair from LG. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Gaming",
+    "price": 135000,
+    "brand": "LG",
+    "rating": 4.2,
+    "stock": 12,
+    "sku": "VEX-LG-GAM-43",
+    "image": "https://picsum.photos/seed/vexa43/600/600",
+    "tags": [
+      "gaming chair",
+      "gaming",
+      "lg"
+    ]
+  },
+  {
+    "id": 44,
+    "title": "Canon Gaming Mouse Pro 2025",
+    "description": "High-quality gaming mouse from Canon. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Gaming",
+    "price": 180000,
+    "brand": "Canon",
+    "rating": 4.3,
+    "stock": 15,
+    "sku": "VEX-CAN-GAM-44",
+    "image": "https://picsum.photos/seed/vexa44/600/600",
+    "tags": [
+      "gaming mouse",
+      "gaming",
+      "canon"
+    ]
+  },
+  {
+    "id": 45,
+    "title": "Samsung Keyboard Pro 2024",
+    "description": "High-quality keyboard from Samsung. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Gaming",
+    "price": 225000,
+    "brand": "Samsung",
+    "rating": 4.4,
+    "stock": 18,
+    "sku": "VEX-SAM-KEY-45",
+    "image": "https://picsum.photos/seed/vexa45/600/600",
+    "tags": [
+      "keyboard",
+      "gaming",
+      "samsung"
+    ]
+  },
+  {
+    "id": 46,
+    "title": "Apple Gaming Console Pro 2025",
+    "description": "High-quality gaming console from Apple. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Gaming",
+    "price": 270000,
+    "brand": "Apple",
+    "rating": 4.5,
+    "stock": 21,
+    "sku": "VEX-APP-GAM-46",
+    "image": "https://picsum.photos/seed/vexa46/600/600",
+    "tags": [
+      "gaming console",
+      "gaming",
+      "apple"
+    ]
+  },
+  {
+    "id": 47,
+    "title": "Sony Controller Pro 2024",
+    "description": "High-quality controller from Sony. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Gaming",
+    "price": 315000,
+    "brand": "Sony",
+    "rating": 4.6,
+    "stock": 24,
+    "sku": "VEX-SON-CON-47",
+    "image": "https://picsum.photos/seed/vexa47/600/600",
+    "tags": [
+      "controller",
+      "gaming",
+      "sony"
+    ]
+  },
+  {
+    "id": 48,
+    "title": "Nike Gaming Chair Pro 2025",
+    "description": "High-quality gaming chair from Nike. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Gaming",
+    "price": 360000,
+    "brand": "Nike",
+    "rating": 4.7,
+    "stock": 27,
+    "sku": "VEX-NIK-GAM-48",
+    "image": "https://picsum.photos/seed/vexa48/600/600",
+    "tags": [
+      "gaming chair",
+      "gaming",
+      "nike"
+    ]
+  },
+  {
+    "id": 49,
+    "title": "Adidas Gaming Mouse Pro 2024",
+    "description": "High-quality gaming mouse from Adidas. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Gaming",
+    "price": 405000,
+    "brand": "Adidas",
+    "rating": 4.8,
+    "stock": 30,
+    "sku": "VEX-ADI-GAM-49",
+    "image": "https://picsum.photos/seed/vexa49/600/600",
+    "tags": [
+      "gaming mouse",
+      "gaming",
+      "adidas"
+    ]
+  },
+  {
+    "id": 50,
+    "title": "HP Keyboard Pro 2025",
+    "description": "High-quality keyboard from HP. Built for durability, performance, and modern lifestyle use. Ideal for both personal and professional needs.",
+    "category": "Gaming",
+    "price": 450000,
+    "brand": "HP",
+    "rating": 4.9,
+    "stock": 33,
+    "sku": "VEX-HP-KEY-50",
+    "image": "https://picsum.photos/seed/vexa50/600/600",
+    "tags": [
+      "keyboard",
+      "gaming",
+      "hp"
+    ]
+  }
+]
