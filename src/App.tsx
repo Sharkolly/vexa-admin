@@ -58,9 +58,9 @@ function App() {
           <Route
             path="/product-form"
             element={
-              <ProtectedRoute>
+              // <ProtectedRoute>
                 <ProductForm />
-              </ProtectedRoute>
+              // </ProtectedRoute>
             }
           />
 
