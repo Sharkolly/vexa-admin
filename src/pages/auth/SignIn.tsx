@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { RiAdminFill } from "react-icons/ri";
 import { useAuthContextStore } from "../../../store/useAuthContext";
 import API from "../../../api/api";
 import { useState } from "react";
@@ -63,11 +64,11 @@ const SignIn = () => {
           <div className="mb-9">
             <div className="flex items-center gap-stack-sm">
               <div className="w-10 h-10 bg-primary flex items-center justify-center rounded-lg">
-                <span className="material-symbols-outlined text-on-primary">
-                  hub
+                <span className="material-symbols-outlined text-nav-blue-active">
+                  <RiAdminFill className='w-8 h-8'/>
                 </span>
               </div>
-              <span className=" text-3xl font-bold text-nav-blue-active ">
+              <span className=" text-2xl font-bold text-nav-blue-active ">
                 Vendor Portal
               </span>
             </div>

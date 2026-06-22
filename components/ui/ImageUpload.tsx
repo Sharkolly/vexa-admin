@@ -1,14 +1,17 @@
+import { MdPermMedia } from "react-icons/md";
+import { MdOutlineCloudUpload } from "react-icons/md";
+
 const ImageUpload = () => {
   return (
     <section className="bg-white  rounded-xl p-8 shadow-sm ">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <span className="material-symbols-outlined text-primary p-2 bg-primary/10 rounded-lg">
-            {/* image */}
+          <span className="material-symbols-outlined text-nav-blue-active p-2 bg-nav-blue-active/10 rounded-md">
+            <MdPermMedia className="w-7 h-7 " />
           </span>
-          <h3 className="font-semibold text-2xl  max-md:texl-lg">Media Gallery</h3>
+          <h3 className="font-semibold text-xl">Media Gallery </h3>
         </div>
-        <span className="text-sm max-md:text-xs text-gray-700 font-medium">
+        <span className="text-label-sm text-on-surface-variant">
           Recommended: 1200 x 1200px
         </span>
       </div>
@@ -16,17 +19,18 @@ const ImageUpload = () => {
         className="border-2 border-dashed border-gray-400 rounded-xl p-12 flex flex-col items-center justify-center transition-all duration-300 cursor-pointer hover:bg-surface-container-low group"
         id="drop-zone"
       >
-        <div className="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-          <span className="material-symbols-outlined text-primary text-3xl">
-            {/* cloud_upload */}
+        <div className="w-16 h-16 bg-nav-blue-active/5 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <span className="material-symbols-outlined text-nav-blue-active text-3xl">
+            <MdOutlineCloudUpload />
           </span>
         </div>
         <p className="font-medium tracking-wider text-lg text-gray-700 mb-1">
           Drag and drop images here
         </p>
         <p className="tracking-wider text-lg  text-gray-700">
-          or <span className="text-nav-blue-active font-bold">browse files</span> from
-          your computer
+          or{" "}
+          <span className="text-nav-blue-active font-bold">browse files</span>{" "}
+          from your computer
         </p>
         <input className="hidden" multiple type="file" />
       </div>

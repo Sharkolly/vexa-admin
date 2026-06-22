@@ -198,13 +198,13 @@ const VendorNavbar = () => {
       <input
         type="text"
         placeholder="Search products..."
-        className="w-full max-w-md border border-gray-400 max-md:w-[54%] rounded-md px-4 py-2"
+        className="w-full max-w-md border border-gray-400 max-md:w-[54%] rounded-sm  px-4 py-2"
       />
 
       <div className="flex items-center gap-4">
         <Bell />
 
-        <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 max-md:px-3 py-2 rounded-md ">
+        <button className="bg-nav-blue-active hover:bg-blue-700 text-white px-4 max-md:px-3 py-2 rounded-sm ">
           Publish Product
         </button>
       </div>

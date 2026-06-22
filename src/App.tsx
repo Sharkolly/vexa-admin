@@ -10,6 +10,7 @@ const Home = lazy(() => import("./pages/Home"));
 const SignIn = lazy(() => import("./pages/auth/SignIn"));
 const SignUp = lazy(() => import("./pages/auth/SignUp"));
 const NotFound = lazy(() => import("./pages/404"));
+const VendorDashboard = lazy(() => import("./pages/Dashboard"));
 const Layout = lazy(() => import("../components/ui/Layout"));
 const ProductForm = lazy(() => import("./pages/AddProductPage"));
 const LayoutNoFooter = lazy(() => import("../components/ui/LayoutNoFooter"));
@@ -61,6 +62,12 @@ function App() {
               // <ProtectedRoute>
                 <ProductForm />
               // </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={              
+                <VendorDashboard />              
             }
           />
 

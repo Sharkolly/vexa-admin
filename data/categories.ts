@@ -1,69 +1,263 @@
-// export const categories_data = [
-//   {
-//     image:
-//       "https://lh3.googleusercontent.com/aida-public/AB6AXuB8jku1U9x9n9-S0pnu8vHuZPMVx4ZYWAwIO8zm65JkAUJqxHCM6-DrtZVsKCzZGAH9zmzOXE56TY_39R79WWA_J488R1Eb6jHgNoW4RNdRgcU8Yq7ieINgFVPsgX7ZELUVQ5p2TrtGNCfI0rcaEfKByoDzUKhmC6UZhp6zEKs0n5tJW8iKsXnS3e8PLYpapaF0xR49YXpsnTBEKgygD7ShSIWRyk39a9PxHALec71BHJty7MGnLplNDWNZJ0UiQagsDB0u37K2QMU",
-//     name: "Vexa Speed Runner X1",
-//     price: "$249.00",
-//     category: "Shoes",
-//     attributes: "Performance",
-//     imgStyle:
-//       "w-full h-full object-cover group-hover:scale-105 transition-transform duration-500",
-//     alt: "A pair of vibrant red performance athletic sneakers isolated against a clean, minimalist studio background with soft directional lighting. The shot emphasizes the technical details and high-quality materials of the footwear, maintaining a modern and professional corporate product photography style.",
-//   },
-//   {
-//     image:
-//       "https://lh3.googleusercontent.com/aida-public/AB6AXuAO7GvxT4EiLB7BKKU1J4pstfI12wgLlBmx8CMGIRAkNydrS0CBaTWXVhy4Xj66oTCWKtnqnRBlAp_nHx2tjT9BK069yw5r0I6gSFjNy8buGqivigs1CzOJAbmqcC0His9w9KwPb0_xCmY0KZKj6hnq2_axyI_8dXUlUGGZViVT_iQsZnSKTK69WPJb4hX5iweUcvVDfeVlLi1lCoHWXgF4d46fZru1kHlBosAvFUfhFadqq71gS39VEuzSELyKndC_q32ihWRv6n8",
-//     name: "Aura Noise Cancelling",
-//     price: "$599.00",
-//     category: "Tech",
-//     attributes: "Audio",
-//     alt: "Sleek, gold and black high-fidelity studio headphones showcased on a minimalist pedestal in a high-key gallery setting. The lighting is crisp and clean, reflecting off the metallic surfaces to create a premium, luxury electronic product image suitable for a high-end desktop e-commerce site.",
-//   },
-//   {
-//     image:
-//       "https://lh3.googleusercontent.com/aida-public/AB6AXuBSp7BJs3pjom2yaDFYfORWMZcFIkAromnNzFWVmoZF7FG8J5mbCeEx3tiIJ5UgPa7T5pGo2r_ckMlhL2F1FogRhtCqYRgA5vVCqT2agbyh0XBK4sFE3BYfnhmiP8sPuxThsgdpms3lCagSZnlSShl7okORCaZU2eyYu6hsPYWibJOSvSyyisjvvGHYZDnCXbRi9f_QvdWF6vkZQcdQAMn9uI93OQbfDKK4gaY2p40zkRVOVcWrfMXBDdCYG-YrVrle3tjyDsp3jYE",
-//     name: "Nomad ClassNameic Watch",
-//     price: "$320.00",
-//     category: "Fashion",
-//     attributes: "Accessories",
-//     alt: "A minimalist luxury wristwatch with a white dial and black leather strap, positioned elegantly on a textured stone surface with architectural shadows. The aesthetic is clean, sophisticated, and corporate, highlighting the timeless design through high-contrast lighting and a monochromatic palette.",
-//   },
-//   {
-//     image:
-//       "https://lh3.googleusercontent.com/aida-public/AB6AXuA4k523Ixn7uD1F-KJLRREQGYGhST8eaczSoqjLnGEsVzlccL8pa2obDGjHsMQW0Ne7Z94RirTt2hnLa9EIM4qo3FZlDYnEei_A4fy1iqLjmJuaxj2aI4RZf0kXm6tXScn7aQayJB1F5CIfRClX3j5jJQIBTaMX4n-I46ppA_Uu-TFkRU7fRACZyi77lCiFf4_GDFAm9NPKIztln2fw9_jwGLyGEgQ-sBSzzsuROa798s8Ljv2p8wKbCo7tW7-9wamc7TycO8dreLI",
-//     name: "Executive Carryall",
-//     price: "$1,250.00",
-//     category: "Fashion",
-//     attributes: "Bag",
-//     alt: "A close-up of a luxury designer handbag made from premium dark navy leather with gold hardware, set against a blurred high-end boutique interior. The lighting is warm and inviting, emphasizing the rich texture and craftsmanship of the product within a minimalist and modern corporate visual framework.",
-//   },
-// ];
+export const categories = [
+  {
+    name: "Electronics",
+    slug: "electronics",
+    brands: [
+      "Apple",
+      "Samsung",
+      "Xiaomi",
+      "Tecno",
+      "Infinix",
+      "HP",
+      "Dell",
+      "Lenovo",
+      "Sony",
+      "LG",
+    ],
+    subCategories: [
+      { name: "Phones", slug: "phones" },
+      { name: "Laptops", slug: "laptops" },
+      { name: "Tablets", slug: "tablets" },
+      { name: "Desktop Computers", slug: "desktop-computers" },
+      { name: "Monitors", slug: "monitors" },
+      { name: "Printers", slug: "printers" },
+      { name: "Cameras", slug: "cameras" },
+      { name: "Televisions", slug: "televisions" },
+      { name: "Headphones", slug: "headphones" },
+      { name: "Speakers", slug: "speakers" },
+      { name: "Smart Watches", slug: "smart-watches" },
+      { name: "Accessories", slug: "accessories" },
+    ],
+  },
 
+  {
+    name: "Fashion",
+    slug: "fashion",
+    brands: [
+      "Nike",
+      "Adidas",
+      "Puma",
+      "Zara",
+      "H&M",
+      "Gucci",
+      "Louis Vuitton",
+      "Calvin Klein",
+    ],
+    subCategories: [
+      { name: "Men's Clothing", slug: "mens-clothing" },
+      { name: "Women's Clothing", slug: "womens-clothing" },
+      { name: "Kids Clothing", slug: "kids-clothing" },
+      { name: "Shoes", slug: "shoes" },
+      { name: "Bags", slug: "bags" },
+      { name: "Watches", slug: "watches" },
+      { name: "Jewelry", slug: "jewelry" },
+      { name: "Sunglasses", slug: "sunglasses" },
+      { name: "Sportswear", slug: "sportswear" },
+      { name: "Traditional Wear", slug: "traditional-wear" },
+    ],
+  },
 
-  export const categories_data = [
-    {
-      title: "Electronics",
-      image:
-        "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1200&auto=format&fit=crop",
-        link: "/search?category=Electronics"
-      },
-      {
-        title: "Fashion",
-        image:
-        "https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1200&auto=format&fit=crop",
-        link: "/search?category=Fashion"
+  {
+    name: "Beauty & Health",
+    slug: "beauty-health",
+    brands: [
+      "Nivea",
+      "Dove",
+      "L'Oreal",
+      "Maybelline",
+      "Neutrogena",
+      "MAC",
+      "Fenty Beauty",
+      "The Ordinary",
+    ],
+    subCategories: [
+      { name: "Skincare", slug: "skincare" },
+      { name: "Haircare", slug: "haircare" },
+      { name: "Makeup", slug: "makeup" },
+      { name: "Perfumes", slug: "perfumes" },
+      { name: "Personal Care", slug: "personal-care" },
+      { name: "Health Supplements", slug: "health-supplements" },
+      { name: "Oral Care", slug: "oral-care" },
+    ],
+  },
 
-    },
-    {
-      title: "Gaming",
-      image:
-        "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=1200&auto=format&fit=crop",
-        link: "/search?category=Gaming"
-    },
-    {
-      title: "Beauty",
-      image:
-        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop",
-        link: "/search?category=Beauty"
-    },
-  ];
+  {
+    name: "Home & Kitchen",
+    slug: "home-kitchen",
+    brands: [
+      "Samsung",
+      "LG",
+      "Hisense",
+      "Panasonic",
+      "Scanfrost",
+      "Nexus",
+      "Binatone",
+    ],
+    subCategories: [
+      { name: "Furniture", slug: "furniture" },
+      { name: "Kitchen Appliances", slug: "kitchen-appliances" },
+      { name: "Cookware", slug: "cookware" },
+      { name: "Home Decor", slug: "home-decor" },
+      { name: "Bedding", slug: "bedding" },
+      { name: "Lighting", slug: "lighting" },
+      { name: "Storage", slug: "storage" },
+      { name: "Cleaning Supplies", slug: "cleaning-supplies" },
+    ],
+  },
+
+  {
+    name: "Automobile",
+    slug: "automobile",
+    brands: [
+      "Toyota",
+      "Honda",
+      "Lexus",
+      "Mercedes-Benz",
+      "BMW",
+      "Ford",
+      "Hyundai",
+      "Kia",
+      "Nissan",
+      "Volkswagen",
+    ],
+    subCategories: [
+      { name: "Cars", slug: "cars" },
+      { name: "Motorcycles", slug: "motorcycles" },
+      { name: "Car Parts", slug: "car-parts" },
+      { name: "Tyres", slug: "tyres" },
+      { name: "Car Electronics", slug: "car-electronics" },
+      { name: "Car Care", slug: "car-care" },
+      { name: "Accessories", slug: "auto-accessories" },
+    ],
+  },
+
+  {
+    name: "Sports & Outdoors",
+    slug: "sports-outdoors",
+    brand: [],
+    subCategories: [
+      { name: "Fitness Equipment", slug: "fitness-equipment" },
+      { name: "Football", slug: "football" },
+      { name: "Basketball", slug: "basketball" },
+      { name: "Cycling", slug: "cycling" },
+      { name: "Camping", slug: "camping" },
+      { name: "Swimming", slug: "swimming" },
+      { name: "Outdoor Gear", slug: "outdoor-gear" },
+    ],
+  },
+
+  {
+    name: "Books & Education",
+    slug: "books-education",
+    brand: [],
+    subCategories: [
+      { name: "Academic Books", slug: "academic-books" },
+      { name: "Novels", slug: "novels" },
+      { name: "Children Books", slug: "children-books" },
+      { name: "E-books", slug: "ebooks" },
+      { name: "Stationery", slug: "stationery" },
+    ],
+  },
+
+  {
+    name: "Baby Products",
+    slug: "baby-products",
+    brand: [],
+    subCategories: [
+      { name: "Baby Clothing", slug: "baby-clothing" },
+      { name: "Diapers", slug: "diapers" },
+      { name: "Baby Food", slug: "baby-food" },
+      { name: "Baby Toys", slug: "baby-toys" },
+      { name: "Baby Gear", slug: "baby-gear" },
+    ],
+  },
+
+  {
+    name: "Groceries",
+    slug: "groceries",
+    brand: [],
+    subCategories: [
+      { name: "Food Items", slug: "food-items" },
+      { name: "Beverages", slug: "beverages" },
+      { name: "Snacks", slug: "snacks" },
+      { name: "Cooking Ingredients", slug: "cooking-ingredients" },
+      { name: "Frozen Foods", slug: "frozen-foods" },
+    ],
+  },
+
+  {
+    name: "Pet Supplies",
+    slug: "pet-supplies",
+    brand: [],
+    subCategories: [
+      { name: "Dog Supplies", slug: "dog-supplies" },
+      { name: "Cat Supplies", slug: "cat-supplies" },
+      { name: "Pet Food", slug: "pet-food" },
+      { name: "Pet Toys", slug: "pet-toys" },
+      { name: "Pet Grooming", slug: "pet-grooming" },
+    ],
+  },
+
+  {
+    name: "Industrial & Tools",
+    slug: "industrial-tools",
+    brand: [],
+    subCategories: [
+      { name: "Power Tools", slug: "power-tools" },
+      { name: "Hand Tools", slug: "hand-tools" },
+      { name: "Safety Equipment", slug: "safety-equipment" },
+      { name: "Generators", slug: "generators" },
+      { name: "Electrical Supplies", slug: "electrical-supplies" },
+    ],
+  },
+
+  {
+    name: "Office Supplies",
+    slug: "office-supplies",
+    brand: [],
+    subCategories: [
+      { name: "Office Furniture", slug: "office-furniture" },
+      { name: "Stationery", slug: "office-stationery" },
+      { name: "Printers", slug: "office-printers" },
+      { name: "Office Electronics", slug: "office-electronics" },
+    ],
+  },
+
+  {
+    name: "Gaming",
+    slug: "gaming",
+    brand: [],
+    subCategories: [
+      { name: "PlayStation", slug: "playstation" },
+      { name: "Xbox", slug: "xbox" },
+      { name: "Nintendo", slug: "nintendo" },
+      { name: "Video Games", slug: "video-games" },
+      { name: "Gaming Accessories", slug: "gaming-accessories" },
+    ],
+  },
+
+  {
+    name: "Musical Instruments",
+    slug: "musical-instruments",
+    brand: [],
+    subCategories: [
+      { name: "Guitars", slug: "guitars" },
+      { name: "Keyboards", slug: "keyboards" },
+      { name: "Drums", slug: "drums" },
+      { name: "Microphones", slug: "microphones" },
+      { name: "Studio Equipment", slug: "studio-equipment" },
+    ],
+  },
+
+  {
+    name: "Arts & Crafts",
+    slug: "arts-crafts",
+    brand: [],
+    subCategories: [
+      { name: "Painting", slug: "painting" },
+      { name: "Drawing", slug: "drawing" },
+      { name: "Craft Materials", slug: "craft-materials" },
+      { name: "DIY Kits", slug: "diy-kits" },
+    ],
+  },
+];

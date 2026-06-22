@@ -1,8 +1,11 @@
+import { IoMdArrowBack } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContextStore } from "../../../store/useAuthContext";
 import API from "../../../api/api";
 import { useState } from "react";
 import type { AxiosError } from "axios";
+import { RiAdminFill } from "react-icons/ri";
+import { GrLinkNext } from "react-icons/gr";
 
 const SignUp = () => {
   const {
@@ -36,7 +39,7 @@ const SignUp = () => {
   const submitForm = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(email, password, firstName, lastName, businessName, category )
+    console.log(email, password, firstName, lastName, businessName, category);
 
     setIsFetching(true);
     try {
@@ -66,7 +69,7 @@ const SignUp = () => {
     }
   };
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(3);
 
   const businessNameOnChange = (
     e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
@@ -94,15 +97,14 @@ const SignUp = () => {
         <div className="absolute inset-0 z-0 h-screeb"></div>
         <div className="relative z-10 max-w-lg text-on-primary">
           <div className="mb-6">
-            <span
-              className="material-symbols-outlined text-[64px] mb-4"
-              data-weight="fill"
-            >
-              {/* storefront */}
-            </span>
-            <h1 className="font-display-xl text-5xl font-semibold  text-white mb-4">
-              Vendor Portal
-            </h1>
+            <div className="flex items-center gap-3 ">
+              <span className="material-symbols-outlined ">
+                <RiAdminFill className="w-12 text-white h-12" />
+              </span>
+              <h1 className="font-display-xl text-5xl font-semibold  text-white mb-4">
+                Vendor Portal
+              </h1>
+            </div>
             <p className="text-gray-200 tracking-wider w-110  text-md opacity-90">
               Scale your business across the globe. Our high-performance
               dashboard gives you the technical precision and luxury tools
@@ -152,17 +154,17 @@ const SignUp = () => {
 
           <div className="flex justify-between items-center mb-6">
             <div
-              className={`flex-1 h-1  rounded-full transition-colors duration-300 ${step === 1 ? 'bg-nav-blue-active' : 'bg-gray-300'}`}
+              className={`flex-1 h-1  rounded-full transition-colors duration-300 ${step === 1 ? "bg-nav-blue-active" : "bg-gray-300"}`}
               id="step-indicator-1"
             ></div>
             <div className="w-4"></div>
             <div
-           className={`flex-1 h-1  rounded-full transition-colors duration-300 ${step === 2 ? 'bg-nav-blue-active' : 'bg-gray-300'}`}
+              className={`flex-1 h-1  rounded-full transition-colors duration-300 ${step === 2 ? "bg-nav-blue-active" : "bg-gray-300"}`}
               id="step-indicator-2"
             ></div>
             <div className="w-4"></div>
             <div
-           className={`flex-1 h-1  rounded-full transition-colors duration-300 ${step === 3 ? 'bg-nav-blue-active' : 'bg-gray-300'}`}
+              className={`flex-1 h-1  rounded-full transition-colors duration-300 ${step === 3 ? "bg-nav-blue-active" : "bg-gray-300"}`}
               id="step-indicator-3"
             ></div>
           </div>
@@ -177,7 +179,7 @@ const SignUp = () => {
                   Let's start with who you are.
                 </p>
                 <div className="flex flex-col gap-5 ">
-                  <div className="flex justify-between gap-4 max-md:flex-col" >
+                  <div className="flex justify-between gap-4 max-md:flex-col">
                     <div className="space-y-2 flex-1">
                       <label className="block font-medium   text-gray-600 ">
                         First Name
@@ -217,16 +219,18 @@ const SignUp = () => {
                   </div>
                 </div>
 
-                <p className={`text-red-700 py-5  text-center font-medium`}>
+                <p className={`text-red-600 py-5  text-center font-medium`}>
                   {message}
                 </p>
                 <button
-                  className={`w-full py-3 mt-5  bg-nav-blue-active text-white text-  rounded-sm  shadow-lg hover:bg-primary-container active:scale-[0.98] transition-all duration-200 uppercase tracking-wider font-medium `}
+                  className={`w-full py-3 mt-5  bg-nav-blue-active text-white text-  rounded-sm  shadow-lg hover:bg-primary-container active:scale-[0.98] transition-all duration-200 uppercase flex items-center justify-center gap-4 tracking-wider font-medium `}
                   type="button"
                   onClick={continueStep}
                 >
-                  Continue
-                  {/* <span className="material-symbols-outlined">arrow_forward</span> */}
+                  <span>Continue</span>
+                  <span className="material-symbols-outlined">
+                    <GrLinkNext className="w-5 h-5" />
+                  </span>
                 </button>
               </div>
             ) : step === 2 ? (
@@ -271,25 +275,30 @@ const SignUp = () => {
                   </div>
                 </div>
 
-                  <p className={`${message && 'inline'} hidden text-red-700 py-5 text-center font-medium`}>
+                <p
+                  className={`${message && "inline"} hidden text-red-600 py-5 text-center font-medium`}
+                >
                   {message}
                 </p>
                 <div className="flex gap-3 mt-6">
                   <button
-                    className={`w-full py-3 mt-5  border-gray-300 bg-slate-200/90   text-slate-800  rounded-sm  shadow-md  hover:bg-primary-container active:scale-[0.98] transition-all duration-200 uppercase tracking-wider font-medium `}
+                    className={`w-full py-3 mt-5  border-gray-300 bg-slate-200/90   text-slate-800  rounded-sm  shadow-md  hover:bg-primary-container active:scale-[0.98] transition-all duration-200 uppercase tracking-wider font-medium flex items-center justify-center gap-3`}
                     type="button"
                     onClick={backStep}
                   >
-                    Back
+                    <span className="material-symbols-outlined">
+                      <IoMdArrowBack className="w-5 h-5" />
+                    </span>
+                    <span>Back</span>
                   </button>
                   <button
-                    className={`w-full py-3 mt-5  bg-nav-blue-active text-white text-  rounded-sm  shadow-lg hover:bg-primary-container active:scale-[0.98] transition-all duration-200 uppercase tracking-wider font-medium `}
+                    className={`w-full py-3 mt-5  bg-nav-blue-active text-white text-  rounded-sm  shadow-lg flex items-center justify-center gap-3 hover:bg-primary-container active:scale-[0.98] transition-all duration-200 uppercase tracking-wider font-medium `}
                     type="button"
                     onClick={continueStep}
                   >
-                    Next
+                    <span>Next</span>
                     <span className="material-symbols-outlined">
-                      {/* arrow_forward */}
+                      <GrLinkNext className="w-5 h-5" />
                     </span>
                   </button>
                 </div>
@@ -337,10 +346,10 @@ const SignUp = () => {
                 </div>
 
                 <p
-                    className={`${message === "Admin Account Created Successfully" ? "text-green-700" : "text-red-700"}  py-4 text-center font-medium`}
-                  >
-                    {message}
-                  </p>
+                  className={`${message === "Admin Account Created Successfully" ? "text-green-700" : "text-red-600"}  py-4 text-center font-medium`}
+                >
+                  {message}
+                </p>
                 <div className="flex flex-col gap-5 mt-6">
                   <button
                     disabled={isFetching}
@@ -350,14 +359,15 @@ const SignUp = () => {
                     {isFetching ? "Please wait..." : "Create Vendor Account"}
                   </button>
                   <button
-                    className="w-full bg-white shadow-md font-medium rounded-sm   border border-gray-300 text-on-surface-variant font-label-md text-black/80  py-4 hover:text-on-surface transition-all"
+                    className="w-full bg-white shadow-md font-medium rounded-sm flex items-center justify-center gap-3  border border-gray-300 text-on-surface-variant font-label-md text-black/80  py-4 hover:text-on-surface transition-all"
                     type="button"
                     onClick={backStep}
                   >
-                    BACK TO BUSINESS DETAILS
+                    <span className="material-symbols-outlined">
+                      <IoMdArrowBack className="w-5 h-5" />
+                    </span>
+                    <span>BACK TO BUSINESS DETAILS</span>
                   </button>
-
-                  
                 </div>
               </div>
             ) : (

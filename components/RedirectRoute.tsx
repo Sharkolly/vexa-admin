@@ -21,7 +21,7 @@ const RedirectRoute = ({
         });        
 
         if (res.status === 201) {
-          navigate("/shop");
+          navigate("/product-form");
         }
       } catch (err) {
         

@@ -1,38 +1,16 @@
 import { useState } from "react";
+import { IoClose } from "react-icons/io5"; 
+import { LuLightbulb } from "react-icons/lu";
+import { categories } from "../../data/categories";
 
 const RightAside = () => {
-  const categories = [
-    {
-      name: "Electronics",
-      slug: "electronics",
-      subCategories: [
-        { name: "Phones", slug: "phones" },
-        { name: "Laptops", slug: "laptops" },
-        { name: "Tablets", slug: "tablets" },
-      ],
-    },
-    {
-      name: "Fashion",
-      slug: "fashion",
-      subCategories: [
-        { name: "Men", slug: "men" },
-        { name: "Women", slug: "women" },
-      ],
-    },
-    {
-      name: "Home & Kitchen",
-      slug: "home-kitchen",
-      subCategories: [
-        { name: "Furniture", slug: "furniture" },
-        { name: "Appliances", slug: "appliances" },
-      ],
-    },
-  ];
-
   const [selectedCategory, setSelectedCategory] = useState(categories[0].slug);
   const [selectedSub, setSelectedSub] = useState(
     categories[0].subCategories[0].slug,
   );
+//   const [selectedBrand, setSelectedBrand] = useState(
+//     categories[0].brand[0],
+//   );
 
   const activeCategory = categories.find(
     (c: { slug: string }) => c.slug === selectedCategory,
@@ -54,27 +32,6 @@ const RightAside = () => {
 
   return (
     <div className="col-span-4 flex flex-col gap-5">
-      <section className="bg-white  rounded-xl p-8 shadow-sm ">
-        <h3 className="font-semibold text-2xl mb-6 ">Organization</h3>
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <label className="block font-medium">Brand</label>
-            <select
-              className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-md outline-none focus:border-nav-blue-active  focus:ring-0 transition-all font-body-md text-body-md"
-              id="category-selector"
-            >
-              <option value="Apple">Apple</option>
-              <option value="Samsung">Samsung</option>
-              <option value="Redmi">Redmi</option>
-              <option value="Google">Google</option>
-              <option value="Vivo">Vivo</option>
-              <option value="Oppo">Oppo</option>
-              <option value="Infinix">Infinix</option>
-              <option value="Tecno">Tecno</option>
-            </select>
-          </div>
-        </div>
-      </section>
       <section className="bg-white  rounded-xl p-8 shadow-sm ">
         <h3 className="font-semibold text-2xl mb-6 ">Organization</h3>
         <div className="space-y-6">
@@ -121,7 +78,7 @@ const RightAside = () => {
                   className="material-symbols-outlined text-[14px]"
                   type="button"
                 >
-                  {/* close */}
+                  <IoClose />
                 </button>
               </span>
               <span className="px-3 py-1 bg-nav-blue-active/10 text-nav-blue-active text-label-sm rounded-full flex items-center gap-1">
@@ -130,7 +87,7 @@ const RightAside = () => {
                   className="material-symbols-outlined text-[14px]"
                   type="button"
                 >
-                  close
+                  <IoClose />
                 </button>
               </span>
             </div>
@@ -139,6 +96,36 @@ const RightAside = () => {
               placeholder="Add tag..."
               type="text"
             />
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white  rounded-xl p-8 shadow-sm ">
+        <h3 className="font-semibold text-2xl mb-6 ">Top Brands</h3>
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <label className="block font-medium">Brand</label>
+            <select
+              className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-md outline-none focus:border-nav-blue-active  focus:ring-0 transition-all font-body-md text-body-md"
+              id="category-selector"
+            //   onChange={(e) => setSelectedBrand(e.target.value)}
+            >
+              <option value="Apple">Apple</option>
+              <option value="Samsung">Samsung</option>
+              <option value="Redmi">Redmi</option>
+              <option value="Google">Google</option>
+              <option value="Vivo">Vivo</option>
+              <option value="Oppo">Oppo</option>
+              <option value="Infinix">Infinix</option>
+              <option value="Tecno">Tecno</option>
+
+              {/* {activeCategory?.brand &&
+                activeCategory?.brand.map((brand: string, index: number) => (
+                  <option key={index} value={brand}>
+                    {brand}
+                  </option>
+                ))} */}
+            </select>
           </div>
         </div>
       </section>
@@ -199,7 +186,7 @@ const RightAside = () => {
               id="track-stock"
               type="checkbox"
             />
-            <label className="text-label-md text-on-surface-variant">
+            <label className="font-medium text-on-surface-variant">
               Track inventory levels
             </label>
           </div>
@@ -207,15 +194,15 @@ const RightAside = () => {
       </section>
 
       <div className="bg-nav-blue-active/5 rounded-xl p-6 border border-nav-blue-active/20">
-        <div className="flex items-start gap-3">
+        <div className="flex items-start  gap-3">
           <span className="material-symbols-outlined text-nav-blue-active">
-            lightbulb
+            <LuLightbulb className="w-8 h-8" />
           </span>
           <div>
-            <h4 className="font-label-md text-label-md text-nav-blue-active font-bold mb-1">
+            <h4 className="font-label-md text-lg text-nav-blue-active font-bold mb-1">
               Pro Tip
             </h4>
-            <p className="text-label-sm text-on-surface-variant">
+            <p className="font-medium  text-on-surface-variant">
               Products with at least 5 high-resolution images see a 34% increase
               in buyer trust and conversions.
             </p>

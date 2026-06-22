@@ -3,6 +3,7 @@ import ProductSpecification from "./ProductSpecification";
 import RightAside from "./RightAside";
 // import PricingInventory from "./PricingInventory";
 // import ProductTags from "./ProductTags";
+import { IoDocumentText } from "react-icons/io5";
 
 const ProductForm = () => {
   return (
@@ -22,7 +23,12 @@ const ProductForm = () => {
         </div>
 
         <section className="bg-white p-8 rounded-xl shadow-sm">
-          <h2 className="font-semibold text-xl mb-7">Product Information</h2>
+               <div className="flex items-center gap-3 mb-6">
+                  <span className="material-symbols-outlined text-nav-blue-active p-2 bg-nav-blue-active/10 rounded-md">
+                    <IoDocumentText className='w-7 h-7 ' />
+                  </span>
+                  <h3 className="font-semibold text-xl">Product Information</h3>
+                </div>
 
           <div className="space-y-7">
             <div className="flex flex-col gap-2 ">
