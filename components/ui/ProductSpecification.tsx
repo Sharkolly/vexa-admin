@@ -2,7 +2,7 @@ import { useState } from "react";
 import { BiCategory } from "react-icons/bi";
 
 const ProductSpecification = () => {
-  const [category, setCategory] = useState("fashion");
+  const [category, setCategory] = useState("electronics");
   // const category = 'electronics'
 
   if (!category) setCategory("");
