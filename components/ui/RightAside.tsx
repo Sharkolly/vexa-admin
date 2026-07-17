@@ -3,7 +3,11 @@ import { IoClose } from "react-icons/io5";
 import { LuLightbulb } from "react-icons/lu";
 import { categories } from "../../data/categories";
 
-const RightAside = () => {
+// type RightAsideTYPE = {
+//   onSubmit: () => void;
+// }
+
+const RightAside = ( ) => {
   const [selectedCategory, setSelectedCategory] = useState(categories[0].slug);
   const [selectedSub, setSelectedSub] = useState(
     categories[0].subCategories[0].slug,
@@ -206,9 +210,17 @@ const RightAside = () => {
               Products with at least 5 high-resolution images see a 34% increase
               in buyer trust and conversions.
             </p>
+
+            
           </div>
         </div>
+
+        
       </div>
+
+        <button type='submit' className="bg-nav-blue-active hover:bg-blue-700 text-white px-4 max-md:px-3 py-2 rounded-sm ">
+          Publish Product
+        </button>
     </div>
   );
 };
