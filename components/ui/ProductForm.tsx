@@ -11,11 +11,12 @@ const ProductForm = (): React.JSX.Element => {
   const [product, setProduct] = useState<IProductFormInput>({
     name: "",
     price: 0,
+    tags: "",
     description: "",
     images: [null, null, null, null],
     video: null,
-    category: "",
-    sub_category: "",
+    category: "Electronics",
+    subCategory: "Phones",
     brand: "",
     discount: 0,
     color: "",
@@ -24,21 +25,20 @@ const ProductForm = (): React.JSX.Element => {
       ram: 0,
       processor: 0,
       battery_health: 0,
-      ibm: false,
-      idm: false,
-      icm: false,
+      ibm: "false",
+      idm: "false",
+      icm: "false",
       sim: "Dual Physical Sim",
       inches: 0,
       resolution: "",
       refresh_rate: 0,
-      wireless_charging: false,
-      fast_charging: false,
+      wireless_charging: null,
+      fast_charging: null,
       charging_port: "USB-C",
       operating_system: "",
     },
     condition: "UK Used",
-    size: '',
-
+    size: "",
   });
 
   const [videoPreviewUrl, setVideoPreviewUrl] = useState<string | null>(null);
@@ -50,10 +50,27 @@ const ProductForm = (): React.JSX.Element => {
     null,
   ]);
 
+  const handleOnChange = (
+    e: React.ChangeEvent<
+      HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
+    >,
+  ) => {
+    const { name, value } = e.target;
+    setProduct((prev) => ({
+      ...prev,
+      [name as keyof IProductFormInput]: value,
+    }));
+  };
+
+  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(product);
+  };
+
   return (
     <form
       className="grid lg:grid-cols-3 gap-6 items-start"
-      // onSubmit={handleSubmit(onSubmit)}
+      onSubmit={(e) => handleSubmit(e)}
     >
       <div className="lg:col-span-2 space-y-6">
         <div>
@@ -96,6 +113,9 @@ const ProductForm = (): React.JSX.Element => {
               </label>
               <input
                 type="text"
+                name="name"
+                onChange={handleOnChange}
+                value={product.name}
                 placeholder="Product Name"
                 className="w-full bg-gray-50 border border-gray-200 focus:border-blue-800 outline-none text-slate-900 rounded-md font-medium p-3 transition"
               />
@@ -109,6 +129,8 @@ const ProductForm = (): React.JSX.Element => {
                 Description
               </label>
               <textarea
+                name="description"
+                onChange={handleOnChange}
                 rows={5}
                 placeholder="Describe the story, materials and features of your product"
                 className="w-full rounded-md bg-gray-50 border border-gray-200 focus:border-blue-800 outline-none font-medium text-slate-900 p-3 transition"
@@ -127,11 +149,13 @@ const ProductForm = (): React.JSX.Element => {
           setProduct={setProduct}
         />
 
-        <ProductSpecification />
+        <ProductSpecification handleOnChange={handleOnChange} product={product}
+          setProduct={setProduct}/>
       </div>
 
       <div className="space-y-6">
-        <RightAside />
+        <RightAside handleOnChange={handleOnChange}    product={product}
+          setProduct={setProduct} />
 
         <button
           type="submit"

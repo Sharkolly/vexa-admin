@@ -2,7 +2,8 @@ export type IProductFormInput = {
   name: string;
   price: number;
   category: string;
-  sub_category: string;
+  subCategory: string;
+  tags?: string
   description: string;
   images: (File | string | null)[];
   video: File | string | null;
@@ -14,9 +15,9 @@ export type IProductFormInput = {
     ram?: number;
     processor?: number;
     battery_health?: number;
-    ibm?: boolean;
-    idm?: boolean;
-    icm?: boolean;
+    ibm?: string;
+    idm?: string;
+    icm?: string;
     sim?:
       | "Dual Physical Sim"
       | " Dual E-Sim"
@@ -26,9 +27,9 @@ export type IProductFormInput = {
     inches?: number;
     resolution?: string;
     refresh_rate?: number;
-    NFC?: boolean;
-    wireless_charging?: boolean;
-    fast_charging?: boolean;
+    NFC?: boolean | null;
+    wireless_charging?: boolean | null;
+    fast_charging?: boolean | null;
     charging_port?: "USB-C" | "Lightning" | "Micro-USB" | "Proprietary";
     operating_system?: string;
   };

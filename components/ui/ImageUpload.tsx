@@ -4,8 +4,7 @@ import { useForm } from "react-hook-form";
 import { FaCamera, FaTrash } from "react-icons/fa";
 import { MdPermMedia } from "react-icons/md";
 import { Film, Trash2, Play, Pause } from "lucide-react";
-import type {IProductFormInput} from "../../types/device.types";
-
+import type { IProductFormInput } from "../../types/device.types";
 
 type IMAGEUPLOADTYPE = {
   images: (File | string | null)[];
@@ -94,9 +93,9 @@ const ImageUpload = ({
     const generatedStreamUrl = URL.createObjectURL(selectedFile);
     console.log(generatedStreamUrl);
     setVideoPreviewUrl(generatedStreamUrl);
-    // setProduct((prev) => {
-    //   return { ...prev, video: generatedStreamUrl };
-    // });
+    setProduct((prev) => {
+      return { ...prev, video: generatedStreamUrl };
+    });
     setIsPlaying(false);
   };
 
@@ -161,17 +160,17 @@ const ImageUpload = ({
           </div>
         </div>
       ) : (
-        <div className="space-y-3">
-          <div className="relative rounded-xl overflow-hidden bg-black aspect-video group shadow-md border border-gray-900 max-h-80 mx-auto">
+        <div className="space-y-3 w-full">
+          <div className="relative rounded-xl w-full overflow-hidden bg-black aspect-video  shadow-md border border-gray-900 max-h-88  mx-auto">
             <video
               ref={videoPlayerRef}
               src={videoPreviewUrl}
-              className="w-full h-full object-contain mx-auto"
+              className="w-full h-full object-cover"
               onEnded={() => setIsPlaying(false)}
               playsInline
               controls
             />
-            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
+            <div className="absolute  inset-0 bg-black/20 opacity- group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center pointer-events-none">
               <button
                 type="button"
                 onClick={togglePlayState}

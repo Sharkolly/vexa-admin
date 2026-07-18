@@ -1,20 +1,28 @@
 import { useState } from "react";
-import { IoClose } from "react-icons/io5"; 
+import { IoClose } from "react-icons/io5";
 import { LuLightbulb } from "react-icons/lu";
 import { categories } from "../../data/categories";
+import type { IProductFormInput } from "../../types/device.types";
 
-// type RightAsideTYPE = {
-//   onSubmit: () => void;
-// }
+type RightSideProps = {
+  handleOnChange: (
+    e: React.ChangeEvent<
+      HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
+    >,
+  ) => void;
+    product: IProductFormInput;
+    setProduct: React.Dispatch<React.SetStateAction<IProductFormInput>>;
+};
 
-const RightAside = ( ) => {
+const RightAside = ({ handleOnChange,  // product,
+  setProduct, }: RightSideProps) => {
   const [selectedCategory, setSelectedCategory] = useState(categories[0].slug);
   const [selectedSub, setSelectedSub] = useState(
     categories[0].subCategories[0].slug,
   );
-//   const [selectedBrand, setSelectedBrand] = useState(
-//     categories[0].brand[0],
-//   );
+  //   const [selectedBrand, setSelectedBrand] = useState(
+  //     categories[0].brand[0],
+  //   );
 
   const activeCategory = categories.find(
     (c: { slug: string }) => c.slug === selectedCategory,
@@ -32,6 +40,11 @@ const RightAside = ( ) => {
 
     if (!newCategoryObj) return;
     setSelectedSub(newCategoryObj.subCategories[0].slug);
+    setProduct((prev) => ({
+      ...prev,
+      category: newCat,
+      subCategory: newCategoryObj.subCategories[0].slug,
+    }));
   };
 
   return (
@@ -45,7 +58,11 @@ const RightAside = ( ) => {
             <select
               className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-md outline-none  focus:ring-0 transition"
               value={selectedCategory}
-              onChange={(e) => categoryOnChange(e)}
+              name="category"
+              onChange={(e) => {
+                categoryOnChange(e);
+                handleOnChange(e);
+              }}
             >
               {categories.map((category: { slug: string; name: string }) => (
                 <option key={category.slug} value={category.slug}>
@@ -61,7 +78,11 @@ const RightAside = ( ) => {
             <select
               className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-md outline-none  focus:ring-0 transition"
               value={selectedSub}
-              onChange={(e) => setSelectedSub(e.target.value)}
+              name="subCategory" 
+              onChange={(e) => {
+                setSelectedSub(e.target.value);
+                handleOnChange(e);
+              }}
             >
               {activeCategory?.subCategories.map(
                 (sub: { slug: string; name: string }) => (
@@ -99,6 +120,8 @@ const RightAside = ( ) => {
               className="w-full px-4 py-3   bg-gray-100 border-transparent rounded-md outline-none focus:ring-0 transition-all font-body-md text-body-md"
               placeholder="Add tag..."
               type="text"
+              name="tags"
+              onChange={handleOnChange} 
             />
           </div>
         </div>
@@ -112,7 +135,7 @@ const RightAside = ( ) => {
             <select
               className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-md outline-none focus:border-nav-blue-active  focus:ring-0 transition-all font-body-md text-body-md"
               id="category-selector"
-            //   onChange={(e) => setSelectedBrand(e.target.value)}
+                onChange={handleOnChange}
             >
               <option value="Apple">Apple</option>
               <option value="Samsung">Samsung</option>
@@ -148,6 +171,8 @@ const RightAside = ( ) => {
                   className="w-full pl-8 pr-4 py-3 bg-gray-100 border-transparent rounded-md outline-none focus:border-nav-blue-active  focus:ring-0 transition-all font-body-md text-body-md"
                   placeholder="0.00"
                   type="number"
+                  name='price'
+                  onChange={handleOnChange}
                 />
               </div>
             </div>
@@ -161,6 +186,8 @@ const RightAside = ( ) => {
                   className="w-full pl-8 pr-4 py-3 bg-gray-100 border-transparent rounded-md outline-none focus:border-nav-blue-active  focus:ring-0 transition-all font-body-md text-body-md"
                   placeholder="0.00"
                   type="number"
+                  name='discount'
+                  onChange={handleOnChange}
                 />
               </div>
             </div>
@@ -210,17 +237,16 @@ const RightAside = ( ) => {
               Products with at least 5 high-resolution images see a 34% increase
               in buyer trust and conversions.
             </p>
-
-            
           </div>
         </div>
-
-        
       </div>
 
-        <button type='submit' className="bg-nav-blue-active hover:bg-blue-700 text-white px-4 max-md:px-3 py-2 rounded-sm ">
-          Publish Product
-        </button>
+      <button
+        type="submit"
+        className="bg-nav-blue-active hover:bg-blue-700 text-white px-4 max-md:px-3 py-2 rounded-sm "
+      >
+        Publish Product
+      </button>
     </div>
   );
 };
