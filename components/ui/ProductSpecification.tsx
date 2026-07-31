@@ -35,7 +35,7 @@ const ProductSpecification = ({
   // if (!category) setCategory("");
   return (
     <>
-      <section className="bg-white  rounded-xl p-8 shadow-sm ">
+      <section className="bg-white hidden rounded-xl p-8 shadow-sm ">
         <div className="flex items-center gap-3 mb-6">
           <span className="material-symbols-outlined text-nav-blue-active p-2 bg-nav-blue-active/10 rounded-md">
             <BiCategory className="w-7 h-7 " />
@@ -53,7 +53,9 @@ const ProductSpecification = ({
                   className="w-full px-4 py-3 outline-none    border border-gray-300/70  rounded-sm   focus:rings transition-all font-body-md text-body-md"
                 >
                   <option value="4 GB">4 GB</option>
+                  <option value="6 GB">6 GB</option>
                   <option value="8 GB">8 GB</option>
+                  <option value="12 GB">12 GB</option>
                   <option value="16 GB">16 GB</option>
                   <option value="32 GB">32 GB</option>
                   <option value="48 GB">48 GB</option>
@@ -66,8 +68,15 @@ const ProductSpecification = ({
                 <select
                   onChange={handleOnChangeSpec}
                   name="rom"
-                  className="w-full outline-none px-4 py-3  text-gray-500     border border-gray-300/70  rounded-sm  tracking-wider font-medium focus:ring-0 transition-all font-body-md text-body-md"
+                  className="w-full outline-none px-4 py-3   border border-gray-300/70  rounded-sm  tracking-wider font-medium focus:ring-0 transition-all font-body-md text-body-md"
                 >
+                  <option value="64 GB (PHONE) ">64 GB (PHONE) </option>
+                  <option value="128 GB (PHONE) ">128 GB (PHONE) </option>
+                  <option value="256 GB (PHONE) ">256 GB (PHONE) </option>
+                  <option value="512 GB (PHONE) ">512 GB (PHONE) </option>
+                  <option value="1 TB">1 TB</option>
+                  <option value="2 TB">2 TB</option>
+                  <option value="3 TB">3 TB</option>
                   <option value="128 GB SSD">128 GB SSD</option>
                   <option value="256 GB SSD">256 GB SSD</option>
                   <option value="512 GB SSD">512 GB SSD</option>

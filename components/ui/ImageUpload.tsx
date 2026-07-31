@@ -94,7 +94,7 @@ const ImageUpload = ({
     console.log(generatedStreamUrl);
     setVideoPreviewUrl(generatedStreamUrl);
     setProduct((prev) => {
-      return { ...prev, video: generatedStreamUrl };
+      return { ...prev, video: selectedFile };
     });
     setIsPlaying(false);
   };

@@ -127,7 +127,7 @@ const RightAside = ({ handleOnChange,  // product,
         </div>
       </section>
 
-      <section className="bg-white  rounded-xl p-8 shadow-sm ">
+      <section className="bg-white hidden rounded-xl p-8 shadow-sm ">
         <h3 className="font-semibold text-2xl mb-6 ">Top Brands</h3>
         <div className="space-y-6">
           <div className="space-y-2">
@@ -193,14 +193,14 @@ const RightAside = ({ handleOnChange,  // product,
             </div>
           </div>
           <div>
-            <label className="block font-medium mb-2">Stock Quantity</label>
+            <label className="block font-medium mb-2">Stock Quantity <span className="text-gray-600">( 0 is out  of stock ) </span> </label>
             <input
               className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-md outline-none focus:border-nav-blue-active  focus:ring-0 transition-all font-body-md text-body-md"
               placeholder="0"
               type="number"
             />
           </div>
-          <div>
+          <div className='hidden '>
             <label className="block font-medium mb-2">
               SKU <span className="text-gray-600">(Optional)</span>
             </label>
@@ -241,12 +241,12 @@ const RightAside = ({ handleOnChange,  // product,
         </div>
       </div>
 
-      <button
+      {/* <button
         type="submit"
         className="bg-nav-blue-active hover:bg-blue-700 text-white px-4 max-md:px-3 py-2 rounded-sm "
       >
         Publish Product
-      </button>
+      </button> */}
     </div>
   );
 };

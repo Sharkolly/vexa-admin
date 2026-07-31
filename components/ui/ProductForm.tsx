@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
 // import { useForm, SubmitHandler } from "react-hook-form";
+// import TextareaAutosize from "react-textarea-autosize";
 import { IoDocumentText } from "react-icons/io5";
-
+import API from "../../api/api";
 import ImageUpload from "./ImageUpload";
 import type { IProductFormInput } from "../../types/device.types";
 import ProductSpecification from "./ProductSpecification";
@@ -62,9 +63,71 @@ const ProductForm = (): React.JSX.Element => {
     }));
   };
 
-  const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     console.log(product);
+    const formData = new FormData();
+    formData.append("name", product.name);
+    formData.append("description", product.description);
+    formData.append("price", product.price.toString());
+    formData.append("brand", product.brand || "");
+    formData.append("category", product.category);
+    formData.append("subCategory", product.subCategory);
+    formData.append("discount", String(product.discount ?? 0));
+    formData.append("tags", product.tags || "");
+    formData.append("color", product.color);
+    formData.append("condition", product.condition || "Nigerian Used");
+
+    product.images.forEach((file) => {
+      if (file instanceof File) {
+        formData.append("images", file);
+      }
+    });
+
+    if (product.video instanceof File) {
+      formData.append("video", product.video);
+    }
+
+    if (
+      product.category === "Electronics"
+      // &&
+      // product.subCategory === "Phones"
+    ) {
+      const deviceSpecifications = {
+        ram: product.deviceSpecifications?.ram ?? 0,
+        rom: product.deviceSpecifications?.rom ?? 0,
+        processor: product.deviceSpecifications?.processor ?? 0,
+        battery_health: product.deviceSpecifications?.battery_health ?? 0,
+        ibm: product.deviceSpecifications?.ibm ?? "false",
+        idm: product.deviceSpecifications?.idm ?? "false",
+        icm: product.deviceSpecifications?.icm ?? "false",
+        sim: product.deviceSpecifications?.sim ?? "",
+        inches: product.deviceSpecifications?.inches ?? 0,
+        resolution: product.deviceSpecifications?.resolution ?? "",
+        refresh_rate: product.deviceSpecifications?.refresh_rate ?? 0,
+        NFC: product.deviceSpecifications?.NFC ?? false,
+        wireless_charging:
+          product.deviceSpecifications?.wireless_charging ?? false,
+        fast_charging: product.deviceSpecifications?.fast_charging ?? false,
+        charging_port: product.deviceSpecifications?.charging_port ?? "USB-C",
+        operating_system: product.deviceSpecifications?.operating_system ?? "",
+      };
+
+      formData.append(
+        "deviceSpecifications",
+        JSON.stringify(deviceSpecifications),
+      );
+    }
+    try {
+      const res = await API.post("/admin/product", formData, {
+        withCredentials: true,
+      });
+      console.log(product);
+      console.log(res.data);
+    } catch (error: unknown) {
+      console.log(error);
+    }
   };
 
   return (
@@ -135,6 +198,17 @@ const ProductForm = (): React.JSX.Element => {
                 placeholder="Describe the story, materials and features of your product"
                 className="w-full rounded-md bg-gray-50 border border-gray-200 focus:border-blue-800 outline-none font-medium text-slate-900 p-3 transition"
               />
+
+              {/* <TextareaAutosize
+                minRows={10}
+                // placeholder="Enter product description..."
+                placeholder="Describe the story, materials and features of your product"
+                // value={description}
+                onChange={(e) => handleOnChange(e)}
+                // className="w-full rounded-lg border p-3"
+                className="w-full rounded-md bg-gray-50 border border-gray-200 focus:border-blue-800 outline-none font-medium text-slate-900 p-3 transition"
+              /> */}
+
             </div>
           </div>
         </section>
@@ -149,13 +223,19 @@ const ProductForm = (): React.JSX.Element => {
           setProduct={setProduct}
         />
 
-        <ProductSpecification handleOnChange={handleOnChange} product={product}
-          setProduct={setProduct}/>
+        <ProductSpecification
+          handleOnChange={handleOnChange}
+          product={product}
+          setProduct={setProduct}
+        />
       </div>
 
       <div className="space-y-6">
-        <RightAside handleOnChange={handleOnChange}    product={product}
-          setProduct={setProduct} />
+        <RightAside
+          handleOnChange={handleOnChange}
+          product={product}
+          setProduct={setProduct}
+        />
 
         <button
           type="submit"
