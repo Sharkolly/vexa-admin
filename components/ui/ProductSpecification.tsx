@@ -35,16 +35,47 @@ const ProductSpecification = ({
   // if (!category) setCategory("");
   return (
     <>
-      <section className="bg-white hidden rounded-xl p-8 shadow-sm ">
+      <section className="bg-white hidde rounded-xl p-8 shadow-sm ">
         <div className="flex items-center gap-3 mb-6">
           <span className="material-symbols-outlined text-nav-blue-active p-2 bg-nav-blue-active/10 rounded-md">
             <BiCategory className="w-7 h-7 " />
           </span>
           <h3 className="font-semibold text-xl">Category Specifications</h3>
         </div>
-        {product.category.toLowerCase() == "electronics" && (
+
+        <div className="flex items-center  gap-2">
+          <div className="flex flex-col gap-2 flex-1 ">
+            <label className="font-medium text-gray-5 ">Condition</label>
+            <select
+              onChange={handleOnChange}
+              name="condition"
+              className="w-full outline-none px-4 py-3  text-gray-500     border border-gray-300/70  rounded-sm  tracking-wide font-medium focus:ring-0 transition-all font-body-md text-body-md"
+            >
+              <option value="UK Used">UK Used</option>
+              <option value="Brand New">Brand New</option>
+              <option value="Open Box">Open Box</option>
+              <option value="Tokunbo">Tokunbo</option>
+              <option value="Refurbished">Refurbished</option>
+              <option value="Damaged">Damaged</option>
+              <option value="Nigerian Used">Nigerian Used</option>
+              <option value="Nigerian Used">Foreign Used</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col  flex-1  gap-2">
+            <label className="font-medium text-gray-5 ">Color</label>
+            <input
+              className="w-full px-4 py-3 text-gray-500 border border-gray-300/70  rounded-sm   focus:ring-0 transition-all font-body-md text-body-md"
+              placeholder="Yellow"
+              type="text"
+              onChange={handleOnChange}
+              name='color'
+            />
+          </div>
+        </div>
+        {product.category.toLowerCase() == "electronic" && (
           <>
-            <div className="grid grid-cols-2  gap-6" id="tech-specs">
+            <div className="grid grid-cols-2 hidden gap-6" id="tech-specs">
               <div className="flex flex-col gap-2">
                 <label className="font-medium text-gray-5 ">RAM Capacity</label>
                 <select
@@ -130,22 +161,6 @@ const ProductSpecification = ({
                   <option>Dual Physical Sim + E-Sim</option>
                   <option>Single Physical Sim</option>
                   <option>Single E-Sim</option>
-                </select>
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="font-medium text-gray-5 ">Condition</label>
-                <select
-                  onChange={handleOnChange}
-                  name="condition"
-                  className="w-full outline-none px-4 py-3  text-gray-500     border border-gray-300/70  rounded-sm  tracking-wide font-medium focus:ring-0 transition-all font-body-md text-body-md"
-                >
-                  <option value="UK Used">UK Used</option>
-                  <option value="Brand New">Brand New</option>
-                  <option value="Open Box">Open Box</option>
-                  <option value="Tokunbo">Tokunbo</option>
-                  <option value="Refurbished">Refurbished</option>
-                  <option value="Damaged">Damaged</option>
-                  <option value="Nigerian Used">Nigerian Used</option>
                 </select>
               </div>
             </div>
@@ -239,7 +254,7 @@ const ProductSpecification = ({
         {/* </div> */}
 
         {product.category && (
-          <div className="hidde grid grid-cols-2 gap-6 mt-5" id="fashion-specs">
+          <div className="hidden grid grid-cols-2 gap-6 mt-5" id="fashion-specs">
             <div className="flex flex-col gap-2">
               <label className="font-medium text-gray-5 ">Size</label>
               <div className="flex gap-2">
@@ -281,7 +296,7 @@ const ProductSpecification = ({
                 </button>
               </div>
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 hidden">
               <label className="font-medium text-gray-5 ">Material</label>
               <input
                 className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-md   focus:ring-0 transition-all font-body-md text-body-md"
