@@ -39,8 +39,6 @@ const SignUp = () => {
   const submitForm = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(email, password, firstName, lastName, businessName, category);
-
     setIsFetching(true);
     try {
       const { data } = await API.post(
@@ -69,7 +67,7 @@ const SignUp = () => {
     }
   };
 
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(1);
 
   const businessNameOnChange = (
     e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
@@ -88,6 +86,13 @@ const SignUp = () => {
     }
     if (businessName && category) {
       setStep(3);
+    }
+
+    if (!businessName || ! category) {
+      setMessage("Please fill all fields!");
+      setTimeout(() => {
+        setMessage("");
+      }, 3000);
     }
   };
   const backStep = () => setStep((prev) => prev - 1);
