@@ -180,14 +180,14 @@ const SignIn = () => {
               </span>
             </div>
           </div>
-
+<Link to='/signup' >
           <button className="w-full flex items-center justify-center gap-2 bg-gray-100 border border-gray-400  py-3 rounded-md  transition-colors group">
             {/* <span className="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">corporate_fare</span> */}
             <span className="font-medium text-label-md text-gray-500 ">
-              Sign in with SSO
+              Sign up
             </span>
           </button>
-
+</Link>
           <p className="mt-7 text-center font-body-md text-body-md text-on-surface-variant">
             New to the portal?{" "}
             <Link
