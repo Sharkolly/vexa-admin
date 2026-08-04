@@ -22,7 +22,7 @@ const SignUp = () => {
 
   const [message, setMessage] = useState("");
   const [businessName, setBusinessName] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("Fashion");
 
   const allCategories = [
     // 'Select a Category',
