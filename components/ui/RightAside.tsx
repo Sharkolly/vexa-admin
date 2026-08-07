@@ -1,6 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { LuLightbulb } from "react-icons/lu";
+import { FiLayers, FiDollarSign } from "react-icons/fi";
 import { categories } from "../../data/categories";
 import type { IProductFormInput } from "../../types/device.types";
 
@@ -10,26 +11,29 @@ type RightSideProps = {
       HTMLTextAreaElement | HTMLInputElement | HTMLSelectElement
     >,
   ) => void;
-    product: IProductFormInput;
-    setProduct: React.Dispatch<React.SetStateAction<IProductFormInput>>;
+  product: IProductFormInput;
+  setProduct: React.Dispatch<React.SetStateAction<IProductFormInput>>;
 };
 
-const RightAside = ({ handleOnChange,  // product,
-  setProduct, }: RightSideProps) => {
+const RightAside = ({
+  handleOnChange,
+  // product,
+  setProduct,
+}: RightSideProps): React.JSX.Element => {
   const [selectedCategory, setSelectedCategory] = useState(categories[0].slug);
   const [selectedSub, setSelectedSub] = useState(
     categories[0].subCategories[0].slug,
   );
-  //   const [selectedBrand, setSelectedBrand] = useState(
-  //     categories[0].brand[0],
-  //   );
+  // const [selectedBrand, setSelectedBrand] = useState(
+  //   categories[0].brand[0],
+  // );
 
   const activeCategory = categories.find(
     (c: { slug: string }) => c.slug === selectedCategory,
   );
 
   const categoryOnChange = (
-    e: React.ChangeEvent<HTMLSelectElement, HTMLSelectElement>,
+    e: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     const newCat = e.target.value;
     setSelectedCategory(newCat);
@@ -48,15 +52,29 @@ const RightAside = ({ handleOnChange,  // product,
   };
 
   return (
-    <div className="col-span-4 flex flex-col gap-5">
-      <section className="bg-white  rounded-xl p-8 shadow-sm ">
-        <h3 className="font-semibold text-2xl mb-6 ">Organization</h3>
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <label className="block font-medium">Category</label>
+    <div className="flex flex-col gap-6">
+      {/* Organization Card */}
+      <section className="bg-white p-6 sm:p-8 rounded-2xl shadow-xs border border-gray-200/80 transition-all hover:shadow-md/50">
+        <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
+          <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl ring-1 ring-blue-100">
+            <FiLayers className="w-5 h-5" />
+          </div>
+          <div>
+            <h3 className="font-bold text-lg text-gray-900">Organization</h3>
+            <p className="text-xs text-gray-500 font-medium">
+              Categorization and tags for search indexing
+            </p>
+          </div>
+        </div>
 
+        <div className="space-y-5">
+          {/* Category Dropdown */}
+          <div className="space-y-1.5">
+            <label className="block font-semibold text-xs uppercase tracking-wider text-gray-700">
+              Category <span className="text-rose-500">*</span>
+            </label>
             <select
-              className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-md outline-none  focus:ring-0 transition"
+              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
               value={selectedCategory}
               name="category"
               onChange={(e) => {
@@ -72,13 +90,15 @@ const RightAside = ({ handleOnChange,  // product,
             </select>
           </div>
 
-          <div className="space-y-2">
-            <label className="block font-medium">Sub Category</label>
-
+          {/* Subcategory Dropdown */}
+          <div className="space-y-1.5">
+            <label className="block font-semibold text-xs uppercase tracking-wider text-gray-700">
+              Sub Category <span className="text-rose-500">*</span>
+            </label>
             <select
-              className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-md outline-none  focus:ring-0 transition"
+              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
               value={selectedSub}
-              name="subCategory" 
+              name="subCategory"
               onChange={(e) => {
                 setSelectedSub(e.target.value);
                 handleOnChange(e);
@@ -94,48 +114,57 @@ const RightAside = ({ handleOnChange,  // product,
             </select>
           </div>
 
-          <div>
-            <label className="block font-medium mb-2">Tags</label>
-            <div className="flex flex-wrap gap-2 mb-6" id="tag-container">
-              <span className="px-3 py-1 bg-nav-blue-active/10 text-nav-blue-active text-label-sm rounded-full flex items-center gap-1">
-                Wireless{" "}
+          {/* Tags Field */}
+          <div className="space-y-1.5 pt-1">
+            <label className="block font-semibold text-xs uppercase tracking-wider text-gray-700">
+              Tags
+            </label>
+
+            {/* Existing Tag Chips */}
+            <div className="flex flex-wrap gap-2 my-2" id="tag-container">
+              <span className="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-lg border border-blue-200/60 flex items-center gap-1.5">
+                Wireless
                 <button
-                  className="material-symbols-outlined text-[14px]"
                   type="button"
+                  className="hover:text-blue-900 transition-colors cursor-pointer"
                 >
-                  <IoClose />
+                  <IoClose className="w-3.5 h-3.5" />
                 </button>
               </span>
-              <span className="px-3 py-1 bg-nav-blue-active/10 text-nav-blue-active text-label-sm rounded-full flex items-center gap-1">
-                Premium{" "}
+              <span className="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-lg border border-blue-200/60 flex items-center gap-1.5">
+                Premium
                 <button
-                  className="material-symbols-outlined text-[14px]"
                   type="button"
+                  className="hover:text-blue-900 transition-colors cursor-pointer"
                 >
-                  <IoClose />
+                  <IoClose className="w-3.5 h-3.5" />
                 </button>
               </span>
             </div>
+
             <input
-              className="w-full px-4 py-3   bg-gray-100 border-transparent rounded-md outline-none focus:ring-0 transition-all font-body-md text-body-md"
-              placeholder="Add tag..."
+              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
+              placeholder="Add tag and press enter..."
               type="text"
               name="tags"
-              onChange={handleOnChange} 
+              onChange={handleOnChange}
             />
           </div>
         </div>
       </section>
 
-      <section className="bg-white hidden rounded-xl p-8 shadow-sm ">
-        <h3 className="font-semibold text-2xl mb-6 ">Top Brands</h3>
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <label className="block font-medium">Brand</label>
+      {/* Top Brands Card (Hidden Section preserved) */}
+      <section className="bg-white hidden p-6 sm:p-8 rounded-2xl shadow-xs border border-gray-200/80">
+        <h3 className="font-bold text-lg text-gray-900 mb-4">Top Brands</h3>
+        <div className="space-y-4">
+          <div className="space-y-1.5">
+            <label className="block font-semibold text-xs uppercase tracking-wider text-gray-700">
+              Brand
+            </label>
             <select
-              className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-md outline-none focus:border-nav-blue-active  focus:ring-0 transition-all font-body-md text-body-md"
+              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all"
               id="category-selector"
-                onChange={handleOnChange}
+              onChange={handleOnChange}
             >
               <option value="Apple">Apple</option>
               <option value="Samsung">Samsung</option>
@@ -145,108 +174,130 @@ const RightAside = ({ handleOnChange,  // product,
               <option value="Oppo">Oppo</option>
               <option value="Infinix">Infinix</option>
               <option value="Tecno">Tecno</option>
-
-              {/* {activeCategory?.brand &&
-                activeCategory?.brand.map((brand: string, index: number) => (
-                  <option key={index} value={brand}>
-                    {brand}
-                  </option>
-                ))} */}
             </select>
           </div>
         </div>
       </section>
 
-      <section className="bg-white  rounded-xl p-8 shadow-sm">
-        <h3 className="font-semibold text-2xl mb-6">Pricing &amp; Inventory</h3>
-        <div className="space-y-6">
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block font-medium mb-2">Base Price</label>
+      {/* Pricing & Inventory Card */}
+      <section className="bg-white p-6 sm:p-8 rounded-2xl shadow-xs border border-gray-200/80 transition-all hover:shadow-md/50">
+        <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
+          <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl ring-1 ring-blue-100">
+            <FiDollarSign className="w-5 h-5" />
+          </div>
+          <div>
+            <h3 className="font-bold text-lg text-gray-900">
+              Pricing & Inventory
+            </h3>
+            <p className="text-xs text-gray-500 font-medium">
+              Manage product pricing and stock quantities
+            </p>
+          </div>
+        </div>
+
+        <div className="space-y-5">
+          {/* Base & Discount Price Grid */}
+          <div className="grid grid-cols-2 gap-3.5">
+            <div className="space-y-1.5">
+              <label className="block font-semibold text-xs uppercase tracking-wider text-gray-700">
+                Base Price <span className="text-rose-500">*</span>
+              </label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-bold">
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 font-bold text-sm">
                   ₦
                 </span>
                 <input
-                  className="w-full pl-8 pr-4 py-3 bg-gray-100 border-transparent rounded-md outline-none focus:border-nav-blue-active  focus:ring-0 transition-all font-body-md text-body-md"
+                  className="w-full pl-8 pr-3.5 py-3.5 bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-semibold transition-all placeholder:text-gray-400"
                   placeholder="0.00"
                   type="number"
-                  name='price'
+                  name="price"
                   onChange={handleOnChange}
                 />
               </div>
             </div>
-            <div>
-              <label className="block font-medium mb-2">Discount Price</label>
+
+            <div className="space-y-1.5">
+              <label className="block font-semibold text-xs uppercase tracking-wider text-gray-700">
+                Discount
+              </label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-bold">
+                <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 font-bold text-sm">
                   ₦
                 </span>
                 <input
-                  className="w-full pl-8 pr-4 py-3 bg-gray-100 border-transparent rounded-md outline-none focus:border-nav-blue-active  focus:ring-0 transition-all font-body-md text-body-md"
+                  className="w-full pl-8 pr-3.5 py-3.5 bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-semibold transition-all placeholder:text-gray-400"
                   placeholder="0.00"
                   type="number"
-                  name='discount'
+                  name="discount"
                   onChange={handleOnChange}
                 />
               </div>
             </div>
           </div>
-          <div>
-            <label className="block font-medium mb-2">Stock Quantity <span className="text-gray-600">( 0 is out  of stock ) </span> </label>
+
+          {/* Stock Quantity */}
+          <div className="space-y-1.5">
+            <div className="flex items-center justify-between">
+              <label className="block font-semibold text-xs uppercase tracking-wider text-gray-700">
+                Stock Quantity
+              </label>
+              <span className="text-[11px] font-medium text-gray-400">
+                0 = Out of stock
+              </span>
+            </div>
             <input
-              className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-md outline-none focus:border-nav-blue-active  focus:ring-0 transition-all font-body-md text-body-md"
+              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
               placeholder="0"
               type="number"
             />
           </div>
-          <div className='hidden '>
-            <label className="block font-medium mb-2">
-              SKU <span className="text-gray-600">(Optional)</span>
+
+          {/* SKU Field (Hidden preserved) */}
+          <div className="hidden space-y-1.5">
+            <label className="block font-semibold text-xs uppercase tracking-wider text-gray-700">
+              SKU <span className="text-gray-400">(Optional)</span>
             </label>
             <input
-              className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-md outline-none focus:border-nav-blue-active  focus:ring-0 transition-all font-body-md text-body-md"
+              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
               placeholder="PROD-WH-001"
               type="text"
             />
           </div>
-          <div className="flex items-center gap-3 py-2">
+
+          {/* Track Inventory Checkbox */}
+          <div className="flex items-center gap-3 pt-2">
             <input
-              //   checked
-              className="w-5 h-5 rounded border-outline-variant text-nav-blue-active focus:ring-nav-blue-active"
+              className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500/20 transition-all cursor-pointer"
               id="track-stock"
               type="checkbox"
             />
-            <label className="font-medium text-on-surface-variant">
-              Track inventory levels
+            <label
+              htmlFor="track-stock"
+              className="text-xs font-semibold text-gray-700 cursor-pointer select-none"
+            >
+              Track inventory levels automatically
             </label>
           </div>
         </div>
       </section>
 
-      <div className="bg-nav-blue-active/5 rounded-xl p-6 border border-nav-blue-active/20">
-        <div className="flex items-start  gap-3">
-          <span className="material-symbols-outlined text-nav-blue-active">
-            <LuLightbulb className="w-8 h-8" />
-          </span>
+      {/* Pro Tip Box */}
+      <div className="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-5 shadow-xs">
+        <div className="flex items-start gap-3">
+          <div className="p-2 bg-amber-100 text-amber-700 rounded-xl">
+            <LuLightbulb className="w-5 h-5" />
+          </div>
           <div>
-            <h4 className="font-label-md text-lg text-nav-blue-active font-bold mb-1">
-              Pro Tip
+            <h4 className="font-bold text-sm text-amber-900 mb-0.5">
+              Pro Seller Tip
             </h4>
-            <p className="font-medium  text-on-surface-variant">
-              Products with at least 5 high-resolution images see a 34% increase
-              in buyer trust and conversions.
+            <p className="text-xs text-amber-800/90 leading-relaxed font-medium">
+              Listings with accurate pricing and at least 4 clear photos convert
+              up to 34% faster than incomplete listings.
             </p>
           </div>
         </div>
       </div>
-
-      {/* <button
-        type="submit"
-        className="bg-nav-blue-active hover:bg-blue-700 text-white px-4 max-md:px-3 py-2 rounded-sm "
-      >
-        Publish Product
-      </button> */}
     </div>
   );
 };
