@@ -13,6 +13,10 @@ const NotFound = lazy(() => import("./pages/404"));
 const VendorDashboard = lazy(() => import("./pages/Dashboard"));
 const Layout = lazy(() => import("../components/ui/Layout"));
 const ProductForm = lazy(() => import("./pages/AddProductPage"));
+const Edit = lazy(() => import("./pages/Edit"));
+const Order = lazy(() => import("./pages/Order"));
+const Settings = lazy(() => import("./pages/Settings"));
+const Products = lazy(() => import("./pages/Products"));
 const LayoutNoFooter = lazy(() => import("../components/ui/LayoutNoFooter"));
 const ForgotPassword = lazy(() => import("./pages/auth/forgot-password"));
 const ProtectedRoute = lazy(() => import("../components/ProtectedRoute"));
@@ -61,6 +65,38 @@ function App() {
             element={
               <ProtectedRoute>
                 <ProductForm />
+               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/my-product"
+            element={
+              <ProtectedRoute>
+                <Products />
+               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <Settings />
+               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/order"
+            element={
+              <ProtectedRoute>
+                <Order />
+               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/edit-product"
+            element={
+              <ProtectedRoute>
+                <Edit />
                </ProtectedRoute>
             }
           />

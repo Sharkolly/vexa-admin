@@ -1,212 +1,91 @@
-// import { Link, NavLink } from "react-router-dom";
-// import Button from "../../components/Button";
-// import { IoPersonSharp } from "react-icons/io5";
-// import { MdClose } from "react-icons/md";
-// import { GiHamburgerMenu } from "react-icons/gi";
-// import { AiOutlineShoppingCart } from "react-icons/ai";
-// import { useEffect, useState } from "react";
-// import { useAuthContextStore } from "../../store/useAuthContext";
+import React from "react";
+import { Bell, Search, Menu, ChevronDown } from "lucide-react";
 
-// const Nav = () => {
-//   const logout = () => {
-//     localStorage.removeItem("token");
-//     window.location.href = "/login";
-//   };
-//   const [menu, setMenu] = useState(false);
-//   const { user, refetch } = useAuthContextStore();
+interface VendorNavbarProps {
+  onToggleSidebar?: () => void;
+  vendorStore?: string;
+  vendorName?: string;
+  avatarUrl?: string;
+  unreadNotifications?: number;
+}
 
-//   useEffect(() => {
-//     refetch();
-//   }, [user, refetch]);
-
-//   const toggleMenu = () => setMenu(!menu);
-//   const [open, setOpen] = useState(false);
-//   return (
-//     <header className="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md  dark:border-slate-800 shadow-sm  ">
-//       <div className="flex items-center justify-between px-4 md:px-6 py-4 w-full max-w-380 mx-auto">
-//         <div className="flex items-center ga justify-between">
-//           <h1
-//             className="text-3xl font-black tracking-wide text-slate-900
-//             "
-//           >
-//             VEXA
-//           </h1>
-//         </div>
-//         <nav
-//           className={`flex gap-6 max-lg:gap-4 max-md:flex-col relative  max-md:fixed max-md:top-0 max-md:pt-10 max-md:h-screen  max-md:bg-navy-blue max-md:right-0 max-md:backdrop-blur-md max-md:w-[55%] max-md:px-10 z-15 max-md:gap-12 ${!menu && "max-md:hidden font-semibold z-10 "} `}
-//         >
-//           <div
-//             className="absolute top-5 right-4 cursor-pointer md:hidden"
-//             onClick={toggleMenu}
-//           >
-//             <MdClose className="text-white text-3xl" />
-//           </div>
-//           <NavLink
-//             className={({ isActive }) =>
-//               `  font-headline-md text-[14px] hover:text-indigo-500 transition-colors uppercase tracking-widest max-md:mt-8 ${isActive ? "text-indigo-600 " : "text-slate-400"}`
-//             }
-//             to="/"
-//           >
-//             Home
-//           </NavLink>
-//           <span
-//             className="relative text-slate-500 dark:text-slate-400 font-headline-md text-[14px] hover:text-indigo-500 transition-colors uppercase tracking-widest cursor-pointer"
-//             onMouseEnter={() => setOpen(true)}
-//             onMouseLeave={() => setOpen(false)}
-//           >
-//             <NavLink
-//               to="/shop"
-//               className={({ isActive }) =>
-//                 ` text-[14px] hover:text-indigo-500 transition-colors uppercase tracking-widest max-md:mt-8 ${isActive ? "text-indigo-600" : "text-slate-400 "}`
-//               }
-//             >
-//               Shop ▾
-//             </NavLink>
-
-//             {/* Dropdown */}
-//             {open && (
-//               <div className="absolute top-11 -z-20 -left-10 w-50 bg-slate-50 shadow-lg rounded-md py-2">
-//                 <a className="block px-7 py-2 hover:bg-gray-100" href="#">
-//                   Fashion
-//                 </a>
-//                 <a className="block px-7 py-2 hover:bg-gray-100" href="#">
-//                   Shoes
-//                 </a>
-//                 <a className="block px-7 py-2 hover:bg-gray-100" href="#">
-//                   Accessories
-//                 </a>
-//               </div>
-//             )}
-//           </span>
-//           <NavLink
-//             className={({ isActive }) =>
-//               ` text-[14px] hover:text-indigo-500 transition-colors uppercase tracking-widest max-md:mt-8 ${isActive ? "text-indigo-600" : "text-slate-400 "}`
-//             }
-//             to="/services"
-//           >
-//             Services
-//           </NavLink>
-//           <NavLink
-//             className={({ isActive }) =>
-//               ` text-[14px] hover:text-indigo-500 transition-colors uppercase tracking-widest max-md:mt-8 ${isActive ? "text-indigo-600" : "text-slate-400 "}`
-//             }
-//             to="/search"
-//           >
-//             Search
-//           </NavLink>
-
-//           {!user && (
-//             <>
-//               <Link
-//                 to="/login"
-//                 className="md:hidden text-slate-500 text-[14px]  tracking-widest dark:text-slate-400"
-//               >
-//                 LOGIN
-//               </Link>
-//               <Link
-//                 to="/signup"
-//                 className="md:hidden text-[14px] tracking-widest text-slate-500 dark:text-slate-400"
-//               >
-//                 SIGNUP
-//               </Link>
-//             </>
-//           )}
-//           <button
-//             onClick={logout}
-//             className="md:hidden cursor-pointer text-slate-500 dark:text-slate-400 font-headline-md text-[14px] hover:text-indigo-500 uppercase tracking-widest "
-//           >
-//             Log out
-//           </button>
-//         </nav>
-//         <div className="flex items-center gap-6">
-//           <button
-//             className="hidden material-symbols-outlined text-slate-500"
-//             data-icon="search"
-//           >
-//             search
-//           </button>
-//           <Link
-//             to="/cart"
-//             className="text-2xl relative text-slate-500"
-//             data-icon="shopping_bag"
-//           >
-//             {/* <div className='relative z-[0] ' > */}
-//               <AiOutlineShoppingCart />
-//               <span className="absolute -top-2 bg-red-600 text-white text-xs w-1 h-1  -right-2 -z-10 flex justify-center items-center  p-2  rounded-full ">
-//                 {CartedProduct.length || 0}
-//               </span>
-//             {/* </div> */}
-//           </Link>
-
-//           {user?.email && user ? (
-//             <>
-//               <Link
-//                 to="/login"
-//                 className="text-xl bg-slate-100 p-2 rounded-full text-slate-500"
-//                 title={`${user?.firstName} ${user?.lastName}`}
-//               >
-//                 <IoPersonSharp />
-//               </Link>
-
-//               <button
-//                 onClick={logout}
-//                 className="max-md:hidden px-5  py-1.5 bg-red-600 text-white rounded-xs  shadow-md active:scale-95 transition-transform font-semibold cursor-pointer"
-//               >
-//                 Logout
-//               </button>
-//             </>
-//           ) : (
-//             <div className="flex gap-3 max-md:hidden">
-//               <Link to="/login" className="cursor-pointer">
-//                 <Button
-//                   color="text-white"
-//                   content="Login"
-//                   bg="bg-blue-800"
-//                   cursor="cursor-pointer"
-//                   border="border-2 border-blue-800 shadow-md"
-//                 />
-//               </Link>
-
-//               <Link to="/signup" className="">
-//                 <Button
-//                   color="text-blue-800"
-//                   content="Sign Up"
-//                   bg="bg-transparent"
-//                   cursor="cursor-pointer"
-//                   border="border-2 border-blue-800 shadow-md"
-//                 />
-//               </Link>
-//             </div>
-//           )}
-
-//           <div onClick={toggleMenu} className="md:hidden cursor-pointer">
-//             <GiHamburgerMenu className="text-2xl rounded-lg " />
-//           </div>
-//         </div>
-//       </div>
-//     </header>
-//   );
-// };
-
-// export default Nav;
-
-import { Bell } from "lucide-react";
-
-const VendorNavbar = () => {
+const VendorNavbar: React.FC<VendorNavbarProps> = ({
+  vendorStore = "Vexa Store",
+  vendorName = "Vendor Admin",
+  avatarUrl,
+  unreadNotifications = 3,
+  onToggleSidebar
+}) => {
   return (
-    <header className="fixed top-0 right-0 left-0 lg:left-64 h-16 bg-white border-b border-gray-300 flex items-center justify-between px-6 z-50">
-      <input
-        type="text"
-        placeholder="Search products..."
-        className="w-full max-w-md border border-gray-400 max-md:w-[54%] rounded-sm  px-4 py-2"
-      />
-
-      <div className="flex items-center gap-4">
-        <Bell />
-
-        <button className="bg-nav-blue-active hover:bg-blue-700 text-white px-4 max-md:px-3 py-2 rounded-sm ">
-          Publish Product
+    <header className="fixed top-0 right-0 left-0 lg:left-64 h-16 bg-white/95 backdrop-blur-xs border-b border-gray-200/80 flex items-center justify-between px-4 sm:px-6 z-30 transition-all">
+      {/* Left Section: Mobile Sidebar Toggle & Search Input */}
+      <div className="flex items-center gap-2.5 sm:gap-4 flex-1 max-w-xl">
+        {/* Mobile Hamburger Menu Toggle */}
+        <button
+          type="button"
+          onClick={onToggleSidebar}
+          aria-label="Toggle Navigation Drawer"
+          className="lg:hidden p-2 -ml-1 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors focus:outline-none"
+        >
+          <Menu size={22} />
         </button>
+
+        {/* Enhanced Search Bar */}
+        <div className="relative w-full max-w-xs sm:max-w-md">
+          <Search className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <input
+            type="text"
+            placeholder="Search products, orders..."
+            className="w-full bg-gray-50/80 border border-gray-200 rounded-lg py-2 pl-9 pr-4 text-xs sm:text-sm text-gray-800 placeholder-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-600 transition-all"
+          />
+        </div>
+      </div>
+
+      {/* Right Section: Notifications & Vendor Profile */}
+      <div className="flex items-center gap-2 sm:gap-4">
+        {/* Notification Bell */}
+        <button
+          type="button"
+          aria-label="Notifications"
+          className="relative p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors"
+        >
+          <Bell size={20} />
+          {unreadNotifications > 0 && (
+            <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-rose-500 ring-2 ring-white" />
+          )}
+        </button>
+
+        {/* Vertical Divider */}
+        <div className="h-5 w-px bg-gray-200 hidden sm:block" />
+
+        {/* Vendor Profile Info */}
+        <div className="flex items-center gap-2.5 p-1 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
+          <div className="relative">
+            {avatarUrl ? (
+              <img
+                src={avatarUrl}
+                alt={vendorStore}
+                className="w-8 h-8 rounded-full object-cover border border-gray-200"
+              />
+            ) : (
+              <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center border border-blue-200">
+                {vendorStore.charAt(0).toUpperCase()}
+              </div>
+            )}
+            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white" />
+          </div>
+
+          <div className="hidden md:flex flex-col text-left">
+            <span className="text-xs font-bold text-gray-900 truncate max-w-[130px]">
+              {vendorStore}
+            </span>
+            <span className="text-[10px] font-medium text-gray-500 truncate max-w-[130px]">
+              {vendorName}
+            </span>
+          </div>
+
+          <ChevronDown className="w-4 h-4 text-gray-400 hidden sm:block" />
+        </div>
       </div>
     </header>
   );

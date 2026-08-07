@@ -199,15 +199,6 @@ const ProductForm = (): React.JSX.Element => {
                 className="w-full rounded-md bg-gray-50 border border-gray-200 focus:border-blue-800 outline-none font-medium text-slate-900 p-3 transition"
               />
 
-              {/* <TextareaAutosize
-                minRows={10}
-                // placeholder="Enter product description..."
-                placeholder="Describe the story, materials and features of your product"
-                // value={description}
-                onChange={(e) => handleOnChange(e)}
-                // className="w-full rounded-lg border p-3"
-                className="w-full rounded-md bg-gray-50 border border-gray-200 focus:border-blue-800 outline-none font-medium text-slate-900 p-3 transition"
-              /> */}
 
             </div>
           </div>
