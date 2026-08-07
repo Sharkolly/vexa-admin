@@ -1,11 +1,8 @@
-import Sidebar from "../../components/ui/Sidebar";
-// import Nav from "../../components/ui/Nav";
 import ProductForm from "../../components/ui/ProductForm";
 
 const AddProductPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Sidebar />
 
       <div className="lg:ml-64">        
 
