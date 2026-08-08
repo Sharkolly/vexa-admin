@@ -5,7 +5,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-const Home = lazy(() => import("./pages/Home"));
+// const Home = lazy(() => import("./pages/Home"));
 // const AddToCart = lazy(() => import("./pages/AddToCart"));
 const SignIn = lazy(() => import("./pages/auth/SignIn"));
 const SignUp = lazy(() => import("./pages/auth/SignUp"));
