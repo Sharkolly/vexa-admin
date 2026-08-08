@@ -62,6 +62,7 @@ const ProductSpecification = ({
             className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
           >
             <option value="UK Used">UK Used</option>
+            <option value="Mint">Mint</option>
             <option value="Brand New">Brand New</option>
             <option value="Open Box">Open Box</option>
             <option value="Tokunbo">Tokunbo</option>
