@@ -56,7 +56,7 @@ function App() {
             index
             element={
               <ProtectedRoute>
-                <Home />
+                <VendorDashboard/>
               </ProtectedRoute>
             }
           />
@@ -101,7 +101,7 @@ function App() {
             }
           />
           <Route
-            path="/dashboard"
+            path="/"
             element={              
                 <VendorDashboard />              
             }
