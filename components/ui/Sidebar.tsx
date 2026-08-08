@@ -24,7 +24,7 @@ const VendorSidebar: React.FC<VendorSidebarProps> = ({ onLogout, toggleBtn, onTo
   // const closeMobileMenu = () => setIsMobileOpen(false);
 
   const navLinks = [
-    { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+    { to: "/", label: "Dashboard", icon: LayoutDashboard },
     { to: "/product-form", label: "Add Product", icon: PlusCircle },
     { to: "/my-product", label: "My Products", icon: Package },
     { to: "/order", label: "Orders", icon: ShoppingCart },
