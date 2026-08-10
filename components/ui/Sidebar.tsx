@@ -12,12 +12,12 @@ import {
 } from "lucide-react";
 
 interface VendorSidebarProps {
-  onLogout?: () => void;
+  // onLogout?: () => void;
   toggleBtn: boolean
   onToggleSidebar: () => void;
 }
 
-const VendorSidebar: React.FC<VendorSidebarProps> = ({ onLogout, toggleBtn, onToggleSidebar }) => {
+const VendorSidebar: React.FC<VendorSidebarProps> = ({ toggleBtn, onToggleSidebar }) => {
   // const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   // const toggleMobileMenu = () => setIsMobileOpen((prev) => !prev);
@@ -30,6 +30,12 @@ const VendorSidebar: React.FC<VendorSidebarProps> = ({ onLogout, toggleBtn, onTo
     { to: "/order", label: "Orders", icon: ShoppingCart },
     { to: "/settings", label: "Settings", icon: Settings },
   ];
+
+  const onLogout = () => {
+    localStorage.removeItem("token");
+    // closeMenu();
+    window.location.href = "/login";
+  };
 
   return (
     <>
