@@ -1,4 +1,7 @@
 import React, { useState, useMemo } from "react";
+// import API from "../../api/api";
+// import type { AxiosError } from "axios";
+import { useQueryProduct } from "../../lib/useQuery";
 
 // Types
 export interface ProductItem {
@@ -18,91 +21,44 @@ export interface ProductItem {
 }
 
 interface AdminProductListProps {
-  products?: ProductItem[];
+  // products?: ProductItem[];
   onEditProduct?: (productId: string) => void;
   onDeleteProduct?: (productId: string) => void;
   onAddNewProduct?: () => void;
 }
 
-// Mock Data matching your schema format
-const DEFAULT_PRODUCTS: ProductItem[] = [
-  {
-    _id: "64f1a0293b821a001a123451",
-    name: "Dell Latitude 7470 (Touchscreen)",
-    slug: "dell-latitude-7470-touchscreen",
-    price: 295000,
-    discount: 0,
-    category: "electronics",
-    subCategory: "laptops",
-    condition: "UK Used",
-    stockStatus: "in_stock",
-    stockQuantity: 12,
-    images: [
-      "https://res.cloudinary.com/daqmey5dq/image/upload/v1785819003/products/images/ubklgkvnjpljzmr2kpmk.jpg",
-    ],
-    vendorName: "Vexa Tech Hub",
-    createdAt: "2026-02-10",
-  },
-  {
-    _id: "64f1a0293b821a001a123452",
-    name: "Apple MacBook Pro 16-inch M2 Max",
-    slug: "apple-macbook-pro-16-m2-max",
-    price: 1850000,
-    discount: 5,
-    category: "electronics",
-    subCategory: "laptops",
-    condition: "Brand New",
-    stockStatus: "low_stock",
-    stockQuantity: 2,
-    images: [
-      "https://res.cloudinary.com/daqmey5dq/image/upload/v1785819418/products/images/fwupkucxwqarxuglhltt.jpg",
-    ],
-    vendorName: "iStore Nigeria",
-    createdAt: "2026-02-12",
-  },
-  {
-    _id: "64f1a0293b821a001a123453",
-    name: "HP EliteBook 840 G5 Core i5",
-    slug: "hp-elitebook-840-g5-core-i5",
-    price: 240000,
-    discount: 0,
-    category: "electronics",
-    subCategory: "laptops",
-    condition: "UK Used",
-    stockStatus: "out_of_stock",
-    stockQuantity: 0,
-    images: [
-      "https://res.cloudinary.com/daqmey5dq/image/upload/v1785819419/products/images/hs2xcxfymqxavrcahxwg.jpg",
-    ],
-    vendorName: "Gadget Empire",
-    createdAt: "2026-02-01",
-  },
-  {
-    _id: "64f1a0293b821a001a123454",
-    name: "Samsung Galaxy S24 Ultra 512GB",
-    slug: "samsung-galaxy-s24-ultra-512gb",
-    price: 1350000,
-    discount: 10,
-    category: "electronics",
-    subCategory: "phones",
-    condition: "Brand New",
-    stockStatus: "in_stock",
-    stockQuantity: 25,
-    images: [
-      "https://res.cloudinary.com/daqmey5dq/image/upload/v1785819419/products/images/pg0b6yrcfgl3qeescdi2.jpg",
-    ],
-    vendorName: "Vexa Mobile",
-    createdAt: "2026-02-14",
-  },
-];
-
 export const AdminProductList: React.FC<AdminProductListProps> = ({
-  products = DEFAULT_PRODUCTS,
   onEditProduct,
   onDeleteProduct,
   onAddNewProduct,
 }) => {
-  // --- States ---
+
+  // const [products, setProducts] = useState<ProductItem[] | []>([])
+
+  const { data } = useQueryProduct(`/admin/product`);
+
+  
+  const products: ProductItem[] = data?.data || []
+
+
+  // const getData = async () => {
+  //       try {
+  //         const response = await API.get("/admin/product", {
+  //           withCredentials: true,
+  //           headers: { "Cache-Control": "no-cache" },
+  //         });
+  //         const {data} = await response.data
+  //         setProducts(data)
+  //       } catch (error) {
+  //         if (error) {
+  //           const axiosError = error as AxiosError<{ message?: string }>;
+  //           return axiosError;
+  //         }
+  //       }
+  //     }
+  //       getData()
+
+
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
@@ -110,7 +66,6 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
-  // --- Filtering ---
   const filteredProducts = useMemo(() => {
     return products.filter((item) => {
       const matchesSearch =
@@ -397,7 +352,8 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                           <img
                             src={product.images[0] || "/placeholder.png"}
                             alt={product.name}
-                            className="w-11 h-11 rounded-lg object-cover border border-gray-200 bg-gray-50 flex-shrink-0"
+                            loading="lazy"
+                            className="w-15 h-15 rounded-sm object-cover border border-gray-200 bg-gray-50 flex-shrink-0"
                           />
                           <div className="max-w-xs">
                             <h3 className="font-semibold text-gray-900 truncate hover:text-blue-600 transition-colors">
@@ -596,7 +552,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
       {/* Pagination Controls */}
       <div className="bg-white border border-gray-200/80 rounded-xl p-3.5 sm:p-4 shadow-2xs flex items-center justify-between text-xs text-gray-600">
         <div>
-          Showing <span className="font-bold text-gray-900">{paginatedProducts.length}</span> of{" "}
+          Showing <span className="font-bold text-gray-900">{paginatedProducts.length * currentPage }</span> of{" "}
           <span className="font-bold text-gray-900">{filteredProducts.length}</span> items
         </div>
 

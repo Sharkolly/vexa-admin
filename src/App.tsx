@@ -22,6 +22,7 @@ const ForgotPassword = lazy(() => import("./pages/auth/forgot-password"));
 const ProtectedRoute = lazy(() => import("../components/ProtectedRoute"));
 const RedirectRoute = lazy(() => import("../components/RedirectRoute"));
 import Loader from "../components/Loader";
+import AdminEditProductForm from "./pages/Edit";
 
 function App() {
   const router = createBrowserRouter(
@@ -65,6 +66,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <ProductForm />
+               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/edit-form"
+            element={
+              <ProtectedRoute>
+                <AdminEditProductForm />
                </ProtectedRoute>
             }
           />
