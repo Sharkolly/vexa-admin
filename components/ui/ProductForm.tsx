@@ -1,18 +1,23 @@
 import React, { useState, useRef } from "react";
 import { IoDocumentText } from "react-icons/io5";
 import { FiChevronRight, FiUploadCloud } from "react-icons/fi";
-import API from "../../api/api";
+// import API from "../../api/api";
 import ImageUpload from "./ImageUpload";
 import type { IProductFormInput } from "../../types/device.types";
 import ProductSpecification from "./ProductSpecification";
 import RightAside from "./RightAside";
 import { FeedbackModal } from "./Feedback";
 import type { AxiosError } from "axios";
+import { useAuthContextStore } from "../../store/useAuthContext";
+import { useMutationAdminAddProductFunction } from "../../lib/useQuery";
 
 const ProductForm = (): React.JSX.Element => {
+  const { mutateAsync } = useMutationAdminAddProductFunction();
   const [loading, setLoading] = useState(false);
   const [showSuccess, setShowSuccess] = useState<boolean | string>("");
   const [message, setMessage] = useState<string>("");
+
+  const { user } = useAuthContextStore();
 
   const [product, setProduct] = useState<IProductFormInput>({
     name: "",
@@ -126,15 +131,23 @@ const ProductForm = (): React.JSX.Element => {
     }
 
     setTimeout(() => {}, 5500);
-    try {
-      const res = await API.post("/admin/product", formData, {
-        withCredentials: true,
-      });
 
-      console.log(res.data);
-      setShowSuccess(res.data.success);
+    try {
+      if (
+        user?.email !== "sharkollymofeoluwa" &&
+        product.category.toLowerCase() !== user?.category
+      ) {
+        setShowSuccess(false);
+        setMessage(
+          "Please post your product category according to what you signed up for",
+        );
+        return;
+      }
+
+      const res = await mutateAsync({ url: "/admin/product", formData });
+      setShowSuccess(res?.success);
       setMessage(
-        res.data.message ||
+        res?.message ||
           "Your new product is live and available in your store inventory.",
       );
     } catch (error: unknown) {

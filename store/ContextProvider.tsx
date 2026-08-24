@@ -14,6 +14,7 @@ const Context = ({ children }: { children: React.ReactNode }) => {
   const { data, isLoading, refetch } = useQueryUserFunction();
 
 
+  console.log(data);
   const user: UserType | null = data?.message || null;
 
   const emailOnChange = (

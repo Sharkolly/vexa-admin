@@ -67,6 +67,32 @@ export const useMutationContactMessageFunction = (queryKey: string) => {
     },
   });
 };
+
+export const useMutationAdminAddProductFunction = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({ url, formData }: { url: string; formData: FormData }) => {
+      try {
+        const response = await API.post(url, formData, {
+          withCredentials: true,
+        });
+        return response.data;
+      } catch (error) {
+        if (error) {
+          const axiosError = error as AxiosError<{ message?: string }>;
+          return axiosError;
+        }
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
+    onError: (error) => {
+      console.error("Failed to delete product:", error);
+    },
+  });
+};
+
 export const useMutationDeleteProductFunction = () => {
   const queryClient = useQueryClient();
   return useMutation({

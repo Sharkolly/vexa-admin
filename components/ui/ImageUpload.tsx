@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
-// import { useForm, UseFormSetValue } from "react-hook-form";
+import React, { useState, useEffect, useMemo } from "react"
 import { useForm } from "react-hook-form";
 import { FaCamera, FaTrash } from "react-icons/fa";
 import { MdPermMedia } from "react-icons/md";
@@ -22,7 +21,6 @@ const ImageUpload = ({
   videoPreviewUrl,
   setVideoPreviewUrl,
   videoPlayerRef,
-  // product,
   setProduct,
 }: IMAGEUPLOADTYPE): React.JSX.Element => {
   const { setValue } = useForm<IProductFormInput>();
@@ -67,7 +65,6 @@ const ImageUpload = ({
     });
   };
 
-  // Remove individual slot photo entries
   const handleRemoveImage = (index: number) => {
     const nextImages = [...images];
     nextImages[index] = null;
@@ -75,41 +72,82 @@ const ImageUpload = ({
     setImages(nextImages);
   };
 
-  // Process video selection changes
   const handleVideoExtraction = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = e.target.files;
+
     if (!fileList || fileList.length === 0) return;
 
     const selectedFile = fileList[0];
+
     if (!selectedFile.type.startsWith("video/")) {
       alert("Please upload a valid video file (MP4, MOV, etc.)");
+      e.target.value = "";
       return;
     }
 
-    if (videoPreviewUrl) {
-      URL.revokeObjectURL(videoPreviewUrl);
+    const maxSize = 20 * 1024 * 1024;
+
+    if (selectedFile.size > maxSize) {
+      alert("Video is too large. Maximum video size is 20MB.");
+      e.target.value = "";
+      return;
     }
 
     const generatedStreamUrl = URL.createObjectURL(selectedFile);
-    console.log(generatedStreamUrl);
-    setVideoPreviewUrl(generatedStreamUrl);
-    setProduct((prev) => {
-      return { ...prev, video: selectedFile };
-    });
-    setIsPlaying(false);
+
+    const video = document.createElement("video");
+
+    video.preload = "metadata";
+
+    video.onloadedmetadata = () => {
+      if (video.duration > 60) {
+        alert("Video is too long. Maximum video duration is 45 seconds.");
+
+        URL.revokeObjectURL(generatedStreamUrl);
+        e.target.value = "";
+
+        return;
+      }
+
+      if (videoPreviewUrl) {
+        URL.revokeObjectURL(videoPreviewUrl);
+      }
+
+      setVideoPreviewUrl(generatedStreamUrl);
+
+      setProduct((prev) => {
+        return {
+          ...prev,
+          video: selectedFile,
+        };
+      });
+
+      setValue("video", selectedFile);
+
+      setIsPlaying(false);
+    };
+
+    video.onerror = () => {
+      alert("Unable to read this video file.");
+
+      URL.revokeObjectURL(generatedStreamUrl);
+      e.target.value = "";
+    };
+
+    video.src = generatedStreamUrl;
   };
 
-  // Clear video track files
   const removeVideoFile = () => {
     if (videoPreviewUrl) {
       URL.revokeObjectURL(videoPreviewUrl);
     }
+
     setVideoPreviewUrl(null);
+
     setValue("video", null);
+
     setIsPlaying(false);
   };
-
-  // Video controller playback play/pause state toggle execution
   const togglePlayState = () => {
     if (!videoPlayerRef?.current) return;
 
@@ -131,9 +169,7 @@ const ImageUpload = ({
             <MdPermMedia className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="font-bold text-lg text-gray-900">
-              Media Showcase
-            </h3>
+            <h3 className="font-bold text-lg text-gray-900">Media Showcase</h3>
             <p className="text-xs text-gray-500 font-medium">
               High-quality photos and videos boost sales conversions
             </p>
