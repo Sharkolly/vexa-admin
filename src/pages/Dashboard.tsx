@@ -118,7 +118,7 @@ export const VendorDashboard: React.FC = () => {
   };
 
   return (
-    <div className="md:pt-20 xl:pr-10 xl:pl-70 w-full min-h-screen bg-slate-50 p-4 sm:p-6 font-sans text-slate-900 space-y-8">
+    <div className="md:pt-20 max-md:pt-22 xl:pr-10 xl:pl-70 w-full min-h-screen bg-slate-50 p-4 sm:p-6 font-sans text-slate-900 space-y-8">
       
       {/* HEADER SECTION */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
