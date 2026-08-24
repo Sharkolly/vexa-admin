@@ -106,7 +106,7 @@ export const AdminVendorProfile: React.FC = () => {
   //   };
 
   return (
-    <div className="min-h-screen md:pt-20  bg-slate-50 xl:pr-10 xl:pl-70  font-sans text-slate-900">
+    <div className="min-h-screen md:pt-20 max-md:px-8 bg-slate-50 xl:pr-10 xl:pl-70  font-sans text-slate-900">
       <div className="w-full    mx-auto space-y-8">
         {/* CINEMATIC PROFILE HEADER CARD */}
         <div className="relative bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden">
