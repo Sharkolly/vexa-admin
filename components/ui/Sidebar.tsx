@@ -10,6 +10,7 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import { IoPerson } from "react-icons/io5";
 
 interface VendorSidebarProps {
   // onLogout?: () => void;
@@ -28,6 +29,7 @@ const VendorSidebar: React.FC<VendorSidebarProps> = ({ toggleBtn, onToggleSideba
     { to: "/product-form", label: "Add Product", icon: PlusCircle },
     { to: "/my-product", label: "My Products", icon: Package },
     { to: "/order", label: "Orders", icon: ShoppingCart },
+    { to: "/profile", label: "Profile", icon: IoPerson },
     { to: "/settings", label: "Settings", icon: Settings },
   ];
 

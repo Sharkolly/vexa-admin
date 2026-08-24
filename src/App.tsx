@@ -21,6 +21,7 @@ const LayoutNoFooter = lazy(() => import("../components/ui/LayoutNoFooter"));
 const ForgotPassword = lazy(() => import("./pages/auth/forgot-password"));
 const ProtectedRoute = lazy(() => import("../components/ProtectedRoute"));
 const RedirectRoute = lazy(() => import("../components/RedirectRoute"));
+const AdminVendorProfile = lazy(() => import("./pages/Profile"));
 import Loader from "../components/Loader";
 import AdminEditProductForm from "./pages/Edit";
 
@@ -106,6 +107,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Edit />
+               </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <AdminVendorProfile />
                </ProtectedRoute>
             }
           />

@@ -19,6 +19,8 @@ const ProductForm = (): React.JSX.Element => {
 
   const { user } = useAuthContextStore();
 
+  console.log(user)
+
   const [product, setProduct] = useState<IProductFormInput>({
     name: "",
     price: 0,

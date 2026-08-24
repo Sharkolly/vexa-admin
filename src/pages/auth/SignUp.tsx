@@ -459,7 +459,7 @@ const SignUp = () => {
                     </p>
                   </div>
 
-                  <div>
+                  <div className='hidden'>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">
                       Business / Store Name
                     </label>
@@ -479,6 +479,23 @@ const SignUp = () => {
                     </label>
                     <select
                       value={category}
+                      onChange={(e) => setCategory(e.target.value)}
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all capitalize cursor-pointer"
+                    >
+                      {allCategories.map((cat) => (
+                        <option key={cat} value={cat} className="capitalize">
+                          {cat}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1">
+                      Business Sub Category
+                    </label>
+                    <select
+                      value={category}
+                      disabled={true}
                       onChange={(e) => setCategory(e.target.value)}
                       className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all capitalize cursor-pointer"
                     >
