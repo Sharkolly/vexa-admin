@@ -1,6 +1,4 @@
 import React, { useState, useRef } from "react";
-// import { useForm, SubmitHandler } from "react-hook-form";
-// import TextareaAutosize from "react-textarea-autosize";
 import { IoDocumentText } from "react-icons/io5";
 import { FiChevronRight, FiUploadCloud } from "react-icons/fi";
 import API from "../../api/api";
@@ -8,8 +6,14 @@ import ImageUpload from "./ImageUpload";
 import type { IProductFormInput } from "../../types/device.types";
 import ProductSpecification from "./ProductSpecification";
 import RightAside from "./RightAside";
+import { FeedbackModal } from "./Feedback";
+import type { AxiosError } from "axios";
 
 const ProductForm = (): React.JSX.Element => {
+  const [loading, setLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState<boolean | string>("");
+  const [message, setMessage] = useState<string>("");
+
   const [product, setProduct] = useState<IProductFormInput>({
     name: "",
     price: 0,
@@ -67,7 +71,7 @@ const ProductForm = (): React.JSX.Element => {
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    console.log(product);
+    setLoading(true);
     const formData = new FormData();
     formData.append("name", product.name);
     formData.append("description", product.description);
@@ -120,14 +124,31 @@ const ProductForm = (): React.JSX.Element => {
         JSON.stringify(deviceSpecifications),
       );
     }
+
+    setTimeout(() => {}, 5500);
     try {
       const res = await API.post("/admin/product", formData, {
         withCredentials: true,
       });
-      console.log(product);
+
       console.log(res.data);
+      setShowSuccess(res.data.success);
+      setMessage(
+        res.data.message ||
+          "Your new product is live and available in your store inventory.",
+      );
     } catch (error: unknown) {
       console.log(error);
+      const err = error as AxiosError<{ status: boolean; message: string }>;
+      console.log(err.response?.data?.status);
+      setShowSuccess(err.response?.data?.status || false);
+
+      setMessage(
+        err.response?.data?.message ||
+          "An error occurred while uploading the product.",
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -136,9 +157,7 @@ const ProductForm = (): React.JSX.Element => {
       className="grid lg:grid-cols-3 gap-8 items-start max-w-7xl mx-auto px-4 sm:px-6 py-6"
       onSubmit={(e) => handleSubmit(e)}
     >
-      {/* Left Main Form Column */}
       <div className="lg:col-span-2 space-y-8">
-        {/* Header & Breadcrumb */}
         <div className="space-y-2">
           <nav className="flex items-center gap-2 text-xs font-semibold text-gray-500 tracking-wide uppercase">
             <span className="hover:text-gray-700 transition-colors">
@@ -159,7 +178,6 @@ const ProductForm = (): React.JSX.Element => {
           </div>
         </div>
 
-        {/* Core Description fields panel */}
         <section className="bg-white p-6 sm:p-8 rounded-2xl shadow-xs border border-gray-200/80 transition-all hover:shadow-md/50">
           <div className="flex items-center gap-3.5 mb-6 pb-4 border-b border-gray-100">
             <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl ring-1 ring-blue-100">
@@ -176,7 +194,6 @@ const ProductForm = (): React.JSX.Element => {
           </div>
 
           <div className="space-y-6">
-            {/* Product Name Input */}
             <div className="flex flex-col gap-2">
               <div className="flex items-center justify-between">
                 <label className="font-semibold text-xs uppercase tracking-wider text-gray-700">
@@ -200,7 +217,6 @@ const ProductForm = (): React.JSX.Element => {
               </p>
             </div>
 
-            {/* Description Input */}
             <div className="flex flex-col gap-2">
               <label className="font-semibold text-xs uppercase tracking-wider text-gray-700">
                 Description <span className="text-rose-500">*</span>
@@ -217,7 +233,6 @@ const ProductForm = (): React.JSX.Element => {
           </div>
         </section>
 
-        {/* Media Upload Section */}
         <ImageUpload
           images={images}
           setImages={setImages}
@@ -228,7 +243,6 @@ const ProductForm = (): React.JSX.Element => {
           setProduct={setProduct}
         />
 
-        {/* Specification Section */}
         <ProductSpecification
           handleOnChange={handleOnChange}
           product={product}
@@ -236,28 +250,39 @@ const ProductForm = (): React.JSX.Element => {
         />
       </div>
 
-      {/* Right Sidebar Column */}
       <div className="space-y-6 lg:sticky lg:top-20">
         <RightAside
           handleOnChange={handleOnChange}
           product={product}
           setProduct={setProduct}
         />
-
-        {/* Action Button Container */}
         <div className="bg-white p-4 rounded-2xl border border-gray-200/80 shadow-xs space-y-3">
           <button
             type="submit"
-            className="w-full text-white rounded-xl font-bold text-sm px-5 py-3.5 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 transition-all flex items-center justify-center gap-2 cursor-pointer"
+            disabled={loading}
+            className={`w-full text-white rounded-xl font-bold text-sm px-5 py-3.5 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 transition-all flex items-center justify-center gap-2 cursor-pointer ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
           >
             <FiUploadCloud className="w-5 h-5" />
-            <span>Publish Product Listing</span>
+            <span>
+              {loading ? "Publishing ..." : "Publish Product Listing"}
+            </span>
           </button>
           <p className="text-[11px] text-center text-gray-400 font-medium">
             Double check all specifications before publishing.
           </p>
         </div>
       </div>
+
+      {typeof showSuccess == "boolean" && (
+        <FeedbackModal
+          onClose={() => setShowSuccess("")}
+          title={showSuccess ? "Product Uploaded!" : "Product upload failed"}
+          message={message}
+          autoCloseMs={4000}
+          showSuccess={showSuccess}
+          // setShowSuccess={setShowSuccess}
+        />
+      )}
     </form>
   );
 };

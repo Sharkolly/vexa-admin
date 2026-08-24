@@ -6,7 +6,7 @@ const AddProductPage = () => {
 
       <div className="lg:ml-64">        
 
-        <main className="p-4 md:p-6 mt-16">
+        <main className="max-md:p-1 md:p-6 mt-16">
           <ProductForm />
         </main>
       </div>

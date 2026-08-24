@@ -32,9 +32,7 @@ const RightAside = ({
     (c: { slug: string }) => c.slug === selectedCategory,
   );
 
-  const categoryOnChange = (
-    e: React.ChangeEvent<HTMLSelectElement>,
-  ) => {
+  const categoryOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newCat = e.target.value;
     setSelectedCategory(newCat);
 
@@ -53,14 +51,13 @@ const RightAside = ({
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Organization Card */}
       <section className="bg-white p-6 sm:p-8 rounded-2xl shadow-xs border border-gray-200/80 transition-all hover:shadow-md/50">
         <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
           <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl ring-1 ring-blue-100">
             <FiLayers className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="font-bold text-lg text-gray-900">Organization</h3>
+            <h3 className="font-bold text-lg text-gray-900">Classification</h3>
             <p className="text-xs text-gray-500 font-medium">
               Categorization and tags for search indexing
             </p>
@@ -68,7 +65,6 @@ const RightAside = ({
         </div>
 
         <div className="space-y-5">
-          {/* Category Dropdown */}
           <div className="space-y-1.5">
             <label className="block font-semibold text-xs uppercase tracking-wider text-gray-700">
               Category <span className="text-rose-500">*</span>
@@ -90,7 +86,6 @@ const RightAside = ({
             </select>
           </div>
 
-          {/* Subcategory Dropdown */}
           <div className="space-y-1.5">
             <label className="block font-semibold text-xs uppercase tracking-wider text-gray-700">
               Sub Category <span className="text-rose-500">*</span>
@@ -114,13 +109,11 @@ const RightAside = ({
             </select>
           </div>
 
-          {/* Tags Field */}
           <div className="space-y-1.5 pt-1">
             <label className="block font-semibold text-xs uppercase tracking-wider text-gray-700">
               Tags
             </label>
 
-            {/* Existing Tag Chips */}
             <div className="flex flex-wrap gap-2 my-2" id="tag-container">
               <span className="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-lg border border-blue-200/60 flex items-center gap-1.5">
                 Wireless
@@ -153,7 +146,6 @@ const RightAside = ({
         </div>
       </section>
 
-      {/* Top Brands Card (Hidden Section preserved) */}
       <section className="bg-white hidden p-6 sm:p-8 rounded-2xl shadow-xs border border-gray-200/80">
         <h3 className="font-bold text-lg text-gray-900 mb-4">Top Brands</h3>
         <div className="space-y-4">
@@ -179,7 +171,6 @@ const RightAside = ({
         </div>
       </section>
 
-      {/* Pricing & Inventory Card */}
       <section className="bg-white p-6 sm:p-8 rounded-2xl shadow-xs border border-gray-200/80 transition-all hover:shadow-md/50">
         <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
           <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl ring-1 ring-blue-100">
@@ -196,7 +187,6 @@ const RightAside = ({
         </div>
 
         <div className="space-y-5">
-          {/* Base & Discount Price Grid */}
           <div className="grid grid-cols-2 gap-3.5">
             <div className="space-y-1.5">
               <label className="block font-semibold text-xs uppercase tracking-wider text-gray-700">
@@ -235,7 +225,6 @@ const RightAside = ({
             </div>
           </div>
 
-          {/* Stock Quantity */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
               <label className="block font-semibold text-xs uppercase tracking-wider text-gray-700">
@@ -252,7 +241,6 @@ const RightAside = ({
             />
           </div>
 
-          {/* SKU Field (Hidden preserved) */}
           <div className="hidden space-y-1.5">
             <label className="block font-semibold text-xs uppercase tracking-wider text-gray-700">
               SKU <span className="text-gray-400">(Optional)</span>
@@ -264,7 +252,6 @@ const RightAside = ({
             />
           </div>
 
-          {/* Track Inventory Checkbox */}
           <div className="flex items-center gap-3 pt-2">
             <input
               className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500/20 transition-all cursor-pointer"
@@ -281,7 +268,6 @@ const RightAside = ({
         </div>
       </section>
 
-      {/* Pro Tip Box */}
       <div className="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-5 shadow-xs">
         <div className="flex items-start gap-3">
           <div className="p-2 bg-amber-100 text-amber-700 rounded-xl">

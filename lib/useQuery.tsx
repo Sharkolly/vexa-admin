@@ -11,13 +11,12 @@ import { AxiosError } from "axios";
 import API from "../api/api";
 // import Swal from "sweetalert2";
 
-
 export const useQueryUserFunction = () => {
   const pathname = window.location.pathname;
 
   const disabledRoutes = ["/login", "/signup"];
-  
-  const enabled = !disabledRoutes.includes(pathname);  
+
+  const enabled = !disabledRoutes.includes(pathname);
 
   const { data, error, isLoading, refetch } = useQuery({
     queryKey: ["admin"],
@@ -65,6 +64,32 @@ export const useMutationContactMessageFunction = (queryKey: string) => {
       postLoginForm(loginDetails),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [queryKey] });
+    },
+  });
+};
+export const useMutationDeleteProductFunction = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationKey: ["products"],
+    mutationFn: async (url: string) => {
+      try {
+        const response = await API.delete(url, {
+          withCredentials: true,
+          headers: { "Cache-Control": "no-cache" },
+        });
+        return response;
+      } catch (error) {
+        if (error) {
+          const axiosError = error as AxiosError<{ message?: string }>;
+          return axiosError;
+        }
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
+    onError: (error) => {
+      console.error("Failed to delete product:", error);
     },
   });
 };
