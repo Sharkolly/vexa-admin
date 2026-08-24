@@ -70,7 +70,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
     } finally {
       setTimeout(() => {
         setProductToDelete(null);
-      }, 1200);
+      }, 500);
     }
   };
 
@@ -512,7 +512,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                                   : "Product deleting failed"
                               }
                               message={message}
-                              autoCloseMs={2500}
+                              autoCloseMs={1500}
                               showSuccess={showSuccess}
                             />
                           )}
@@ -589,7 +589,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                           : "Product deleting failed"
                       }
                       message={message}
-                      autoCloseMs={2500}
+                      autoCloseMs={1500}
                       showSuccess={showSuccess}
                     />
                   )}
