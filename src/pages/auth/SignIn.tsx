@@ -249,9 +249,9 @@ const SignIn = () => {
             <Link to="/signup" className="block">
               <button
                 type="button"
-                className="w-full py-3 px-4 bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm"
+                className="w-full py-3 px-4 cursor-pointer bg-white border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm"
               >
-                Create Customer Account
+                Create Vendor Account
               </button>
             </Link>
 
