@@ -288,7 +288,7 @@ const ImageUpload = ({
 
               <input
                 type="file"
-                accept=".png,.jpg,.jpeg"
+                accept=".png,.jpg,.jpeg,.webp"
                 className="hidden"
                 name="images"
                 onChange={(e) => handleImageUpload(e, index)}
