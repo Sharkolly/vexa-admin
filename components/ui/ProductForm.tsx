@@ -136,7 +136,7 @@ const ProductForm = (): React.JSX.Element => {
 
     try {
       if (
-        user?.email !== "sharkollymofeoluwa" &&
+        user?.email !== "sharkollymofeoluwa" || user?.email !== "sharkollym" &&
         product.category.toLowerCase() !== user?.category
       ) {
         setShowSuccess(false);
