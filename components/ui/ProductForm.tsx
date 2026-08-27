@@ -135,16 +135,16 @@ const ProductForm = (): React.JSX.Element => {
     setTimeout(() => {}, 5500);
 
     try {
-      if (
-        user?.email !== "sharkollymofeoluwa@gmail.com" && user?.email !== "sharkollym@gmail.com" &&
-        product.category.toLowerCase() !== user?.category
-      ) {
-        setShowSuccess(false);
-        setMessage(
-          "Please post your product category according to what you signed up for",
-        );
-        return;
-      }
+    //  if (
+    //    user?.email !== "sharkollymofeoluwa@gmail.com" && user?.email !== "sharkollym@gmail.com" &&
+   //     product.category.toLowerCase() !== user?.category
+     // ) {
+    //    setShowSuccess(false);
+     //   setMessage(
+      //    "Please post your product category according to what you signed up for",
+       // );
+      //  return;
+    //  }
 
       const res = await mutateAsync({ url: "/admin/product", formData });
       setShowSuccess(res?.success);
