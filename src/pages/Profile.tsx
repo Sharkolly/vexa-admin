@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // import axios from "axios";
 import { useAuthContextStore } from "../../store/useAuthContext";
+import { Link } from "react-router-dom";
 
 export interface VendorProfile {
   firstName: string;
@@ -178,9 +179,12 @@ export const AdminVendorProfile: React.FC = () => {
                     </span>
                   )}
                 </div>
-                <p className="text-xs font-mono text-slate-500">
+                <Link className="text-xs font-mono text-slate-500" to={`https://vexa-shop.vercel.app/vendor/${user?._id}`} >
+                  My Link
+                </Link>
+                {/* <p className="text-xs font-mono text-slate-500">
                   vexa.shop/{user?.category}
-                </p>
+                </p> */}
               </div>
             </div>
 

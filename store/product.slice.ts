@@ -1,13 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 interface CartItem {
-  id: string | number;
+  _id: string;
   category: string;
   image: string;
   title: string;
   price: number;
   quantity: number | 0;
   new_price?: number;
+  slug?: string;
   [key: string]: string | number | boolean | undefined;
 }
 
@@ -37,18 +38,19 @@ const counterSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartItem>) => {
-      const { title, category, id, image, price, quantity } = action.payload;
+      const { title, category, _id, image, price, quantity, slug } = action.payload;
 
       const new_price = price * quantity;
 
       state.addToCart.push({
-        id,
+        _id, 
         quantity,
         image,
         title,
         price,
         category,
         new_price,
+        slug
       });
 
           const total: {
@@ -73,10 +75,11 @@ const counterSlice = createSlice({
       localStorage.setItem("totalCartItems", JSON.stringify(state.total));
     },
 
-    incrementQuantity: (state, action: PayloadAction<{ id: string }>) => {
-      const { id } = action.payload;
+    incrementQuantity: (state, action: PayloadAction<{ _id: string }>) => {
+      const { _id } = action.payload;
+      console.log(_id)
       const product = state.addToCart.find(
-        (item) => String(item.id) === String(id),
+        (item) => String(item._id) === String(_id),
       );
 
       if (product) {
@@ -105,10 +108,10 @@ const counterSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify(state.addToCart));
       localStorage.setItem("totalCartItems", JSON.stringify(state.total));
     },
-    decrementQuantity: (state, action: PayloadAction<{ id: string }>) => {
-      const { id } = action.payload;
+    decrementQuantity: (state, action: PayloadAction<{ _id: string }>) => {
+      const { _id } = action.payload;
       const product = state.addToCart.find(
-        (item) => String(item.id) === String(id),
+        (item) => String(item._id) === String(_id),
       );
 
       if (product) {
@@ -138,9 +141,9 @@ const counterSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify(state.addToCart));
       localStorage.setItem("totalCartItems", JSON.stringify(state.total));
     },
-    removeCart: (state, action: PayloadAction<{ id: string }>) => {
-      const { id } = action.payload;
-      state.addToCart = state.addToCart.filter((item) => item.id !== id);
+    removeCart: (state, action: PayloadAction<{ _id: string }>) => {
+      const { _id } = action.payload;
+      state.addToCart = state.addToCart.filter((item) => item._id !== _id);
            const total: {
         totalPrice: number;
         totalItems: number;
