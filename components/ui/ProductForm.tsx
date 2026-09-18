@@ -17,7 +17,7 @@ const ProductForm = (): React.JSX.Element => {
   const [showSuccess, setShowSuccess] = useState<boolean | string>("");
   const [message, setMessage] = useState<string>("");
 
-  const { user } = useAuthContextStore();
+  // const { user } = useAuthContextStore();
 
   const [product, setProduct] = useState<IProductFormInput>({
     name: "",
