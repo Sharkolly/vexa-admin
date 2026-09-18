@@ -51,7 +51,7 @@ const ImageUpload = ({
   ) => {
     const file = event.target.files?.[0] ?? null;
 
-    if (file && !["image/png", "image/jpeg", "image/jpg"].includes(file.type)) {
+    if (file && !["image/png", "image/jpeg", "image/jpg", "image/webp"].includes(file.type)) {
       alert("Only PNG and JPG files are allowed.");
       return;
     }
@@ -288,7 +288,7 @@ const ImageUpload = ({
 
               <input
                 type="file"
-                accept=".png,.jpg,.jpeg"
+                accept=".png,.jpg,.jpeg,.webp"
                 className="hidden"
                 name="images"
                 onChange={(e) => handleImageUpload(e, index)}
