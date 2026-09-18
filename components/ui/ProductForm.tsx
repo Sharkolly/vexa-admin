@@ -8,7 +8,7 @@ import ProductSpecification from "./ProductSpecification";
 import RightAside from "./RightAside";
 import { FeedbackModal } from "./Feedback";
 import type { AxiosError } from "axios";
-import { useAuthContextStore } from "../../store/useAuthContext";
+// import { useAuthContextStore } from "../../store/useAuthContext";
 import { useMutationAdminAddProductFunction } from "../../lib/useQuery";
 
 const ProductForm = (): React.JSX.Element => {
