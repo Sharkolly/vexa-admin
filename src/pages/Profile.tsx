@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 // import axios from "axios";
 import { useAuthContextStore } from "../../store/useAuthContext";
 import { Link } from "react-router-dom";
@@ -60,9 +60,13 @@ export const AdminVendorProfile: React.FC = () => {
   //     bannerUrl: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&auto=format&fit=crop&q=80",
   //   });
 
-  const { user } = useAuthContextStore();
+  const { user, refetch } = useAuthContextStore();
   console.log(user)
   // Password State
+
+  useEffect(() => {
+    refetch();
+  },[]);
   const [passwords, setPasswords] = useState({
     currentPassword: "",
     newPassword: "",
