@@ -1,7 +1,8 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 // import axios from "axios";
 import { useAuthContextStore } from "../../store/useAuthContext";
 import { Link } from "react-router-dom";
+import { Check, Share2 } from "lucide-react";
 
 export interface VendorProfile {
   firstName: string;
@@ -38,35 +39,14 @@ export const AdminVendorProfile: React.FC = () => {
   >("personal");
   //   const [isSaving, setIsSaving] = useState<boolean>(false);
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
-  //   const [errorMessage, setErrorMessage] = useState<string>("");
-
-  //   console.log(errorMessage);
-  // Profile Form State
-  //   const [profile, setProfile] = useState<VendorProfile>({
-  //     firstName: "Alexander",
-  //     lastName: "Vex",
-  //     email: "vendor@vexa.shop",
-  //     phone: "+234 812 345 6789",
-  //     storeName: "Vexa Luxury Atelier",
-  //     storeSlug: "vexa-luxury",
-  //     category: "Fashion & Apparel",
-  //     description: "Curated high-fashion minimalist streetwear and artisanal leather accessories.",
-  //     businessAddress: "12 Marina Road, Victoria Island, Lagos",
-  //     bankName: "Guaranty Trust Bank (GTB)",
-  //     accountNumber: "0123456789",
-  //     accountName: "Alexander Vex",
-  //     isVerified: true,
-  //     avatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80",
-  //     bannerUrl: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&auto=format&fit=crop&q=80",
-  //   });
 
   const { user, refetch } = useAuthContextStore();
-  console.log(user)
+  console.log(user);
   // Password State
 
   useEffect(() => {
     refetch();
-  },[]);
+  }, []);
   const [passwords, setPasswords] = useState({
     currentPassword: "",
     newPassword: "",
@@ -110,6 +90,12 @@ export const AdminVendorProfile: React.FC = () => {
   //     }
   //   };
 
+  const [copied, setCopied] = useState(false);
+  const handleCopyLink = (id: string = "") => {
+    navigator.clipboard.writeText(`https://vexa-shop.vercel.app/vendor/${id}`);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  };
   return (
     <div className="min-h-screen md:pt-20 max-md:px-8 bg-slate-50 xl:pr-10 xl:pl-70  font-sans text-slate-900">
       <div className="w-full    mx-auto space-y-8">
@@ -127,7 +113,7 @@ export const AdminVendorProfile: React.FC = () => {
           </div>
 
           {/* Avatar & Header Info */}
-          <div className="px-6 pb-6 pt-0 relative flex flex-col sm:flex-row sm:items-end justify-between gap-5 -mt-16 sm:-mt-20">
+          <div className="px-6 pb-6 pt-13  relative flex flex-col sm:flex-row sm:items-end justify-between gap-5 -mt-16 sm:-mt-20">
             <div className="flex flex-col sm:flex-row items-center sm:items-end gap-5 text-center sm:text-left">
               {/* Avatar Frame */}
               <div className="relative group">
@@ -165,8 +151,8 @@ export const AdminVendorProfile: React.FC = () => {
               </div>
 
               {/* Title & Badge */}
-              <div className="space-y-1 pb-1">
-                <div className="flex items-center justify-center sm:justify-start gap-2">
+              <div className="space-y-4.5 pb-1  ">
+                <div className="flex items-center justify-center sm:justify-start pt-6 gap-2">
                   <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
                     {user?.businessName}
                   </h1>
@@ -183,12 +169,39 @@ export const AdminVendorProfile: React.FC = () => {
                     </span>
                   )}
                 </div>
-                <Link className="text-xs font-mono text-slate-500" to={`https://vexa-shop.vercel.app/vendor/${user?._id}`} >
-                  My Link
-                </Link>
-                {/* <p className="text-xs font-mono text-slate-500">
-                  vexa.shop/{user?.category}
-                </p> */}
+
+                <div className="flex gap-4 items-center">
+                  <button
+                    onClick={() => handleCopyLink(user?._id)}
+                    className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-1.5  rounded-xl font-semibold text-sm transition-all shadow-sm active:scale-95 ${
+                      copied
+                        ? "bg-slate-900 text-white"
+                        : "bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200"
+                    }`}
+                  >
+                    {copied ? (
+                      <>
+                        <Check className="w-4 h-4 text-emerald-400" />
+                        <span>Link Copied!</span>
+                      </>
+                    ) : (
+                      <>
+                        <Share2 className="w-4 h-4" />
+                        <span>Share My Link</span>
+                      </>
+                    )}
+                  </button>
+                  <Link
+                    className=""
+                    to={`https://vexa-shop.vercel.app/vendor/${user?._id}`}
+                  >
+                  <button
+                    className={`flex-1 sm:flex-initial cursor-pointer gap-2 px-5 py-1.5  rounded-xl font-semibold text-sm transition-all shadow-sm active:scale-95 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200`}
+                  >
+                      View Link
+                  </button>
+                    </Link>
+                </div>
               </div>
             </div>
 

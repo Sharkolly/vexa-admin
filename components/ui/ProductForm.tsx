@@ -14,7 +14,7 @@ import { useMutationAdminAddProductFunction } from "../../lib/useQuery";
 const ProductForm = (): React.JSX.Element => {
   const { mutateAsync } = useMutationAdminAddProductFunction();
   const [loading, setLoading] = useState(false);
-  const [showSuccess, setShowSuccess] = useState<boolean | string>("");
+  const [showSuccess, setShowSuccess] = useState<boolean | undefined>(undefined);
   const [message, setMessage] = useState<string>("");
 
   // const { user } = useAuthContextStore();
@@ -133,32 +133,41 @@ const ProductForm = (): React.JSX.Element => {
     setTimeout(() => {}, 5500);
 
     try {
-    //  if (
-    //    user?.email !== "sharkollymofeoluwa@gmail.com" && user?.email !== "sharkollym@gmail.com" &&
-   //     product.category.toLowerCase() !== user?.category
-     // ) {
-    //    setShowSuccess(false);
-     //   setMessage(
+      //  if (
+      //    user?.email !== "sharkollymofeoluwa@gmail.com" && user?.email !== "sharkollym@gmail.com" &&
+      //     product.category.toLowerCase() !== user?.category
+      // ) {
+      //    setShowSuccess(false);
+      //   setMessage(
       //    "Please post your product category according to what you signed up for",
-       // );
+      // );
       //  return;
-    //  }
+      //  }
 
-      const res = await mutateAsync({ url: "/admin/product", formData });
-      setShowSuccess(res?.success);
-      setMessage(
-        res?.message ||
-          "Your new product is live and available in your store inventory.",
-      );
-    } catch (error: unknown) {
-      console.log(error);
-      const err = error as AxiosError<{ status: boolean; message: string }>;
-      console.log(err.response?.data?.status);
-      setShowSuccess(err.response?.data?.status || false);
+      const res = await mutateAsync(
+        { url: "/admin/product", formData },
+        {
+          onError: (error) => {
+            const err = error as AxiosError<{
+              status: boolean;
+              message: string;
+            }>;
+            setShowSuccess(err.response?.data?.status || false);
 
-      setMessage(
-        err.response?.data?.message ||
-          "An error occurred while uploading the product.",
+            setMessage(
+              err.response?.data?.message ||
+                "An error occurred while uploading the product.",
+            );
+          },
+
+          onSuccess: () => {
+            setShowSuccess(res?.success);
+            setMessage(
+              res?.message ||
+                "Your new product is live and available in your store inventory.",
+            );
+          },
+        },
       );
     } finally {
       setLoading(false);
@@ -286,9 +295,9 @@ const ProductForm = (): React.JSX.Element => {
         </div>
       </div>
 
-      {typeof showSuccess == "boolean" && (
+      {message && (
         <FeedbackModal
-          onClose={() => setShowSuccess("")}
+          onClose={() => setMessage("")}
           title={showSuccess ? "Product Uploaded!" : "Product upload failed"}
           message={message}
           autoCloseMs={4000}

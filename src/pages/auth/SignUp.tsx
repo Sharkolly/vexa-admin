@@ -20,6 +20,7 @@ const SignUp = () => {
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [businessName, setBusinessName] = useState("");
+  const [businessDescription, setBusinessDescription] = useState("");
   const [category, setCategory] = useState("electronics");
 
   // Bank Details State
@@ -114,7 +115,7 @@ const SignUp = () => {
       }
       setStep(2);
     } else if (step === 2) {
-      if (!businessName.trim() || !category) {
+      if (!businessName.trim() || !businessDescription || !category) {
         setIsError(true);
         setMessage("Please fill in your business profile information.");
         return;
@@ -175,6 +176,7 @@ const SignUp = () => {
           bankName,
           accountNumber,
           accountName,
+          businessDescription
         },
         { withCredentials: true },
       );
@@ -459,7 +461,7 @@ const SignUp = () => {
                     </p>
                   </div>
 
-                  <div className='hidden'>
+                  <div className='hidde'>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">
                       Business / Store Name
                     </label>
@@ -471,6 +473,19 @@ const SignUp = () => {
                       placeholder="e.g. Apex Ventures Nigeria"
                       className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all placeholder:text-slate-400"
                     />
+                  </div>
+                  <div className='hidde'>
+                    <label className="block text-xs font-semibold text-slate-700 mb-1">
+                      Business Description
+                    </label>
+                    <textarea
+                      rows={3}
+                      required
+                      value={businessDescription}
+                      onChange={(e) => setBusinessDescription(e.target.value)}
+                      placeholder="A short description about your business"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all placeholder:text-slate-400"
+                    ></textarea>
                   </div>
 
                   <div>
@@ -489,7 +504,7 @@ const SignUp = () => {
                       ))}
                     </select>
                   </div>
-                  <div>
+                  {/* <div>
                     <label className="block text-xs font-semibold text-slate-700 mb-1">
                       Business Sub Category
                     </label>
@@ -505,7 +520,7 @@ const SignUp = () => {
                         </option>
                       ))}
                     </select>
-                  </div>
+                  </div> */}
 
                   <div className="flex gap-2.5 pt-2">
                     <button

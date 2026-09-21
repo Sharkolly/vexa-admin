@@ -7,8 +7,7 @@ interface FeedbackModalProps {
   message?: string;
   buttonText?: string;
   autoCloseMs?: number;
-  showSuccess?: boolean;
-  //   setShowSuccess?: Dispatch<SetStateAction<string | boolean>>;
+  showSuccess?: boolean | undefined;
 }
 
 export const FeedbackModal: React.FC<FeedbackModalProps> = ({
@@ -18,7 +17,6 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({
   buttonText = "Continue",
   autoCloseMs,
   showSuccess,
-  //   setShowSuccess
 }) => {
   useEffect(() => {
     if (autoCloseMs) {
@@ -70,13 +68,14 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({
           <h3 className="text-lg font-bold text-slate-900 tracking-tight">
             {title}
           </h3>
-          <p className="text-sm text- text-slate-500 leading-relaxed">{message}</p>
+          <p className="text-sm text- text-slate-500 leading-relaxed">
+            {message}
+          </p>
         </div>
 
         <button
           type="button"
-        //   onClick={onClose}
-         
+          onClick={onClose}
           className={`w-full py-3 px-4  text-white font-semibold text-xs tracking-wider uppercase rounded-xl shadow-lg shadow-emerald-600/20 transition-all active:scale-[0.98] ${
             showSuccess
               ? "bg-emerald-600 hover:bg-emerald-700"
