@@ -1,14 +1,12 @@
 import React, { useState, useRef } from "react";
 import { IoDocumentText } from "react-icons/io5";
 import { FiChevronRight, FiUploadCloud } from "react-icons/fi";
-// import API from "../../api/api";
 import ImageUpload from "./ImageUpload";
 import type { IProductFormInput } from "../../types/device.types";
 import ProductSpecification from "./ProductSpecification";
 import RightAside from "./RightAside";
 import { FeedbackModal } from "./Feedback";
 import type { AxiosError } from "axios";
-// import { useAuthContextStore } from "../../store/useAuthContext";
 import { useMutationAdminAddProductFunction } from "../../lib/useQuery";
 
 const ProductForm = (): React.JSX.Element => {

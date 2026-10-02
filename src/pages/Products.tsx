@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import {
   useMutationDeleteProductFunction,
   useQueryProduct,
@@ -6,6 +6,7 @@ import {
 import { Link } from "react-router-dom";
 import { ConfirmationModal } from "../../components/ui/PopUp";
 import { FeedbackModal } from "../../components/ui/Feedback";
+import { useAuthContextStore } from "../../store/useAuthContext";
 
 export interface ProductItem {
   _id: string;
@@ -37,6 +38,11 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
   const { data } = useQueryProduct(`/admin/product`);
   const [showSuccess, setShowSuccess] = useState<boolean | string>("");
   const [message, setMessage] = useState<string>("");
+
+    const { user, refetch } = useAuthContextStore();
+    useEffect(() => {
+      refetch();
+    }, []);
 
   const products: ProductItem[] = data?.data || [];
 
@@ -438,7 +444,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                       <td className="py-3 px-4 text-right">
                         <div className="flex items-center justify-end gap-1.5">
                           <Link
-                            to={`/admin/products/edit/${product._id}`}
+                            to={`/edit-product/${user?._id}/${product._id}`}
                             onClick={(e) => {
                               if (onEditProduct) {
                                 e.preventDefault();

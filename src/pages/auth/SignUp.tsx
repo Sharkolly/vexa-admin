@@ -4,6 +4,7 @@ import type { AxiosError } from "axios";
 
 import API from "../../../api/api";
 import { useAuthContextStore } from "../../../store/useAuthContext";
+import { useQueryProduct } from "../../../lib/useQuery";
 
 const SignUp = () => {
   const {
@@ -17,16 +18,23 @@ const SignUp = () => {
     password,
   } = useAuthContextStore();
 
-  const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
+  // const { data } = useQueryProduct(`/admin/get-all-banks`);
+  const { data } = useQueryProduct("/admin/get-all-banks");
+  const allBanks = data?.data?.data || [];
+
+  const [step, setStep] = useState<1 | 2 | 3 | 4>(3);
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [userBankName, setUserBankName] = useState('');
   const [businessName, setBusinessName] = useState("");
   const [businessDescription, setBusinessDescription] = useState("");
   const [category, setCategory] = useState("electronics");
 
   // Bank Details State
-  const [bankName, setBankName] = useState("Access Bank");
+  const [bankName, setBankName] = useState({
+    name: "Access Bank",
+    code: "044",
+  });
   const [accountNumber, setAccountNumber] = useState("");
-  // const [accountName, setAccountName] = useState("");
 
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -37,6 +45,27 @@ const SignUp = () => {
   const navigate = useNavigate();
   const timerRef = useRef<number | null>(null);
 
+  useEffect(() => {
+    const fetchUserAccountName = async (
+      accountNumber: string,
+      bankCode: string,
+    ) => {
+      const { data } = await API.post(`/admin/get-user-bank-name`, {
+        accountNumber,
+        bankCode,
+      });
+      setUserBankName(data?.data?.data?.account_name)
+    };
+
+    const timeout = setTimeout(() => {
+      if (accountNumber.length === 10 && bankName.code) {
+        fetchUserAccountName(accountNumber, bankName.code);
+      }
+    }, 500);
+
+    return () => clearTimeout(timeout);
+  }, [accountNumber, bankName.code]);
+
   // Automatically sync Account Name to First Name + Last Name
   // useEffect(() => {
   // }, [firstName, lastName]);
@@ -46,7 +75,7 @@ const SignUp = () => {
   const allCategories = [
     "electronics",
     "fashion",
-    "beauty & health",
+    "beauty & health", 
     "home & kitchen",
     "automobile",
     "sports & outdoors",
@@ -59,37 +88,6 @@ const SignUp = () => {
     "gaming",
     "musical instruments",
     "arts & crafts",
-  ];
-
-  const nigerianBanks = [
-    "Access Bank",
-    "Citibank Nigeria",
-    "Ecobank Nigeria",
-    "Fidelity Bank",
-    "First Bank of Nigeria",
-    "First City Monument Bank (FCMB)",
-    "Globus Bank",
-    "Guaranty Trust Bank (GTBank)",
-    "Heritage Bank",
-    "Keystone Bank",
-    "Kuda Bank",
-    "Moniepoint Microfinance Bank",
-    "OPay Digital Services",
-    "Optimus Bank",
-    "Palmpay",
-    "Parallex Bank",
-    "Polaris Bank",
-    "Providus Bank",
-    "Stanbic IBTC Bank",
-    "Standard Chartered Bank",
-    "Sterling Bank",
-    "SunTrust Bank",
-    "Titan Trust Bank",
-    "Union Bank of Nigeria",
-    "United Bank for Africa (UBA)",
-    "Unity Bank",
-    "Wema Bank",
-    "Zenith Bank",
   ];
 
   useEffect(() => {
@@ -176,7 +174,7 @@ const SignUp = () => {
           bankName,
           accountNumber,
           accountName,
-          businessDescription
+          businessDescription,
         },
         { withCredentials: true },
       );
@@ -461,7 +459,7 @@ const SignUp = () => {
                     </p>
                   </div>
 
-                  <div className='hidde'>
+                  <div className="hidde">
                     <label className="block text-xs font-semibold text-slate-700 mb-1">
                       Business / Store Name
                     </label>
@@ -474,13 +472,17 @@ const SignUp = () => {
                       className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all placeholder:text-slate-400"
                     />
                   </div>
-                  <div className='hidde'>
+                  <div className="hidde">
                     <label className="block text-xs font-semibold text-slate-700 mb-1">
                       Business Description
                     </label>
+                    <span className="text-[11px] font-medium text-gray-400">
+                      {businessDescription.length}/160
+                    </span>
                     <textarea
                       rows={3}
                       required
+                      maxLength={160}
                       value={businessDescription}
                       onChange={(e) => setBusinessDescription(e.target.value)}
                       placeholder="A short description about your business"
@@ -572,7 +574,7 @@ const SignUp = () => {
                     <strong>must be the exact same</strong> as the First Name
                     and Last Name you provided (
                     <strong>
-                      {lastName || "Last"} { firstName || "First"}
+                      {lastName || "Last"} {firstName || "First"}
                     </strong>
                     ). Payouts will fail if the names do not match.
                   </div>
@@ -582,14 +584,26 @@ const SignUp = () => {
                       Select Bank
                     </label>
                     <select
-                      value={bankName}
-                      onChange={(e) => setBankName(e.target.value)}
+                      value={bankName.code}
+                      onChange={(e) => {
+                        const selectedBank = allBanks.find(
+                          (bank: { name: string; code: string }) =>
+                            bank.code === e.target.value,
+                        );
+                        if (selectedBank) setBankName(selectedBank);
+                      }}
                       className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all cursor-pointer"
                     >
-                      {nigerianBanks.map((bank) => (
-                        <option key={bank} value={bank}>
-                          {bank}
-                        </option>
+                      {allBanks.map((bank: { name: string; code: string }) => (
+                        <>
+                          <option
+                            key={bank.name}
+                            value={bank.code}
+                            className="capitalize"
+                          >
+                            {bank.name}
+                          </option>
+                        </>
                       ))}
                     </select>
                   </div>
@@ -618,15 +632,17 @@ const SignUp = () => {
                     <input
                       type="text"
                       disabled
-                      value={accountName}
+                      value={userBankName || accountName}
                       placeholder="First Name Last Name"
                       className="w-full px-3.5 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm font-medium text-slate-600 cursor-not-allowed select-none"
                     />
-                    <p className="text-[11px] text-slate-500 mt-1 font-medium">
+                    <p className="text-[11px] text-slate-500 mt-1 hidden font-medium">
                       Locked to First Name + Last Name (
                       <strong>
-                        {lastName || "Last"}
-                        {firstName || "First"}
+                        {/* {lastName || "Last"} */}
+                        {/* {firstName || "First"} */}
+
+                        {userBankName }
                       </strong>
                       ). Go back to Step 1 if you need to edit your name.
                     </p>

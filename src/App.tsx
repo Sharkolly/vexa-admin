@@ -13,7 +13,7 @@ const NotFound = lazy(() => import("./pages/404"));
 const VendorDashboard = lazy(() => import("./pages/Dashboard"));
 const Layout = lazy(() => import("../components/ui/Layout"));
 const ProductForm = lazy(() => import("./pages/AddProductPage"));
-const Edit = lazy(() => import("./pages/Edit"));
+// const EditProduct = lazy(() => import("../components/ui/EditForm"));
 const Order = lazy(() => import("./pages/Order"));
 const Settings = lazy(() => import("./pages/Settings"));
 const Products = lazy(() => import("./pages/Products"));
@@ -23,7 +23,6 @@ const ProtectedRoute = lazy(() => import("../components/ProtectedRoute"));
 const RedirectRoute = lazy(() => import("../components/RedirectRoute"));
 const AdminVendorProfile = lazy(() => import("./pages/Profile"));
 import Loader from "../components/Loader";
-import AdminEditProductForm from "./pages/Edit";
 
 function App() {
   const router = createBrowserRouter(
@@ -58,7 +57,7 @@ function App() {
             index
             element={
               <ProtectedRoute>
-                <VendorDashboard/>
+                <VendorDashboard />
               </ProtectedRoute>
             }
           />
@@ -67,23 +66,31 @@ function App() {
             element={
               <ProtectedRoute>
                 <ProductForm />
-               </ProtectedRoute>
+              </ProtectedRoute>
             }
           />
-          <Route
-            path="/edit-form"
+          {/* <Route
+              path="/edit-product/:id"
+              element={
+                <ProtectedRoute>
+                  <EditProduct />
+                 </ProtectedRoute>
+              }
+            /> */}
+          {/* <Route
+            path="/edit-product/:vendor/:id"
             element={
               <ProtectedRoute>
-                <AdminEditProductForm />
-               </ProtectedRoute>
+                <EditProduct />
+              </ProtectedRoute>
             }
-          />
+          /> */}
           <Route
             path="/my-product"
             element={
               <ProtectedRoute>
                 <Products />
-               </ProtectedRoute>
+              </ProtectedRoute>
             }
           />
           <Route
@@ -91,7 +98,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <Settings />
-               </ProtectedRoute>
+              </ProtectedRoute>
             }
           />
           <Route
@@ -99,15 +106,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <Order />
-               </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/edit-product"
-            element={
-              <ProtectedRoute>
-                <Edit />
-               </ProtectedRoute>
+              </ProtectedRoute>
             }
           />
           <Route
@@ -115,15 +114,10 @@ function App() {
             element={
               <ProtectedRoute>
                 <AdminVendorProfile />
-               </ProtectedRoute>
+              </ProtectedRoute>
             }
           />
-          <Route
-            path="/"
-            element={              
-                <VendorDashboard />              
-            }
-          />
+          <Route path="/" element={<VendorDashboard />} />
 
           <Route path="*" element={<NotFound />} />
         </Route>

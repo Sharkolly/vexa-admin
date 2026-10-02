@@ -1,4 +1,6 @@
 export type IProductFormInput = {
+  _id?: string;
+  slug?: string;
   name: string;
   price: number;
   category: string;

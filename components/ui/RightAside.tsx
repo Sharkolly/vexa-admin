@@ -24,9 +24,6 @@ const RightAside = ({
   const [selectedSub, setSelectedSub] = useState(
     categories[0].subCategories[0].slug,
   );
-  // const [selectedBrand, setSelectedBrand] = useState(
-  //   categories[0].brand[0],
-  // );
 
   const activeCategory = categories.find(
     (c: { slug: string }) => c.slug === selectedCategory,
