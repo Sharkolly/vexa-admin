@@ -22,7 +22,7 @@ const SignUp = () => {
   const { data } = useQueryProduct("/admin/get-all-banks");
   const allBanks = data?.data?.data || [];
 
-  const [step, setStep] = useState<1 | 2 | 3 | 4>(3);
+  const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [userBankName, setUserBankName] = useState('');
   const [businessName, setBusinessName] = useState("");
