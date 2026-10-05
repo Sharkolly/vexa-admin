@@ -142,7 +142,7 @@ const ProductForm = (): React.JSX.Element => {
       //  return;
       //  }
 
-      const res = await mutateAsync(
+      await mutateAsync(
         { url: "/admin/product", formData },
         {
           onError: (error) => {
@@ -158,10 +158,11 @@ const ProductForm = (): React.JSX.Element => {
             );
           },
 
-          onSuccess: () => {
-            setShowSuccess(res?.success);
+          onSuccess: (resp) => {            
+            setShowSuccess(resp?.success);
+            console.log(resp?.message);
             setMessage(
-              res?.message ||
+              resp?.message ||
                 "Your new product is live and available in your store inventory.",
             );
           },
