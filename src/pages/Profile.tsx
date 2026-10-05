@@ -41,8 +41,6 @@ export const AdminVendorProfile: React.FC = () => {
   const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
 
   const { user, refetch } = useAuthContextStore();
-  console.log(user);
-  // Password State
 
   useEffect(() => {
     refetch();
@@ -91,17 +89,15 @@ export const AdminVendorProfile: React.FC = () => {
   //   };
 
   const [copied, setCopied] = useState(false);
-  const handleCopyLink = (id: string = "") => {
-    navigator.clipboard.writeText(`https://vexa-shop.vercel.app/vendor/${id}`);
+  const handleCopyLink = (id: string = "", businessName: string = '') => {
+    navigator.clipboard.writeText(`https://vexa-shop.vercel.app/vendor/${id}/${businessName}`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
   return (
     <div className="min-h-screen md:pt-20 max-md:px-8 bg-slate-50 xl:pr-10 xl:pl-70  font-sans text-slate-900">
       <div className="w-full    mx-auto space-y-8">
-        {/* CINEMATIC PROFILE HEADER CARD */}
         <div className="relative bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden">
-          {/* Store Banner */}
           <div className="h-44 sm:h-56 w-full relative bg-slate-900">
             <img
               //   src={profile.bannerUrl}
@@ -112,10 +108,8 @@ export const AdminVendorProfile: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
           </div>
 
-          {/* Avatar & Header Info */}
           <div className="px-6 pb-6 pt-13  relative flex flex-col sm:flex-row sm:items-end justify-between gap-5 -mt-16 sm:-mt-20">
             <div className="flex flex-col sm:flex-row items-center sm:items-end gap-5 text-center sm:text-left">
-              {/* Avatar Frame */}
               <div className="relative group">
                 <img
                   //   src={profile.avatarUrl}
@@ -150,7 +144,6 @@ export const AdminVendorProfile: React.FC = () => {
                 </button>
               </div>
 
-              {/* Title & Badge */}
               <div className="space-y-4.5 pb-1  ">
                 <div className="flex items-center justify-center sm:justify-start pt-6 gap-2">
                   <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
@@ -172,7 +165,7 @@ export const AdminVendorProfile: React.FC = () => {
 
                 <div className="flex gap-4 items-center">
                   <button
-                    onClick={() => handleCopyLink(user?._id)}
+                    onClick={() => handleCopyLink(user?._id, user?.businessName)}
                     className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-1.5  rounded-xl font-semibold text-sm transition-all shadow-sm active:scale-95 ${
                       copied
                         ? "bg-slate-900 text-white"
@@ -193,7 +186,7 @@ export const AdminVendorProfile: React.FC = () => {
                   </button>
                   <Link
                     className=""
-                    to={`https://vexa-shop.vercel.app/vendor/${user?._id}`}
+                    to={`https://vexa-shop.vercel.app/vendor/${user?._id}/${user?.businessName}`}
                   >
                   <button
                     className={`flex-1 sm:flex-initial cursor-pointer gap-2 px-5 py-1.5  rounded-xl font-semibold text-sm transition-all shadow-sm active:scale-95 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200`}
@@ -205,7 +198,6 @@ export const AdminVendorProfile: React.FC = () => {
               </div>
             </div>
 
-            {/* Quick Metrics */}
             <div className="flex items-center justify-center gap-3 pt-2 sm:pt-0 border-t sm:border-0 border-slate-100">
               <div className="px-4 py-2 bg-slate-50 border border-slate-200/60 rounded-xl text-center">
                 <span className="block text-xs font-semibold text-slate-400">
@@ -226,7 +218,6 @@ export const AdminVendorProfile: React.FC = () => {
             </div>
           </div>
 
-          {/* TAB NAVIGATION BAR */}
           <div className="px-6 border-t border-slate-100 flex gap-6 overflow-x-auto scrollbar-none">
             {[
               { id: "personal", label: "Personal Info" },
@@ -252,12 +243,10 @@ export const AdminVendorProfile: React.FC = () => {
           </div>
         </div>
 
-        {/* TAB CONTENTS CONTAINER */}
         <form
           // onSubmit={handleSaveProfile}
           className="bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-8 shadow-sm space-y-6"
         >
-          {/* TAB 1: PERSONAL INFO */}
           {activeTab === "personal" && (
             <div className="space-y-6 animate-in fade-in duration-200">
               <div>
@@ -329,7 +318,6 @@ export const AdminVendorProfile: React.FC = () => {
             </div>
           )}
 
-          {/* TAB 2: STORE / BUSINESS DETAILS */}
           {activeTab === "business" && (
             <div className="space-y-6 animate-in fade-in duration-200">
               <div>
@@ -425,7 +413,6 @@ export const AdminVendorProfile: React.FC = () => {
             </div>
           )}
 
-          {/* TAB 3: BANK & PAYSTACK PAYOUTS */}
           {activeTab === "bank" && (
             <div className="space-y-6 animate-in fade-in duration-200">
               <div className="flex items-start justify-between">
@@ -517,7 +504,6 @@ export const AdminVendorProfile: React.FC = () => {
             </div>
           )}
 
-          {/* TAB 4: SECURITY & PASSWORD */}
           {activeTab === "security" && (
             <div className="space-y-6 animate-in fade-in duration-200">
               <div>
@@ -587,7 +573,6 @@ export const AdminVendorProfile: React.FC = () => {
             </div>
           )}
 
-          {/* SAVE BUTTON BAR */}
           <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
             <span className="text-xs text-slate-400">
               Changes apply instantly across Vexa.
@@ -608,13 +593,14 @@ export const AdminVendorProfile: React.FC = () => {
                 </>
               ) : (
                 "Save Profile Changes"
+
               )} */}
+              Save Profile Changes
             </button>
           </div>
         </form>
       </div>
 
-      {/* SUCCESS MODAL POPUP */}
       {showSuccessModal && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm animate-in fade-in duration-150">
           <div className="bg-white max-w-sm w-full rounded-3xl p-6 text-center space-y-4 shadow-2xl border border-slate-100 animate-in zoom-in-95 duration-150">

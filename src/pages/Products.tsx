@@ -330,7 +330,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
         </div>
       )}
 
-      {/* 1. DESKTOP PRODUCT TABLE (Visible on md: and larger)     */}
+      
       <div className="hidden md:block bg-white border border-gray-200/80 rounded-xl shadow-2xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
@@ -606,6 +606,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                     onChange={() => toggleSelectOne(product._id)}
                     className="mt-1 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer"
                   />
+                  
                   <img
                     src={product.images[0] || "/placeholder.png"}
                     alt={product.name}
@@ -632,7 +633,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                     )}
                   </div>
 
-                  {/* MOBILE EDIT & ACTIONS */}
+                  
                   <div className="flex items-center gap-2">
                     <Link
                       to={`/admin/products/edit/${product._id}`}

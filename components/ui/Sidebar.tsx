@@ -13,17 +13,11 @@ import {
 import { IoPerson } from "react-icons/io5";
 
 interface VendorSidebarProps {
-  // onLogout?: () => void;
-  toggleBtn: boolean
+  toggleBtn: boolean;
   onToggleSidebar: () => void;
 }
 
 const VendorSidebar: React.FC<VendorSidebarProps> = ({ toggleBtn, onToggleSidebar }) => {
-  // const [isMobileOpen, setIsMobileOpen] = useState(false);
-
-  // const toggleMobileMenu = () => setIsMobileOpen((prev) => !prev);
-  // const closeMobileMenu = () => setIsMobileOpen(false);
-
   const navLinks = [
     { to: "/", label: "Dashboard", icon: LayoutDashboard },
     { to: "/product-form", label: "Add Product", icon: PlusCircle },
@@ -35,7 +29,6 @@ const VendorSidebar: React.FC<VendorSidebarProps> = ({ toggleBtn, onToggleSideba
 
   const onLogout = () => {
     localStorage.removeItem("token");
-    // closeMenu();
     window.location.href = "/login";
   };
 
@@ -45,7 +38,7 @@ const VendorSidebar: React.FC<VendorSidebarProps> = ({ toggleBtn, onToggleSideba
       {/* 1. MOBILE TOP HEADER (Visible < lg)       */}
       {/* ========================================== */}
       <header className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b border-gray-200 z-30 flex items-center justify-between px-4">
-        <h1 className="font-bold text-xl text-nav-blue-active">
+        <h1 className="font-bold text-xl text-emerald-700">
           Vendor Portal
         </h1>
         <button
@@ -78,7 +71,7 @@ const VendorSidebar: React.FC<VendorSidebarProps> = ({ toggleBtn, onToggleSideba
       >
         {/* Header / Brand */}
         <div className="p-6 flex items-center justify-between border-b border-gray-100 lg:border-none">
-          <h1 className="font-bold text-2xl text-nav-blue-active">
+          <h1 className="font-bold text-2xl text-emerald-700">
             Vendor Portal
           </h1>
           <button
@@ -103,7 +96,7 @@ const VendorSidebar: React.FC<VendorSidebarProps> = ({ toggleBtn, onToggleSideba
                     className={({ isActive }) =>
                       `text-[13px] uppercase tracking-wider flex items-center gap-3 px-3.5 py-3 rounded-lg font-semibold transition-all ${
                         isActive
-                          ? "bg-blue-50 border-r-4 border-nav-blue-active text-nav-blue-active"
+                          ? "bg-emerald-50 border-r-4 border-emerald-700 text-emerald-700"
                           : "text-slate-500 hover:bg-gray-100 hover:text-slate-800"
                       }`
                     }
