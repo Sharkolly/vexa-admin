@@ -7,6 +7,10 @@ import ReactQueryProvider from "../lib/ReactQueryProvider.tsx";
 import { Provider } from "react-redux";
 import { store } from "../store/index.ts";
 
+window.addEventListener('vite:preloadError', () => {
+  window.location.reload();
+} ) ;
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <Provider store={store}>
