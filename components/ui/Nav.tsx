@@ -18,9 +18,7 @@ const VendorNavbar: React.FC<VendorNavbarProps> = ({
 }) => {
   return (
     <header className="fixed top-0 right-0 left-0 lg:left-64 h-16 bg-white/95 backdrop-blur-xs border-b border-gray-200/80 flex items-center justify-between px-4 sm:px-6 z-30 transition-all">
-      {/* Left Section: Mobile Sidebar Toggle & Search Input */}
       <div className="flex items-center gap-2.5 sm:gap-4 flex-1 max-w-xl">
-        {/* Mobile Hamburger Menu Toggle */}
         <button
           type="button"
           onClick={onToggleSidebar}
@@ -30,7 +28,6 @@ const VendorNavbar: React.FC<VendorNavbarProps> = ({
           <Menu size={22} />
         </button>
 
-        {/* Enhanced Search Bar */}
         <div className="relative w-full max-w-xs sm:max-w-md">
           <Search className="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
           <input
@@ -41,9 +38,7 @@ const VendorNavbar: React.FC<VendorNavbarProps> = ({
         </div>
       </div>
 
-      {/* Right Section: Notifications & Vendor Profile */}
       <div className="flex items-center gap-2 sm:gap-4">
-        {/* Notification Bell */}
         <button
           type="button"
           aria-label="Notifications"
@@ -55,10 +50,8 @@ const VendorNavbar: React.FC<VendorNavbarProps> = ({
           )}
         </button>
 
-        {/* Vertical Divider */}
         <div className="h-5 w-px bg-gray-200 hidden sm:block" />
 
-        {/* Vendor Profile Info */}
         <div className="flex items-center gap-2.5 p-1 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
           <div className="relative">
             {avatarUrl ? (

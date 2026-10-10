@@ -36,7 +36,7 @@ const ProductSpecification = ({
     <section className="bg-white p-6 sm:p-8 rounded-2xl shadow-xs border border-gray-200/80 transition-all hover:shadow-md/50">
       {/* Header Layout */}
       <div className="flex items-center gap-3.5 mb-6 pb-4 border-b border-gray-100">
-        <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl ring-1 ring-blue-100">
+        <div className="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl ring-1 ring-emerald-100">
           <BiCategory className="w-5 h-5" />
         </div>
         <div>
@@ -59,7 +59,7 @@ const ProductSpecification = ({
             onChange={handleOnChange}
             name="condition"
             value={product.condition}
-            className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
+            className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
           >
             <option value="UK Used">UK Used</option>
             <option value="Mint">Mint</option>
@@ -78,7 +78,7 @@ const ProductSpecification = ({
             Color
           </label>
           <input
-            className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
+            className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
             placeholder="e.g. Titanium Yellow, Space Gray"
             type="text"
             onChange={handleOnChange}
@@ -93,7 +93,7 @@ const ProductSpecification = ({
         product.category?.toLowerCase() === "electronic") && (
         <div className="mt-6 space-y-6 pt-6 border-t border-gray-100">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-extrabold uppercase tracking-wider text-blue-600 bg-blue-50 px-3 py-1.5 rounded-lg ring-1 ring-blue-100">
+            <span className="text-xs font-extrabold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-lg ring-1 ring-emerald-100">
               Electronics Specifications
             </span>
           </div>
@@ -107,7 +107,7 @@ const ProductSpecification = ({
               <select
                 onChange={handleOnChangeSpec}
                 name="ram"
-                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
+                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
               >
                 <option value="4 GB">4 GB</option>
                 <option value="6 GB">6 GB</option>
@@ -128,7 +128,7 @@ const ProductSpecification = ({
               <select
                 onChange={handleOnChangeSpec}
                 name="rom"
-                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
+                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
               >
                 <option value="64 GB (PHONE) ">64 GB (PHONE) </option>
                 <option value="128 GB (PHONE) ">128 GB (PHONE) </option>
@@ -162,7 +162,7 @@ const ProductSpecification = ({
                 </span>
               </div>
               <input
-                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
+                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
                 placeholder="e.g. Apple M2 Max 2.7GHZ"
                 type="text"
                 name="processor"
@@ -175,7 +175,7 @@ const ProductSpecification = ({
                 Operating System
               </label>
               <input
-                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
+                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
                 placeholder="e.g. macOS Sonoma"
                 type="text"
                 name="operating_system"
@@ -190,7 +190,7 @@ const ProductSpecification = ({
               <select
                 onChange={handleOnChangeSpec}
                 name="sim"
-                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
+                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
               >
                 <option>Dual Physical Sim</option>
                 <option>Dual E-Sim</option>
@@ -215,7 +215,7 @@ const ProductSpecification = ({
               <select
                 onChange={handleOnChangeSpec}
                 name="idm"
-                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
+                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
               >
                 <option value="false">NO</option>
                 <option value="true">YES</option>
@@ -234,7 +234,7 @@ const ProductSpecification = ({
               <select
                 onChange={handleOnChangeSpec}
                 name="icm"
-                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
+                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
               >
                 <option value="false">NO</option>
                 <option value="true">YES</option>
@@ -253,7 +253,7 @@ const ProductSpecification = ({
               <select
                 onChange={handleOnChangeSpec}
                 name="ibm"
-                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
+                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
               >
                 <option value="false">NO</option>
                 <option value="true">YES</option>
@@ -268,7 +268,7 @@ const ProductSpecification = ({
                 Battery Health
               </label>
               <input
-                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
+                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
                 placeholder="e.g. 92"
                 type="number"
                 name="battery_health"
@@ -281,7 +281,7 @@ const ProductSpecification = ({
                 Inches
               </label>
               <input
-                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
+                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
                 placeholder="e.g. 13.3"
                 type="number"
               />
@@ -292,7 +292,7 @@ const ProductSpecification = ({
                 Refresh Rate
               </label>
               <input
-                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
+                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
                 placeholder="e.g. 120 Hz"
                 type="text"
                 name="refresh_rate"
@@ -314,7 +314,7 @@ const ProductSpecification = ({
               {["XS", "S", "M", "L", "XL", "XXL"].map((size) => (
                 <button
                   key={size}
-                  className="w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center font-bold text-xs hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all cursor-pointer"
+                  className="w-10 h-10 rounded-xl border border-gray-200 flex items-center justify-center font-bold text-xs hover:bg-emerald-600 hover:text-white hover:border-emerald-600 transition-all cursor-pointer"
                   type="button"
                 >
                   {size}
@@ -327,7 +327,7 @@ const ProductSpecification = ({
               Material
             </label>
             <input
-              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all"
+              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all"
               placeholder="e.g. Organic Cotton"
               type="text"
             />

@@ -20,6 +20,7 @@ export interface VendorProfile {
   isVerified: boolean;
   avatarUrl: string;
   bannerUrl: string;
+  businessDescription: string
 }
 
 const NIGERIAN_BANKS = [
@@ -44,6 +45,7 @@ export const AdminVendorProfile: React.FC = () => {
 
   useEffect(() => {
     refetch();
+    console.log(user);
   }, []);
   const [passwords, setPasswords] = useState({
     currentPassword: "",
@@ -211,7 +213,7 @@ export const AdminVendorProfile: React.FC = () => {
                 <span className="block text-xs font-semibold text-slate-400">
                   Status
                 </span>
-                <span className="text-xs font-bold text-indigo-600 uppercase tracking-wider">
+                <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider">
                   Active
                 </span>
               </div>
@@ -230,13 +232,13 @@ export const AdminVendorProfile: React.FC = () => {
                 onClick={() => setActiveTab(tab.id as "personal" | "business")}
                 className={`py-4 text-xs font-bold transition-all relative whitespace-nowrap ${
                   activeTab === tab.id
-                    ? "text-indigo-600"
+                    ? "text-emerald-600"
                     : "text-slate-400 hover:text-slate-600"
                 }`}
               >
                 {tab.label}
                 {activeTab === tab.id && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-indigo-600 rounded-full animate-in fade-in duration-200" />
+                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-600 rounded-full animate-in fade-in duration-200" />
                 )}
               </button>
             ))}
@@ -269,7 +271,7 @@ export const AdminVendorProfile: React.FC = () => {
                     value={user?.firstName}
                     // onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-indigo-600 transition-all font-medium"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-emerald-600 transition-all font-medium"
                   />
                 </div>
 
@@ -283,7 +285,7 @@ export const AdminVendorProfile: React.FC = () => {
                     value={user?.lastName}
                     // onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-indigo-600 transition-all font-medium"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-emerald-600 transition-all font-medium"
                   />
                 </div>
 
@@ -297,7 +299,7 @@ export const AdminVendorProfile: React.FC = () => {
                     value={user?.email}
                     // onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-indigo-600 transition-all font-medium"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-emerald-600 transition-all font-medium"
                   />
                 </div>
 
@@ -311,7 +313,7 @@ export const AdminVendorProfile: React.FC = () => {
                     value={user?.phoneNumber}
                     // onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-indigo-600 transition-all font-medium font-mono"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-emerald-600 transition-all font-medium font-mono"
                   />
                 </div>
               </div>
@@ -340,7 +342,7 @@ export const AdminVendorProfile: React.FC = () => {
                     value={user?.businessName}
                     // onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-indigo-600 transition-all font-medium"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-emerald-600 transition-all font-medium"
                   />
                 </div>
 
@@ -348,11 +350,20 @@ export const AdminVendorProfile: React.FC = () => {
                   <label className="block text-xs font-bold text-slate-700 mb-1.5">
                     Store Category
                   </label>
-                  <select
+                   <input
+                    type="text"
                     name="category"
                     value={user?.category}
                     // onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-indigo-600 transition-all font-medium"
+                    required
+                    disabled 
+                    className="w-full px-4 capitalize py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-emerald-600 transition-all font-medium"
+                  />
+                  {/* <select
+                    name="category"
+                    value={user?.category}
+                    // onChange={handleInputChange}
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-emerald-600 transition-all font-medium"
                   >
                     <option value="Fashion & Apparel">Fashion & Apparel</option>
                     <option value="Electronics & Gadgets">
@@ -362,7 +373,7 @@ export const AdminVendorProfile: React.FC = () => {
                       Beauty & Cosmetics
                     </option>
                     <option value="Home & Interior">Home & Interior</option>
-                  </select>
+                  </select> */}
                 </div>
 
                 <div className="sm:col-span-2">
@@ -390,10 +401,10 @@ export const AdminVendorProfile: React.FC = () => {
                   <textarea
                     name="description"
                     rows={3}
-                    // value={user?.description}
+                    value={user?.businessDescription}
                     // value={user?.description}
                     // onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-indigo-600 transition-all resize-none leading-relaxed"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-emerald-600 transition-all resize-none leading-relaxed"
                   />
                 </div>
 
@@ -406,7 +417,7 @@ export const AdminVendorProfile: React.FC = () => {
                     name="businessAddress"
                     // value={user?.businessAddress}
                     // onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-indigo-600 transition-all"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-emerald-600 transition-all"
                   />
                 </div>
               </div>
@@ -463,7 +474,7 @@ export const AdminVendorProfile: React.FC = () => {
                     name="bankName"
                     value={user?.bankName}
                     // onChange={handleInputChange}
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-indigo-600 transition-all font-medium"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-emerald-600 transition-all font-medium"
                   >
                     {NIGERIAN_BANKS.map((bank) => (
                       <option key={bank} value={bank}>
@@ -484,7 +495,7 @@ export const AdminVendorProfile: React.FC = () => {
                     value={user?.accountNumber}
                     // onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono focus:bg-white focus:outline-none focus:border-indigo-600 transition-all"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono focus:bg-white focus:outline-none focus:border-emerald-600 transition-all"
                   />
                 </div>
 
@@ -530,7 +541,7 @@ export const AdminVendorProfile: React.FC = () => {
                       })
                     }
                     placeholder="••••••••••••"
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-indigo-600 transition-all"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-emerald-600 transition-all"
                   />
                 </div>
 
@@ -548,7 +559,7 @@ export const AdminVendorProfile: React.FC = () => {
                       })
                     }
                     placeholder="••••••••••••"
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-indigo-600 transition-all"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-emerald-600 transition-all"
                   />
                 </div>
 
@@ -566,7 +577,7 @@ export const AdminVendorProfile: React.FC = () => {
                       })
                     }
                     placeholder="••••••••••••"
-                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-indigo-600 transition-all"
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:outline-none focus:border-emerald-600 transition-all"
                   />
                 </div>
               </div>
@@ -581,7 +592,7 @@ export const AdminVendorProfile: React.FC = () => {
               type="submit"
               //   disabled={isSaving}
               disabled={true}
-              className="py-3 px-8 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-indigo-600/20 disabled:opacity-50 transition-all active:scale-[0.98] flex items-center gap-2"
+              className="py-3 px-8 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg shadow-emerald-600/20 disabled:opacity-50 transition-all active:scale-[0.98] flex items-center gap-2"
             >
               {/* {isSaving ? (
                 <>

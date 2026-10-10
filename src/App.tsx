@@ -62,6 +62,14 @@ function App() {
             }
           />
           <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <VendorDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/product-form"
             element={
               <ProtectedRoute>

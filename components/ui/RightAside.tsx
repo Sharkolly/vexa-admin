@@ -50,7 +50,7 @@ const RightAside = ({
     <div className="flex flex-col gap-6">
       <section className="bg-white p-6 sm:p-8 rounded-2xl shadow-xs border border-gray-200/80 transition-all hover:shadow-md/50">
         <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
-          <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl ring-1 ring-blue-100">
+          <div className="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl ring-1 ring-emerald-100">
             <FiLayers className="w-5 h-5" />
           </div>
           <div>
@@ -67,7 +67,7 @@ const RightAside = ({
               Category <span className="text-rose-500">*</span>
             </label>
             <select
-              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
+              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
               value={selectedCategory}
               name="category"
               onChange={(e) => {
@@ -88,7 +88,7 @@ const RightAside = ({
               Sub Category <span className="text-rose-500">*</span>
             </label>
             <select
-              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
+              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
               value={selectedSub}
               name="subCategory"
               onChange={(e) => {
@@ -112,20 +112,20 @@ const RightAside = ({
             </label>
 
             <div className="flex flex-wrap gap-2 my-2" id="tag-container">
-              <span className="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-lg border border-blue-200/60 flex items-center gap-1.5">
+              <span className="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-lg border border-emerald-200/60 flex items-center gap-1.5">
                 Wireless
                 <button
                   type="button"
-                  className="hover:text-blue-900 transition-colors cursor-pointer"
+                  className="hover:text-emerald-900 transition-colors cursor-pointer"
                 >
                   <IoClose className="w-3.5 h-3.5" />
                 </button>
               </span>
-              <span className="px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-lg border border-blue-200/60 flex items-center gap-1.5">
+              <span className="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-semibold rounded-lg border border-emerald-200/60 flex items-center gap-1.5">
                 Premium
                 <button
                   type="button"
-                  className="hover:text-blue-900 transition-colors cursor-pointer"
+                  className="hover:text-emerald-900 transition-colors cursor-pointer"
                 >
                   <IoClose className="w-3.5 h-3.5" />
                 </button>
@@ -133,7 +133,7 @@ const RightAside = ({
             </div>
 
             <input
-              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
+              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
               placeholder="Add tag and press enter..."
               type="text"
               name="tags"
@@ -151,7 +151,7 @@ const RightAside = ({
               Brand
             </label>
             <select
-              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all"
+              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all"
               id="category-selector"
               onChange={handleOnChange}
             >
@@ -170,7 +170,7 @@ const RightAside = ({
 
       <section className="bg-white p-6 sm:p-8 rounded-2xl shadow-xs border border-gray-200/80 transition-all hover:shadow-md/50">
         <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
-          <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl ring-1 ring-blue-100">
+          <div className="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl ring-1 ring-emerald-100">
             <FiDollarSign className="w-5 h-5" />
           </div>
           <div>
@@ -194,7 +194,7 @@ const RightAside = ({
                   ₦
                 </span>
                 <input
-                  className="w-full pl-8 pr-3.5 py-3.5 bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-semibold transition-all placeholder:text-gray-400"
+                  className="w-full pl-8 pr-3.5 py-3.5 bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-semibold transition-all placeholder:text-gray-400"
                   placeholder="0.00"
                   type="number"
                   name="price"
@@ -212,7 +212,7 @@ const RightAside = ({
                   ₦
                 </span>
                 <input
-                  className="w-full pl-8 pr-3.5 py-3.5 bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-semibold transition-all placeholder:text-gray-400"
+                  className="w-full pl-8 pr-3.5 py-3.5 bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-semibold transition-all placeholder:text-gray-400"
                   placeholder="0.00"
                   type="number"
                   name="discount"
@@ -232,7 +232,7 @@ const RightAside = ({
               </span>
             </div>
             <input
-              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
+              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
               placeholder="0"
               type="number"
             />
@@ -243,7 +243,7 @@ const RightAside = ({
               SKU <span className="text-gray-400">(Optional)</span>
             </label>
             <input
-              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
+              className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
               placeholder="PROD-WH-001"
               type="text"
             />
@@ -251,7 +251,7 @@ const RightAside = ({
 
           <div className="flex items-center gap-3 pt-2">
             <input
-              className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500/20 transition-all cursor-pointer"
+              className="w-4 h-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500/20 transition-all cursor-pointer"
               id="track-stock"
               type="checkbox"
             />

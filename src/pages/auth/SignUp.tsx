@@ -24,7 +24,7 @@ const SignUp = () => {
 
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [userBankName, setUserBankName] = useState('');
+  const [userBankName, setUserBankName] = useState("");
   const [businessName, setBusinessName] = useState("");
   const [businessDescription, setBusinessDescription] = useState("");
   const [category, setCategory] = useState("electronics");
@@ -54,7 +54,7 @@ const SignUp = () => {
         accountNumber,
         bankCode,
       });
-      setUserBankName(data?.data?.data?.account_name)
+      setUserBankName(data?.data?.data?.account_name);
     };
 
     const timeout = setTimeout(() => {
@@ -75,7 +75,7 @@ const SignUp = () => {
   const allCategories = [
     "electronics",
     "fashion",
-    "beauty & health", 
+    "beauty & health",
     "home & kitchen",
     "automobile",
     "sports & outdoors",
@@ -202,7 +202,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 antialiased selection:bg-indigo-600 selection:text-white">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 antialiased selection:bg-emerald-600 selection:text-white">
       <main className="min-h-screen grid grid-cols-1 lg:grid-cols-12">
         {/* Left Side: Background Image Hero Panel */}
         <section className="relative hidden lg:flex lg:col-span-5 xl:col-span-5 flex-col justify-between p-12 overflow-hidden bg-slate-950">
@@ -214,21 +214,11 @@ const SignUp = () => {
             />
           </div>
           <div className="absolute inset-0 z-10 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
-
-          {/* Brand Mark */}
-          <div className="relative z-20 flex items-center gap-3">
-            <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-600/30">
-              V
-            </div>
-            <div>
-              <span className="text-xl font-black tracking-wider text-white uppercase block">
-                VEXA
-              </span>
-              <span className="text-[10px] font-bold tracking-widest text-indigo-400 uppercase block -mt-1">
-                Merchant Onboarding
-              </span>
-            </div>
-          </div>
+          <img
+            src="https://res.cloudinary.com/daqmey5dq/image/upload/v1791611726/fexa-logo.svg"
+            alt="FEXA Logo"
+            width="180"
+          />
 
           {/* Glass Card Value Prop */}
           <div className="relative z-20 space-y-4">
@@ -238,7 +228,7 @@ const SignUp = () => {
               </h2>
               <p className="text-slate-300 text-xs leading-relaxed">
                 Connect your verified Nigerian bank account, receive fast
-                automatic settlements, and manage inventory seamlessly on Vexa.
+                automatic settlements, and manage inventory seamlessly on FEXA.
               </p>
               <div className="pt-2 border-t border-white/10 space-y-2">
                 <div className="flex items-center gap-2.5 text-xs text-slate-200">
@@ -259,8 +249,15 @@ const SignUp = () => {
           <div className="max-w-xl w-full mx-auto my-auto space-y-8">
             {/* Header & Login Link */}
             <div className="flex items-center justify-between">
+              {/* <NavLink to="/" className="inline-block mb-4"> */}
+              <img
+                src="https://res.cloudinary.com/daqmey5dq/image/upload/v1791612665/fexa-dark-logo.svg"
+                alt="FEXA Logo"
+                width="180"
+              />
+              {/* </NavLink> */}
               <div className="flex items-center gap-2 lg:hidden">
-                <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold">
+                <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center text-white font-bold">
                   V
                 </div>
                 <span className="font-bold text-slate-900">VEXA</span>
@@ -269,7 +266,7 @@ const SignUp = () => {
                 Already registered?{" "}
                 <Link
                   to="/login"
-                  className="font-semibold text-indigo-600 hover:text-indigo-700"
+                  className="font-semibold text-emerald-600 hover:text-emerald-700"
                 >
                   Sign in
                 </Link>
@@ -284,7 +281,7 @@ const SignUp = () => {
                   <div
                     className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                       step >= 1
-                        ? "bg-indigo-600 text-white"
+                        ? "bg-emerald-600 text-white"
                         : "bg-slate-100 text-slate-400"
                     }`}
                   >
@@ -298,7 +295,7 @@ const SignUp = () => {
                 </div>
 
                 <div
-                  className={`flex-1 h-0.5 mx-2 ${step >= 2 ? "bg-indigo-600" : "bg-slate-100"}`}
+                  className={`flex-1 h-0.5 mx-2 ${step >= 2 ? "bg-emerald-600" : "bg-slate-100"}`}
                 />
 
                 {/* Step 2 */}
@@ -306,7 +303,7 @@ const SignUp = () => {
                   <div
                     className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                       step >= 2
-                        ? "bg-indigo-600 text-white"
+                        ? "bg-emerald-600 text-white"
                         : "bg-slate-100 text-slate-400"
                     }`}
                   >
@@ -320,7 +317,7 @@ const SignUp = () => {
                 </div>
 
                 <div
-                  className={`flex-1 h-0.5 mx-2 ${step >= 3 ? "bg-indigo-600" : "bg-slate-100"}`}
+                  className={`flex-1 h-0.5 mx-2 ${step >= 3 ? "bg-emerald-600" : "bg-slate-100"}`}
                 />
 
                 {/* Step 3 */}
@@ -328,7 +325,7 @@ const SignUp = () => {
                   <div
                     className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                       step >= 3
-                        ? "bg-indigo-600 text-white"
+                        ? "bg-emerald-600 text-white"
                         : "bg-slate-100 text-slate-400"
                     }`}
                   >
@@ -342,7 +339,7 @@ const SignUp = () => {
                 </div>
 
                 <div
-                  className={`flex-1 h-0.5 mx-2 ${step >= 4 ? "bg-indigo-600" : "bg-slate-100"}`}
+                  className={`flex-1 h-0.5 mx-2 ${step >= 4 ? "bg-emerald-600" : "bg-slate-100"}`}
                 />
 
                 {/* Step 4 */}
@@ -350,7 +347,7 @@ const SignUp = () => {
                   <div
                     className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                       step === 4
-                        ? "bg-indigo-600 text-white"
+                        ? "bg-emerald-600 text-white"
                         : "bg-slate-100 text-slate-400"
                     }`}
                   >
@@ -391,7 +388,7 @@ const SignUp = () => {
                         value={firstName}
                         onChange={firstNameOnChange}
                         placeholder="e.g. Chukwuma"
-                        className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all placeholder:text-slate-400"
+                        className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/10 transition-all placeholder:text-slate-400"
                       />
                     </div>
                     <div>
@@ -404,7 +401,7 @@ const SignUp = () => {
                         value={lastName}
                         onChange={lastNameOnChange}
                         placeholder="e.g. Adebayo"
-                        className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all placeholder:text-slate-400"
+                        className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/10 transition-all placeholder:text-slate-400"
                       />
                     </div>
                   </div>
@@ -419,7 +416,7 @@ const SignUp = () => {
                       value={email}
                       onChange={emailOnChange}
                       placeholder="chukwuma@example.com"
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all placeholder:text-slate-400"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/10 transition-all placeholder:text-slate-400"
                     />
                   </div>
 
@@ -433,14 +430,14 @@ const SignUp = () => {
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}
                       placeholder="+234 801 234 5678"
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all placeholder:text-slate-400"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/10 transition-all placeholder:text-slate-400"
                     />
                   </div>
 
                   <button
                     type="button"
                     onClick={handleNextStep}
-                    className="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold text-xs tracking-wider uppercase shadow-md shadow-indigo-600/20 active:scale-[0.99] transition-all mt-2"
+                    className="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold text-xs tracking-wider uppercase shadow-md shadow-emerald-600/20 active:scale-[0.99] transition-all mt-2"
                   >
                     Proceed to Business Info &rarr;
                   </button>
@@ -469,7 +466,7 @@ const SignUp = () => {
                       value={businessName}
                       onChange={(e) => setBusinessName(e.target.value)}
                       placeholder="e.g. Apex Ventures Nigeria"
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all placeholder:text-slate-400"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/10 transition-all placeholder:text-slate-400"
                     />
                   </div>
                   <div className="hidde">
@@ -486,7 +483,7 @@ const SignUp = () => {
                       value={businessDescription}
                       onChange={(e) => setBusinessDescription(e.target.value)}
                       placeholder="A short description about your business"
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all placeholder:text-slate-400"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/10 transition-all placeholder:text-slate-400"
                     ></textarea>
                   </div>
 
@@ -497,7 +494,7 @@ const SignUp = () => {
                     <select
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all capitalize cursor-pointer"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/10 transition-all capitalize cursor-pointer"
                     >
                       {allCategories.map((cat) => (
                         <option key={cat} value={cat} className="capitalize">
@@ -514,7 +511,7 @@ const SignUp = () => {
                       value={category}
                       disabled={true}
                       onChange={(e) => setCategory(e.target.value)}
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all capitalize cursor-pointer"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/10 transition-all capitalize cursor-pointer"
                     >
                       {allCategories.map((cat) => (
                         <option key={cat} value={cat} className="capitalize">
@@ -535,7 +532,7 @@ const SignUp = () => {
                     <button
                       type="button"
                       onClick={handleNextStep}
-                      className="w-2/3 py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold text-xs tracking-wider uppercase shadow-md shadow-indigo-600/20 active:scale-[0.99] transition-all"
+                      className="w-2/3 py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold text-xs tracking-wider uppercase shadow-md shadow-emerald-600/20 active:scale-[0.99] transition-all"
                     >
                       Proceed to Bank Info &rarr;
                     </button>
@@ -592,7 +589,7 @@ const SignUp = () => {
                         );
                         if (selectedBank) setBankName(selectedBank);
                       }}
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all cursor-pointer"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/10 transition-all cursor-pointer"
                     >
                       {allBanks.map((bank: { name: string; code: string }) => (
                         <>
@@ -621,7 +618,7 @@ const SignUp = () => {
                         setAccountNumber(e.target.value.replace(/\D/g, ""))
                       }
                       placeholder="0123456789"
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all placeholder:text-slate-400 font-mono"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/10 transition-all placeholder:text-slate-400 font-mono"
                     />
                   </div>
 
@@ -632,9 +629,11 @@ const SignUp = () => {
                     <input
                       type="text"
                       disabled
-                      value={userBankName || accountName}
+                      value={
+                        accountNumber.length == 10 ? userBankName : accountName
+                      }
                       placeholder="First Name Last Name"
-                      className="w-full px-3.5 py-2.5 bg-slate-100 border border-slate-200 rounded-lg text-sm font-medium text-slate-600 cursor-not-allowed select-none"
+                      className="w-full px-3.5 py-2.5 uppercase bg-slate-100 border border-slate-200 rounded-lg text-sm font-medium text-slate-600 cursor-not-allowed select-none"
                     />
                     <p className="text-[11px] text-slate-500 mt-1 hidden font-medium">
                       Locked to First Name + Last Name (
@@ -642,7 +641,7 @@ const SignUp = () => {
                         {/* {lastName || "Last"} */}
                         {/* {firstName || "First"} */}
 
-                        {userBankName }
+                        {userBankName}
                       </strong>
                       ). Go back to Step 1 if you need to edit your name.
                     </p>
@@ -659,7 +658,7 @@ const SignUp = () => {
                     <button
                       type="button"
                       onClick={handleNextStep}
-                      className="w-2/3 py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold text-xs tracking-wider uppercase shadow-md shadow-indigo-600/20 active:scale-[0.99] transition-all"
+                      className="w-2/3 py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold text-xs tracking-wider uppercase shadow-md shadow-emerald-600/20 active:scale-[0.99] transition-all"
                     >
                       Proceed to Security &rarr;
                     </button>
@@ -690,7 +689,7 @@ const SignUp = () => {
                         value={password}
                         onChange={passwordOnChange}
                         placeholder="Min. 8 characters"
-                        className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/10 transition-all placeholder:text-slate-400 pr-12"
+                        className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/10 transition-all placeholder:text-slate-400 pr-12"
                       />
                       <button
                         type="button"
@@ -708,7 +707,7 @@ const SignUp = () => {
                       id="terms"
                       checked={acceptedTerms}
                       onChange={(e) => setAcceptedTerms(e.target.checked)}
-                      className="mt-0.5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-600 cursor-pointer"
+                      className="mt-0.5 rounded border-slate-300 text-emerald-600 focus:ring-emerald-600 cursor-pointer"
                     />
                     <label
                       htmlFor="terms"
@@ -718,14 +717,14 @@ const SignUp = () => {
                       agree to the{" "}
                       <a
                         href="#"
-                        className="font-semibold text-indigo-600 hover:underline"
+                        className="font-semibold text-emerald-600 hover:underline"
                       >
                         Terms of Service
                       </a>{" "}
                       and{" "}
                       <a
                         href="#"
-                        className="font-semibold text-indigo-600 hover:underline"
+                        className="font-semibold text-emerald-600 hover:underline"
                       >
                         Privacy Policy
                       </a>
@@ -737,7 +736,7 @@ const SignUp = () => {
                     <button
                       type="submit"
                       disabled={isFetching}
-                      className="w-full py-3.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold text-xs tracking-wider uppercase shadow-md shadow-indigo-600/20 active:scale-[0.99] transition-all disabled:opacity-60 flex items-center justify-center gap-2"
+                      className="w-full py-3.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold text-xs tracking-wider uppercase shadow-md shadow-emerald-600/20 active:scale-[0.99] transition-all disabled:opacity-60 flex items-center justify-center gap-2"
                     >
                       {isFetching
                         ? "Creating Account..."
@@ -757,7 +756,7 @@ const SignUp = () => {
               {/* Alert Message Banner */}
               {message && (
                 <div
-                  className={`p-3.5 rounded-xl border text-xs font-semibold text-center ${
+                  className={`p-3.5 rounded-xl capitalize border text-xs font-semibold text-center ${
                     isError
                       ? "bg-rose-50 border-rose-200 text-rose-700"
                       : "bg-emerald-50 border-emerald-200 text-emerald-800"

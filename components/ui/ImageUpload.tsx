@@ -165,7 +165,7 @@ const ImageUpload = ({
       {/* Title Header Layout Bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-gray-100">
         <div className="flex items-center gap-3.5">
-          <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl ring-1 ring-blue-100">
+          <div className="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl ring-1 ring-emerald-100">
             <MdPermMedia className="w-5 h-5" />
           </div>
           <div>
@@ -182,7 +182,7 @@ const ImageUpload = ({
 
       {/* Video Upload Context Interface Screen Layout block */}
       {!videoPreviewUrl ? (
-        <div className="relative border-2 border-dashed border-gray-200 hover:border-blue-500 hover:bg-blue-50/30 rounded-2xl p-8 text-center transition-all duration-200 cursor-pointer group flex flex-col items-center justify-center min-h-[200px]">
+        <div className="relative border-2 border-dashed border-gray-200 hover:border-emerald-500 hover:bg-emerald-50/30 rounded-2xl p-8 text-center transition-all duration-200 cursor-pointer group flex flex-col items-center justify-center min-h-[200px]">
           <input
             type="file"
             accept="video/*"
@@ -191,11 +191,11 @@ const ImageUpload = ({
             onChange={handleVideoExtraction}
           />
           <div className="flex flex-col items-center justify-center space-y-3 relative z-10 pointer-events-none">
-            <div className="p-3.5 bg-gray-50 group-hover:bg-blue-100 group-hover:text-blue-600 rounded-2xl text-gray-400 transition-all duration-200 ring-1 ring-gray-100 group-hover:ring-blue-200 group-hover:scale-105">
+            <div className="p-3.5 bg-gray-50 group-hover:bg-emerald-100 group-hover:text-emerald-600 rounded-2xl text-gray-400 transition-all duration-200 ring-1 ring-gray-100 group-hover:ring-emerald-200 group-hover:scale-105">
               <Film size={24} />
             </div>
             <div>
-              <p className="text-sm font-bold text-gray-800 group-hover:text-blue-600 transition-colors">
+              <p className="text-sm font-bold text-gray-800 group-hover:text-emerald-600 transition-colors">
                 Click or drag video file to upload
               </p>
               <p className="text-xs text-gray-400 font-medium mt-1">
@@ -255,7 +255,7 @@ const ImageUpload = ({
               className={`w-full h-full overflow-hidden rounded-2xl ${
                 image
                   ? "border border-gray-200 shadow-xs"
-                  : "border-2 border-dashed border-gray-200 hover:border-blue-500 hover:bg-blue-50/20"
+                  : "border-2 border-dashed border-gray-200 hover:border-emerald-500 hover:bg-emerald-50/20"
               } cursor-pointer flex flex-col items-center justify-center relative transition-all bg-gray-50/50`}
             >
               {image ? (
@@ -272,7 +272,7 @@ const ImageUpload = ({
                 </>
               ) : (
                 <div className="flex flex-col items-center justify-center space-y-2 p-3 text-center">
-                  <div className="p-2.5 rounded-xl bg-white shadow-xs border border-gray-100 text-gray-400 group-hover:text-blue-600 transition-colors">
+                  <div className="p-2.5 rounded-xl bg-white shadow-xs border border-gray-100 text-gray-400 group-hover:text-emerald-600 transition-colors">
                     <FaCamera className="text-base" />
                   </div>
                   <div className="space-y-0.5">

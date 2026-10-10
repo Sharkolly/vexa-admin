@@ -1,151 +1,185 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { FaHome } from "react-icons/fa";
-import { Search } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  LayoutDashboard,
+  PlusCircle,
+  Package,
+  ShoppingCart,
+  Search,
+  ArrowLeft,
+  HelpCircle,
+  FileQuestion,
+  Store,
+} from "lucide-react";
 
-const NotFound = () => {
+const VendorNotFound: React.FC = () => {
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const [searchProduct, setSearchProduct] = useState("");
-
-  const changeSearchProduct = (
-    e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
-  ) => {
-    setSearchProduct(e.target.value);
-  };
-
-  const searchProductHandler = () => {
-    navigate(`/search?product=${searchProduct}`);
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/my-product?search=${encodeURIComponent(searchQuery.trim())}`);
+    }
   };
 
   return (
-    <div>
-      <div className="bg-background text-on-background min-h-screen flex flex-col overflow-x-hidden">
-        <main className="flex-grow pt-24">
-          <section className="max-w-[1440px] mx-auto px-16 py-32 flex flex-col items-center justify-center text-center max-md:px-5 ">
-            {" "}
-            <div className="relative mb-4">
-              <span className="text-[180px] font-black text-slate-200 leading-none select-none tracking-wide">
-                404
-              </span>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <img
-                  alt="Error Graphic"
-                  className="w-64 h-64 object-contain"
-                  data-alt="A clean, minimalist 3D rendering of a floating, translucent white box that is slightly cracked, revealing a vibrant electric indigo glow from within. The box is suspended in a bright, airy gallery space with soft, diffused white lighting and subtle shadows on the light gray floor. The aesthetic is high-end corporate minimalism with a focus on precision and light-mode clarity."
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmE6aEgJnZX6aPWvc3W4PL00Oqi2neqyI6FchS0hvBmMJgZ1InQO_Y4tJ0OWNeykKH1igejgX3kLO1ZGIaBntopdpMQwFb6E0sdi5x6SmPWhXfhLSmYy2xe4sE5mhiD_vwrG1zTRY4znceBjTiqtpFd_-MOtUOWoiNTU4yqq4Su-ApbalYxiLLp4QCt7xO371btafj_UvhuRqYKFL1GyUnPe43NZQhN3Oahv-HOQb6HYhnrZurk_IFrTuiNX3v2SUeqQuV_Qew6CI"
-                />
-              </div>
-            </div>
-            <h1 className="font-bold text-4xl max-md:text-3xl text-on-surface mt-10 mb-2 tracking-wid">
-              Lost in the Digital World?
-            </h1>
-            <p className=" text-md text-slate-700 max-w-xl mx-auto mb-5 mt-3  ">
-              The page you're looking for doesn't exist. It might have been
-              moved, or perhaps it never arrived in this dimension.
-            </p>
-            <div className="max-md:w-11/12 flex flex-col sm:flex-row gap-5 justify-center mt-3 mb-16">
-              <NavLink
-                className="bg-nav-blue-active text-white px-4 py-2 rounded-xl font-medium text-lg shadow-lg shadow-primary/20 hover:bg-primary-container transition-all active:scale-95 duration-200 flex items-center justify-center gap-2"
-                to="/"
-              >
-                <span>
-                  <FaHome />
-                </span>
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col justify-between selection:bg-emerald-100 selection:text-emerald-800 lg:pl-70 lg:pr-10">
 
-                <p>Back to Home</p>
-              </NavLink>
-              <div className="flex items-center bg-surface-container px-4 py-2 rounded-xl border border-slate-400 focus-within:border-primary transition-colors">
-                <span
-                  className="material-symbols-outlined text-outline mr-3"
-                  data-icon="search"
-                >
-                  <Search size={18} className="text-gray-500" />
-                </span>
-                <input
-                  className="bg-transparent border-none focus:ring-0 font-body-md text-body-md w-full sm:w-64 font-medium outline-none"
-                  placeholder="Search products..."
-                  type="text"
-                  onChange={(e) => changeSearchProduct(e)}
-                />
-              </div>
+      <main className="w-[85% flex-1 mx-auto px-4 sm:px-6  py-12 lg:py-20  flex flex-col items-center justify-center text-center">
+        
+        <div className="relative mb-6">
+          <span className="text-[140px] sm:text-[200px] font-black text-slate-200/80 leading-none select-none tracking-tight">
+            404
+          </span>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-emerald-50 border border-emerald-200/80 shadow-xl shadow-emerald-700/10 flex items-center justify-center text-emerald-700 transform -rotate-6 animate-pulse">
+              <FileQuestion className="w-12 h-12 sm:w-14 sm:h-14" />
+            </div>
+          </div>
+        </div>
 
-              <button className="bg-orange-400 text-white px-4  py-2 rounded-xl font-medium text-lg shadow-lg  transition-all active:scale-95 duration-200 flex items-center justify-center gap-2 cursor-pointer" onClick={searchProductHandler}>
-                <span
-                  className="material-symbols-outlined text-outline"
-                >
-                  <Search size={18} className="text-white" />
-                </span>
-                <p>Search</p>
-              </button>
-            </div>
-            <div className="w-full max-w-5xl mt-12 max-md:mt-5">
-              <h3 className="font-semibold text-2xl text-on-surface mb-4 text-left">
-                Popular Destinations
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <Link
-                  className="group relative overflow-hidden rounded-xl h-80 bg-slate-200 border border-slate-100 transition-all hover:shadow-xl hover:-translate-y-1"
-                  to="/search?category=Electronics"
-                >
-                  <img
-                    alt="Tech Category"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    data-alt="A macro photograph of high-end, minimalist consumer electronics featuring brushed aluminum textures and glowing LED accents. The lighting is cold and clinical, emphasizing the precision engineering and sleek luxury of the products. The background is a soft, out-of-focus white studio setting that maintains a premium corporate editorial look."
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuATgmLtybDFEJj8QJ9zXt2HZyLn9iioTVoZyI-faCneSaEwATIs14OqJAlD4lenz2ob5iezfXVJuIgkjmZu9nqfaUiUkFrIw3EOcM95UOYumopjCD3gze32mrPZWjilRh1xvzvbro6F9tzrI9OHpUBVUoVKpEH8wrAsJ5GHeUotBf9NqRGfT_AWxGhkKmWoU0j-Q2zLxm_GClG4Qf9LA38lvz0lOvtkPijI-Qk11hPBDwLyEgycTSKR4GKc519PCIQYVNZGMY6dHz4"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
-                  <div className="absolute bottom-6 left-6 text-left">
-                    <p className="text-white font-semibold text-2xl">Tech</p>
-                    <p className="text-slate-300 font-medium text-sm uppercase tracking-widest">
-                      Innovation First
-                    </p>
-                  </div>
-                </Link>
-                <Link
-                  className="group relative overflow-hidden rounded-xl h-80 bg-slate-200 border border-slate-100 transition-all hover:shadow-xl hover:-translate-y-1"
-                  to="/search?category=Fashion"
-                >
-                  <img
-                    alt="Fashion Category"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    data-alt="A high-fashion editorial shot featuring clean, architectural garment silhouettes in shades of cream and charcoal.
-The setting is a minimalist concrete studio with sharp, dramatic shadows and bright, direct lighting that highlights fabric textures. The overall mood is sophisticated, exclusive, and representative of a high-end fashion catalog."
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr6G611_N7U2Y5a4D7KSEIfrca2wgi_Rsptdk5gH-1T7Rgfd6RRnPFJMZvwcWJfW7ZYCphMAv9U2a70pVN4yP0dzBGTY50E5rCJ6sfIMXMd0fncjbGZ5Tiw06aUnswQ7bXcFvBISIzUcDB4y_EEzB2XMfsFs9V0kxw5B1JqZCYPqWhxmmOwjA4TkbQzjel1w9Zz2FOwYIjMbOzQ7B4NNtXul72SwqKdwhPza6VDsUAbG5gbeHX8rD35WrA0JhStxkM_SWfL46ECAc"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
-                  <div className="absolute bottom-6 left-6 text-left">
-                    <p className="text-white font-semibold text-2xl">Fashion</p>
-                    <p className="text-slate-300 font-medium text-sm uppercase tracking-widest">
-                      Timeless Design
-                    </p>
-                  </div>
-                </Link>
-                <Link
-                  className="group relative overflow-hidden rounded-xl h-8- bg-slate-200 border border-slate-100 transition-all hover:shadow-xl hover:-translate-y-1"
-                  to="/search?category=Beauty"
-                >
-                  <img
-                    alt="Shoes Category"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    data-alt="A focused studio shot of a premium, vibrant red sneaker placed on a pristine white reflective surface. The lighting is soft and multi-directional to eliminate harsh shadows, creating a gallery-like atmosphere. The background is a clean, neutral gray gradient that emphasizes the bold color and athletic silhouette of the footwear."
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Kt0lR7M7Q9VtrLejfOPNULvUNiYX-MvL6in7XmS_M4Gy8zpKalR16wYJiBigxFJXABfIQG3Dzs6OSem7Qt_FKeddS5jbR8bh7SXCu2chaXyFpqgR1RFehUDjwn2_DGzDoAabXivimyn5YXstEqR0z_2w85qxiJut4eR85u6wMO8G4nLGm0O6-JHIM509e9PARw012yAJ3P40zh1KmSCutoR4EKKucpK1PZ-awCdSDNCax1hPx_rDKKosFxCKiZTCNIR8By2jn9g"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
-                  <div className="absolute bottom-6 left-6 text-left">
-                    <p className="text-white font-semibold text-2xl">Shoes</p>
-                    <p className="text-slate-300 font-medium text-sm uppercase tracking-widest">
-                      Premium Comfort
-                    </p>
-                  </div>
-                </Link>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mb-3">
+          Vendor Route Not Found
+        </h1>
+        <p className="text-sm sm:text-base text-slate-600 max-w-lg mx-auto mb-8 leading-relaxed">
+          The merchant page, product record, or admin resource you are looking for has been relocated or doesn't exist.
+        </p>
+
+        <form
+          onSubmit={handleSearchSubmit}
+          className="w-full max-w-md flex items-center bg-white border border-slate-300 rounded-2xl p-1.5 shadow-sm focus-within:ring-2 focus-within:ring-emerald-500 focus-within:border-emerald-500 transition-all mb-10"
+        >
+          <div className="pl-3 text-slate-400">
+            <Search className="w-5 h-5" />
+          </div>
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search catalog or SKU in inventory..."
+            className="w-full bg-transparent px-3 py-2 text-xs sm:text-sm text-slate-900 focus:outline-none placeholder:text-slate-400 font-medium"
+          />
+          <button
+            type="submit"
+            className="bg-emerald-700 hover:bg-emerald-800 text-white font-semibold text-xs sm:text-sm px-5 py-2.5 rounded-xl transition-all shadow-md shadow-emerald-700/20 active:scale-95 shrink-0"
+          >
+            Search
+          </button>
+        </form>
+
+        <div className="flex flex-wrap items-center justify-center gap-3.5 mb-16">
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-100 text-xs sm:text-sm font-semibold transition-all active:scale-95"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Go Back</span>
+          </button>
+
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white px-6 py-3 rounded-xl text-xs sm:text-sm font-semibold shadow-md shadow-emerald-700/20 transition-all active:scale-95"
+          >
+            <LayoutDashboard className="w-4 h-4" />
+            <span>Return to Portal Dashboard</span>
+          </Link>
+        </div>
+
+        <div className="w-full border-t border-slate-200/80 pt-10">
+          <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-6 text-center sm:text-left">
+            Frequently Accessed Portal Modules
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+            
+            <Link
+              to="/my-product"
+              className="group bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs hover:border-emerald-300 hover:shadow-md transition-all text-left flex items-start gap-4"
+            >
+              <div className="p-3 bg-emerald-50 rounded-xl text-emerald-700 group-hover:bg-emerald-700 group-hover:text-white transition-colors shrink-0">
+                <Package className="w-5 h-5" />
               </div>
-            </div>
-          </section>
-        </main>
-      </div>
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                  Product Catalog
+                </h3>
+                <p className="text-xs text-slate-500 mt-1 leading-snug">
+                  Manage inventory stock, pricing, and listings.
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              to="/product-form"
+              className="group bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs hover:border-emerald-300 hover:shadow-md transition-all text-left flex items-start gap-4"
+            >
+              <div className="p-3 bg-emerald-50 rounded-xl text-emerald-700 group-hover:bg-emerald-700 group-hover:text-white transition-colors shrink-0">
+                <PlusCircle className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                  Add New Product
+                </h3>
+                <p className="text-xs text-slate-500 mt-1 leading-snug">
+                  Create new storefront items or service listings.
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              to="/order"
+              className="group bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs hover:border-emerald-300 hover:shadow-md transition-all text-left flex items-start gap-4"
+            >
+              <div className="p-3 bg-emerald-50 rounded-xl text-emerald-700 group-hover:bg-emerald-700 group-hover:text-white transition-colors shrink-0">
+                <ShoppingCart className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                  Customer Orders
+                </h3>
+                <p className="text-xs text-slate-500 mt-1 leading-snug">
+                  Review sales, fulfillment, and customer invoices.
+                </p>
+              </div>
+            </Link>
+
+            <a
+              href="https://vexa-shop.vercelapp/shop"
+              target="_blank"
+              className="group bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs hover:border-emerald-300 hover:shadow-md transition-all text-left flex items-start gap-4"
+            >
+              <div className="p-3 bg-slate-100 rounded-xl text-slate-600 group-hover:bg-slate-900 group-hover:text-white transition-colors shrink-0">
+                <Store className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                  Live Storefront
+                </h3>
+                <p className="text-xs text-slate-500 mt-1 leading-snug">
+                  View how customers see your active store page.
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </main>
+
+      <footer className="bg-white border-t border-slate-200/80 py-4 px-6 text-center text-xs text-slate-500">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+          <span>&copy; {new Date().getFullYear()} Vexa Merchant Platform. All rights reserved.</span>
+          <a
+            href="mailto:support@vexa.ng"
+            className="inline-flex items-center gap-1 text-emerald-700 font-semibold hover:underline"
+          >
+            <HelpCircle className="w-3.5 h-3.5" />
+            Contact Vendor Support
+          </a>
+        </div>
+      </footer>
     </div>
   );
 };
 
-export default NotFound;
+export default VendorNotFound;

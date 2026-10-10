@@ -13,4 +13,5 @@ export  type UserType = {
   accountName: string
   businessName: string
   updatedAt: string
+  businessDescription: string
 }

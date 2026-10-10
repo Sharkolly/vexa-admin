@@ -185,7 +185,7 @@ const ProductForm = (): React.JSX.Element => {
               Products
             </span>
             <FiChevronRight className="w-3.5 h-3.5 text-gray-400" />
-            <span className="text-blue-600 font-bold">Add New Listing</span>
+            <span className="text-emerald-600 font-bold">Add New Listing</span>
           </nav>
 
           <div className="pt-1">
@@ -201,7 +201,7 @@ const ProductForm = (): React.JSX.Element => {
 
         <section className="bg-white p-6 sm:p-8 rounded-2xl shadow-xs border border-gray-200/80 transition-all hover:shadow-md/50">
           <div className="flex items-center gap-3.5 mb-6 pb-4 border-b border-gray-100">
-            <div className="p-2.5 bg-blue-50 text-blue-600 rounded-xl ring-1 ring-blue-100">
+            <div className="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl ring-1 ring-emerald-100">
               <IoDocumentText className="w-5 h-5" />
             </div>
             <div>
@@ -231,7 +231,7 @@ const ProductForm = (): React.JSX.Element => {
                 onChange={handleOnChange}
                 value={product.name}
                 placeholder="e.g. Apple iPhone 15 Pro Max 256GB - Natural Titanium"
-                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
+                className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
               />
               <p className="text-[11px] text-gray-400 font-medium">
                 Avoid using ALL CAPS. Clear titles increase buyer conversion.
@@ -248,7 +248,7 @@ const ProductForm = (): React.JSX.Element => {
                 value={product.description}
                 rows={5}
                 placeholder="Describe the condition, key specs, included accessories, and story of your product..."
-                className="w-full rounded-xl bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-blue-600 focus:ring-4 focus:ring-blue-500/10 outline-none font-medium text-sm text-slate-900 p-3.5 transition-all placeholder:text-gray-400 leading-relaxed"
+                className="w-full rounded-xl bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none font-medium text-sm text-slate-900 p-3.5 transition-all placeholder:text-gray-400 leading-relaxed"
               />
             </div>
           </div>
@@ -281,7 +281,7 @@ const ProductForm = (): React.JSX.Element => {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full text-white rounded-xl font-bold text-sm px-5 py-3.5 bg-blue-600 hover:bg-blue-700 active:scale-[0.99] shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 transition-all flex items-center justify-center gap-2 cursor-pointer ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
+            className={`w-full text-white rounded-xl font-bold text-sm px-5 py-3.5 bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] shadow-md shadow-emerald-500/20 hover:shadow-lg hover:shadow-emerald-500/30 transition-all flex items-center justify-center gap-2 cursor-pointer ${loading ? "opacity-60 cursor-not-allowed" : ""}`}
           >
             <FiUploadCloud className="w-5 h-5" />
             <span>

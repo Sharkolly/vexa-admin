@@ -346,7 +346,7 @@ export const AdminOrderList: React.FC<AdminOrderListProps> = ({
             <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
               Customer Orders
             </h1>
-            <span className="bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-0.5 rounded-full">
+            <span className="bg-emerald-100  text-emerald-700 text-xs font-bold px-2.5 py-0.5 rounded-full">
               {orders.length} Total
             </span>
           </div>

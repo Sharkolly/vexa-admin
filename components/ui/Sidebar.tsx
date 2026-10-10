@@ -70,14 +70,28 @@ const VendorSidebar: React.FC<VendorSidebarProps> = ({ toggleBtn, onToggleSideba
         }`}
       >
         {/* Header / Brand */}
-        <div className="p-6 flex items-center justify-between border-b border-gray-100 lg:border-none">
-          <h1 className="font-bold text-2xl text-emerald-700">
+             <div className="border-b-2 border-emerald-200 flex justify-between items-center pr-3.5 pl-2.5  py-3 w-full ">
+               <img
+                    src="https://res.cloudinary.com/daqmey5dq/image/upload/v1791612665/fexa-dark-logo.svg"
+                    alt="FEXA Logo"
+                    width="180"
+                  />
+                   <button
+            type="button"
+            onClick={onToggleSidebar}
+            className="lg:hidden text-gray-400 hover:text-gray-600"
+          >
+            <X size={20} />
+          </button>
+             </div>
+        <div className="px-2 hidden py-3 fle flex-col justify-between border-b border-gray-100 lg:border-none">
+          <h1 className="font-bold hidden text-2xl text-emerald-700">
             Vendor Portal
           </h1>
           <button
             type="button"
             onClick={onToggleSidebar}
-            className="lg:hidden text-gray-400 hover:text-gray-600"
+            className="lg: hidden text-gray-400 hover:text-gray-600"
           >
             <X size={20} />
           </button>

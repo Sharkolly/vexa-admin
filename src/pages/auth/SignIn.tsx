@@ -79,22 +79,13 @@ const SignIn = () => {
             {/* Header / Brand */}
             <div>
               <div className="flex items-center gap-3 mb-8">
-                <div className="w-10 h-10 bg-slate-900 rounded-xl flex items-center justify-center shadow-lg shadow-slate-900/10">
-                  <svg
-                    className="w-5 h-5 text-white fill-current"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-5.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8Messz" />
-                  </svg>
-                </div>
-                <div>
-                  <span className="text-xl font-black tracking-widest text-slate-900 uppercase block">
-                    VEXA
-                  </span>
-                  <span className="text-[10px] font-bold tracking-wider text-slate-400 uppercase block -mt-1">
-                    Vendor Portal
-                  </span>
-                </div>
+              {/* <NavLink to="/" className="inline-block mb-4"> */}
+                             <img
+                               src="https://res.cloudinary.com/daqmey5dq/image/upload/v1791612665/fexa-dark-logo.svg"
+                               alt="FEXA Logo"
+                               width="180"
+                             />
+                           {/* </NavLink> */}
               </div>
 
               <h1 className="text-3xl font-extrabold tracking-tight text-slate-900">

@@ -254,7 +254,7 @@ export const VendorDashboard: React.FC = () => {
               <h2 className="text-base font-bold text-slate-900">Revenue Growth Breakdown</h2>
               <p className="text-xs text-slate-500">Monthly breakdown of gross order value</p>
             </div>
-            <span className="text-xs font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
+            <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">
               Avg. ₦128.3k / Day
             </span>
           </div>
@@ -274,7 +274,7 @@ export const VendorDashboard: React.FC = () => {
                 </div>
                 <div className="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
                   <div
-                    className="bg-indigo-600 h-full rounded-full transition-all duration-500"
+                    className="bg-emerald-600 h-full rounded-full transition-all duration-500"
                     style={{ width: `${bar.percentage}%` }}
                   />
                 </div>
@@ -291,7 +291,7 @@ export const VendorDashboard: React.FC = () => {
         <div className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm space-y-5">
           <div className="flex items-center justify-between">
             <h2 className="text-base font-bold text-slate-900">Top Products</h2>
-            <button type="button" className="text-xs font-bold text-indigo-600 hover:text-indigo-800">
+            <button type="button" className="text-xs font-bold text-emerald-600 hover:text-emerald-800">
               View All
             </button>
           </div>
