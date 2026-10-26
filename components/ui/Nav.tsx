@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Bell, Search, Menu, ChevronDown } from "lucide-react";
+import { useAuthContextStore } from "../../store/useAuthContext";
 
 interface VendorNavbarProps {
   onToggleSidebar?: () => void;
@@ -10,12 +11,14 @@ interface VendorNavbarProps {
 }
 
 const VendorNavbar: React.FC<VendorNavbarProps> = ({
-  vendorStore = "Vexa Store",
-  vendorName = "Vendor Admin",
   avatarUrl,
   unreadNotifications = 3,
-  onToggleSidebar
+  onToggleSidebar,
 }) => {
+  const { user, refetch } = useAuthContextStore();
+  useEffect(() => {
+    refetch();
+  }, []);
   return (
     <header className="fixed top-0 right-0 left-0 lg:left-64 h-16 bg-white/95 backdrop-blur-xs border-b border-gray-200/80 flex items-center justify-between px-4 sm:px-6 z-30 transition-all">
       <div className="flex items-center gap-2.5 sm:gap-4 flex-1 max-w-xl">
@@ -57,23 +60,23 @@ const VendorNavbar: React.FC<VendorNavbarProps> = ({
             {avatarUrl ? (
               <img
                 src={avatarUrl}
-                alt={vendorStore}
+                alt={user?.businessName}
                 className="w-8 h-8 rounded-full object-cover border border-gray-200"
               />
             ) : (
-              <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center border border-blue-200">
-                {vendorStore.charAt(0).toUpperCase()}
+              <div className="w-8 h-8  rounded-full bg-blue-100 text-blue-700 font-bold text-md flex items-center justify-center border border-blue-200">
+                {user?.businessName?.charAt(0).toUpperCase()}
               </div>
             )}
-            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white" />
+            <span className="absolute  bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white" />
           </div>
 
           <div className="hidden md:flex flex-col text-left">
-            <span className="text-xs font-bold text-gray-900 truncate max-w-[130px]">
-              {vendorStore}
+            <span className="text-xs font-bold capitalize text-gray-900 truncate max-w-[130px]">
+              {user?.businessName}
             </span>
-            <span className="text-[10px] font-medium text-gray-500 truncate max-w-[130px]">
-              {vendorName}
+            <span className="text-[10px] font-medium text-gray-500 capitalize truncate max-w-[130px]">
+              {user?.firstName}
             </span>
           </div>
 

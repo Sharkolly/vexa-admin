@@ -45,7 +45,6 @@ export const AdminVendorProfile: React.FC = () => {
 
   useEffect(() => {
     refetch();
-    console.log(user);
   }, []);
   const [passwords, setPasswords] = useState({
     currentPassword: "",
