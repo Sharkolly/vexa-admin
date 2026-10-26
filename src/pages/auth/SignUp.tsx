@@ -78,9 +78,10 @@ const SignUp = () => {
   const [selectedCategoryAndSubCategory, setSelectedCategoryAndSubCategory] =
     useState<userCategoryAndSubCategory[]>([]);
 
-  const activeCategory = availableCategories.find(
+  const activeCategory = Array.isArray(availableCategories) && availableCategories.find(
+  // const activeCategory = availableCategories.find(
     (c: { slug: string }) => c.slug === selectedCategory,
-  );
+  ); 
 
   const categoryOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newCat = e.target.value;
