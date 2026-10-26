@@ -37,7 +37,7 @@ const VendorSidebar: React.FC<VendorSidebarProps> = ({ toggleBtn, onToggleSideba
       {/* ========================================== */}
       {/* 1. MOBILE TOP HEADER (Visible < lg)       */}
       {/* ========================================== */}
-      <header className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b border-gray-200 z-30 flex items-center justify-between px-4">
+      <header className="xl:hidden fixed top-0 left-0 right-0 h-16 bg-white border-b border-gray-200 z-30 flex items-center justify-between px-4">
         <h1 className="font-bold text-xl text-emerald-700">
           Vendor Portal
         </h1>

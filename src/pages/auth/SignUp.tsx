@@ -2,9 +2,17 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import type { AxiosError } from "axios";
 
+import Swal from "sweetalert2";
+
 import API from "../../../api/api";
 import { useAuthContextStore } from "../../../store/useAuthContext";
 import { useQueryProduct } from "../../../lib/useQuery";
+import { categories } from "../../../data/categories";
+
+type userCategoryAndSubCategory = {
+  category: string;
+  subCategory: string;
+};
 
 const SignUp = () => {
   const {
@@ -18,8 +26,11 @@ const SignUp = () => {
     password,
   } = useAuthContextStore();
 
-  // const { data } = useQueryProduct(`/admin/get-all-banks`);
+  const { data: availableCategories, isLoading: isLoadingAvailableCategories } =
+    useQueryProduct("/admin/available-subcategories");
   const { data } = useQueryProduct("/admin/get-all-banks");
+
+  const [selectedCategory, setSelectedCategory] = useState<string>("groceries");
   const allBanks = data?.data?.data || [];
 
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
@@ -27,9 +38,7 @@ const SignUp = () => {
   const [userBankName, setUserBankName] = useState("");
   const [businessName, setBusinessName] = useState("");
   const [businessDescription, setBusinessDescription] = useState("");
-  const [category, setCategory] = useState("electronics");
 
-  // Bank Details State
   const [bankName, setBankName] = useState({
     name: "Access Bank",
     code: "044",
@@ -66,29 +75,50 @@ const SignUp = () => {
     return () => clearTimeout(timeout);
   }, [accountNumber, bankName.code]);
 
-  // Automatically sync Account Name to First Name + Last Name
-  // useEffect(() => {
-  // }, [firstName, lastName]);
-  // setAccountName(`${lastName} ${firstName}`.trim());
-  const accountName = `${lastName} ${firstName}`.trim();
+  const [selectedCategoryAndSubCategory, setSelectedCategoryAndSubCategory] =
+    useState<userCategoryAndSubCategory[]>([]);
 
-  const allCategories = [
-    "electronics",
-    "fashion",
-    "beauty & health",
-    "home & kitchen",
-    "automobile",
-    "sports & outdoors",
-    "books & education",
-    "baby products",
-    "groceries",
-    "pet supplies",
-    "industrial & tools",
-    "office supplies",
-    "gaming",
-    "musical instruments",
-    "arts & crafts",
-  ];
+  const activeCategory = availableCategories.find(
+    (c: { slug: string }) => c.slug === selectedCategory,
+  );
+
+  const categoryOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newCat = e.target.value;
+    setSelectedCategory(newCat);
+
+    const newCategoryObj = categories.find(
+      (c: { slug: string }) => c.slug === newCat,
+    );
+    if (!newCategoryObj) return;
+  };
+
+  const handleCheckboxChange = (value: string) => {
+    setSelectedCategoryAndSubCategory((prev) => {
+      const exists = prev.some(
+        (item) =>
+          item.category === selectedCategory && item.subCategory === value,
+      );
+
+      if (!exists && prev.length >= 2) {
+        Swal.fire({
+          icon: "error",
+          title: "Limit Reached",
+          text: "You can only select a maximum of 2 subcategories.",
+          confirmButtonColor: "#059669",
+        });
+        return prev;
+      }
+
+      return exists
+        ? prev.filter(
+            (item) =>
+              item.category !== selectedCategory || item.subCategory !== value,
+          )
+        : [...prev, { category: selectedCategory, subCategory: value }];
+    });
+  };
+
+  const accountName = `${lastName} ${firstName}`.trim();
 
   useEffect(() => {
     return () => {
@@ -113,7 +143,7 @@ const SignUp = () => {
       }
       setStep(2);
     } else if (step === 2) {
-      if (!businessName.trim() || !businessDescription || !category) {
+      if (!businessName.trim() || !businessDescription || !selectedCategory) {
         setIsError(true);
         setMessage("Please fill in your business profile information.");
         return;
@@ -170,7 +200,9 @@ const SignUp = () => {
           lastName,
           phoneNumber,
           businessName,
-          category,
+          // category,
+          // selectedCategory,
+          selectedCategoryAndSubCategory,
           bankName,
           accountNumber,
           accountName,
@@ -201,9 +233,11 @@ const SignUp = () => {
     }
   };
 
+  if (isLoadingAvailableCategories) return;
+
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 antialiased selection:bg-emerald-600 selection:text-white">
-      <main className="min-h-screen grid grid-cols-1 lg:grid-cols-12">
+      <main className="min-h-screen grid grid-cols-1 lg:grid-cols-12 ">
         {/* Left Side: Background Image Hero Panel */}
         <section className="relative hidden lg:flex lg:col-span-5 xl:col-span-5 flex-col justify-between p-12 overflow-hidden bg-slate-950">
           <div className="absolute inset-0 z-0">
@@ -246,7 +280,7 @@ const SignUp = () => {
 
         {/* Right Side: Multi-Step Form */}
         <section className="lg:col-span-7 xl:col-span-7 flex flex-col justify-between p-6 sm:p-10 lg:p-14 bg-white">
-          <div className="max-w-xl w-full mx-auto my-auto space-y-8">
+          <div className="max-w-xl   w-full mx-auto my-auto space-y-8">
             {/* Header & Login Link */}
             <div className="flex items-center justify-between">
               {/* <NavLink to="/" className="inline-block mb-4"> */}
@@ -255,13 +289,7 @@ const SignUp = () => {
                 alt="FEXA Logo"
                 width="180"
               />
-              {/* </NavLink> */}
-              <div className="flex items-center gap-2 lg:hidden">
-                <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center text-white font-bold">
-                  V
-                </div>
-                <span className="font-bold text-slate-900">VEXA</span>
-              </div>
+
               <p className="text-xs sm:text-sm text-slate-500 ml-auto">
                 Already registered?{" "}
                 <Link
@@ -492,34 +520,91 @@ const SignUp = () => {
                       Business Category
                     </label>
                     <select
-                      value={category}
-                      onChange={(e) => setCategory(e.target.value)}
+                      value={selectedCategory}
+                      onChange={(e) => {
+                        categoryOnChange(e);
+                        // handleOnChange(e);
+                      }}
                       className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/10 transition-all capitalize cursor-pointer"
                     >
-                      {allCategories.map((cat) => (
-                        <option key={cat} value={cat} className="capitalize">
-                          {cat}
-                        </option>
-                      ))}
+                      {availableCategories.map(
+                        (category: { slug: string; name: string }) => (
+                          <option key={category.slug} value={category.slug}>
+                            {category.name}
+                          </option>
+                        ),
+                      )}
                     </select>
                   </div>
-                  {/* <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">
+
+                  <div className="flex gap-3 items-center mt-3">
+                    {selectedCategoryAndSubCategory
+                      .filter(
+                        (item, index, self) =>
+                          index ===
+                          self.findIndex((t) => t.category === item.category),
+                      )
+                      .map((cat) => (
+                        <p
+                          key={cat.category}
+                          className="border-emerald-600 capitalize px-3.5 py-2 border rounded-lg text-sm transition-all cursor-pointer select-none bg-emerald-50/50 text-slate-900 font-medium"
+                        >
+                          {cat.category}
+                        </p>
+                      ))}
+                  </div>
+
+                  <div className=" mt-4">
+                    <label className="block text-xs font-semibold text-slate-700 mb-3">
                       Business Sub Category
                     </label>
-                    <select
-                      value={category}
-                      disabled={true}
-                      onChange={(e) => setCategory(e.target.value)}
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:bg-white focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-600/10 transition-all capitalize cursor-pointer"
-                    >
-                      {allCategories.map((cat) => (
-                        <option key={cat} value={cat} className="capitalize">
-                          {cat}
-                        </option>
-                      ))}
-                    </select>
-                  </div> */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                      {activeCategory?.subCategories?.map(
+                        (sub: { slug: string; name: string }) => {
+                          const isChecked = selectedCategoryAndSubCategory.some(
+                            (item) =>
+                              item.category === selectedCategory &&
+                              item.subCategory === sub.slug,
+                          );
+
+                          return (
+                            <label
+                              key={sub.slug}
+                              className={`flex items-center gap-2.5 px-3.5 py-2.5 bg-slate-50 border rounded-lg text-sm transition-all cursor-pointer select-none      ${
+                                isChecked
+                                  ? "border-emerald-600 bg-emerald-50/50 text-slate-900 font-medium"
+                                  : "border-slate-200 text-slate-700 hover:border-slate-300"
+                              }
+                         
+                            `}
+                            >
+                              <input
+                                type="checkbox"
+                                value={sub.slug}
+                                checked={isChecked}
+                                onChange={() => handleCheckboxChange(sub.slug)}
+                                className="w-4 h-4 text-emerald-600 bg-white border-slate-300 rounded focus:ring-emerald-600 focus:ring-2 cursor-pointer accent-emerald-600"
+                              />
+                              <span className="capitalize text-xs sm:text-sm truncate">
+                                {sub.name}
+                              </span>
+                            </label>
+                          );
+                        },
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3 items-center mt-3">
+                    {selectedCategoryAndSubCategory.map((cat) => (
+                      <p
+                        key={`${cat.category}-${cat.subCategory}`}
+                        className="border-emerald-600 capitalize  px-3.5 py-2 border rounded-lg text-sm transition-all cursor-pointer select-none  bg-emerald-50/50 text-slate-900 font-medium"
+                      >
+                        {cat.subCategory}
+                      </p>
+                    ))}
+                  </div>
 
                   <div className="flex gap-2.5 pt-2">
                     <button
