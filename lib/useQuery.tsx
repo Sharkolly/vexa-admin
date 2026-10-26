@@ -91,6 +91,29 @@ export const useMutationAdminAddProductFunction = () => {
     // },
   });
 };
+export const useMutationEditStickStatusFunction = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async ({
+      url,
+      stock,
+    }: {
+      url: string;
+      stock: string
+    }) => {
+      const response = await API.patch(url, {stock}, {
+        withCredentials: true,
+      });
+      return response.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
+    // onError: (error) => {
+    //   console.error("Failed to delete product:", error);
+    // },
+  });
+};
 
 export const useMutationDeleteProductFunction = () => {
   const queryClient = useQueryClient();

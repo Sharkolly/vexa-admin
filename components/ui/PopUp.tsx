@@ -39,12 +39,12 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
       onClick={!isLoading ? onClose : undefined}
     >
       <div
-        className="relative w-[25%] max-md:w-[100%] bg-white rounded-2xl shadow-2xl border border-slate-200 p-6 space-y-5 animate-in fade-in zoom-in-95 duration-150"
+        className="relative w-[25%] max-md:w-[100%] bg-white  rounded-2xl shadow-2xl border border-slate-200 p-6 space-y-5 animate-in fade-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="">
           <div className="w-full flex justify-end mb-5 max-md:mb-3 ">
-            <div className="w-12 h-12 flex shrink-0 rounded-full bg-rose-100 border border-rose-200 items-center justify-center text-rose-600 " onClick={() => onConfirm()}>
+            <div className="w-12 hidden h-12 flex shrink-0 rounded-full bg-rose-100 border border-rose-200 items-center justify-center text-rose-600 " onClick={() => onConfirm()}>
               <svg
                 className="w-6 h-6"
                 fill="none"

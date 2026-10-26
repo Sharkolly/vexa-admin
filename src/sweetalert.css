@@ -1,0 +1,59 @@
+.swal2-popup.fexa-swal-popup {
+  width: 450px;
+  padding: 28px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
+}
+
+.fexa-swal-title {
+  color: #111827;
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+.fexa-swal-text {
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.fexa-swal-icon {
+  margin: 12px auto;
+}
+
+.fexa-swal-confirm,
+.fexa-swal-cancel {
+    
+  border: none;
+  border-radius: 10px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.fexa-swal-confirm {
+  background: #03631e;
+  color: #ffffff;
+}
+
+.fexa-swal-confirm:hover {
+  background: #1d4ed8;
+}
+
+.fexa-swal-cancel {
+  background: #a40b03;
+  color: #fff;
+}
+
+.fexa-swal-cancel:hover {
+  background: #929292;
+}
+
+
+.swal2-actions {
+  gap: 16px;
+}

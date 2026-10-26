@@ -1,12 +1,17 @@
 import React, { useState, useMemo, useEffect } from "react";
 import {
   useMutationDeleteProductFunction,
+  useMutationEditStickStatusFunction,
   useQueryProduct,
 } from "../../lib/useQuery";
 import { Link } from "react-router-dom";
 import { ConfirmationModal } from "../../components/ui/PopUp";
 import { FeedbackModal } from "../../components/ui/Feedback";
 import { useAuthContextStore } from "../../store/useAuthContext";
+import { PackageCheck, PackageX } from "lucide-react";
+import Swal from "sweetalert2";
+import "../sweetalert.css";
+import { toast } from "react-hot-toast";
 
 export interface ProductItem {
   _id: string;
@@ -36,13 +41,14 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
   const { mutate, isPending, isSuccess, isError } =
     useMutationDeleteProductFunction();
   const { data } = useQueryProduct(`/admin/product`);
+  const { mutateAsync } = useMutationEditStickStatusFunction();
   const [showSuccess, setShowSuccess] = useState<boolean | string>("");
   const [message, setMessage] = useState<string>("");
 
-    const { user, refetch } = useAuthContextStore();
-    useEffect(() => {
-      refetch();
-    }, []);
+  const { user, refetch } = useAuthContextStore();
+  useEffect(() => {
+    refetch();
+  }, []);
 
   const products: ProductItem[] = data?.data || [];
 
@@ -78,6 +84,50 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
         setProductToDelete(null);
       }, 500);
     }
+  };
+  const toggleStcokStatus = (stockStatus: string = 'in_stock', id: string) => {
+    Swal.fire({
+      title:
+        stockStatus === "out_of_stock"
+          ? "Mark Product as In Stock ?"
+          : "Mark Product as Out of Stock? ",
+      text:
+        stockStatus === "out_of_stock"
+          ? "Is this product currently available for customers to purchase?"
+          : "Are you sure you want to mark this product as unavailable for customers to purchase?",
+      icon: "question",
+      confirmButtonText:
+        stockStatus === "out_of_stock"
+          ? "Yes, Mark as In Stock"
+          : "Yes, Mark as Out of Stock",
+      showCancelButton: true,
+      confirmButtonColor: "#DC2626",
+      cancelButtonColor: "#059669",
+      reverseButtons: true,
+      buttonsStyling: false,
+
+      customClass: {
+        popup: "fexa-swal-popup",
+        title: "fexa-swal-title",
+        htmlContainer: "fexa-swal-text",
+        confirmButton: "fexa-swal-confirm",
+        cancelButton: "fexa-swal-cancel",
+        icon: "fexa-swal-icon",
+      },
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await mutateAsync({
+            url: `/admin/product/${id}/stock`,
+            stock: stockStatus,
+          });
+
+          toast.success("Stock status updated successfully!");
+        } catch {
+          toast.error("Failed to update stock status.");
+        }
+      }
+    });
   };
 
   const filteredProducts = useMemo(() => {
@@ -330,7 +380,6 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
         </div>
       )}
 
-      
       <div className="hidden md:block bg-white border border-gray-200/80 rounded-xl shadow-2xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
@@ -351,7 +400,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                 <th className="py-3 px-4">Category</th>
                 <th className="py-3 px-4">Price</th>
                 <th className="py-3 px-4">Condition</th>
-                <th className="py-3 px-4">Status</th>
+                <th className="py-3 px-4">Stock</th>
                 <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
@@ -434,11 +483,12 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                         {product.condition}
                       </td>
 
-                      <td className="py-3 px-4">
-                        {renderStatusBadge(
+                      <td className="py-3 font-semibold px-4">
+                        {/* {renderStatusBadge(
                           product.stockStatus,
                           product.stockQuantity,
-                        )}
+                        )} */}
+                        Available
                       </td>
 
                       <td className="py-3 px-4 text-right">
@@ -469,6 +519,33 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                             </svg>
                             <span>Edit</span>
                           </Link>
+
+                          <div
+                            className={`p-1.5 rounded-xl  hover:text-gray-800 hover:bg-gray-100 ${product.price > 150000 ? "text-red-600 " : " text-blue-600 "} `}
+                            title="Out Of Stock"
+                          >
+                            {product.price > 150000 ? (
+                              <PackageX
+                                size={18}
+                                onClick={() =>
+                                  toggleStcokStatus(
+                                    product.stockStatus,
+                                    product._id,
+                                  )
+                                }
+                              />
+                            ) : (
+                              <PackageCheck
+                                size={18}
+                                onClick={() =>
+                                  toggleStcokStatus(
+                                    product.stockStatus,
+                                    product._id,
+                                  )
+                                }
+                              />
+                            )}
+                          </div>
 
                           <Link
                             to={`/product/${product.slug}`}
@@ -532,7 +609,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                               })
                             }
                             title="Delete Product"
-                            className="p-1.5 rounded-lg text-gray-400 hover:text-rose-600 hover:bg-rose-50 transition-all"
+                            className="p-1.5 rounded-lg text-red-400 bg-red-50   transition-all"
                           >
                             <svg
                               className="w-4 h-4"
@@ -606,7 +683,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                     onChange={() => toggleSelectOne(product._id)}
                     className="mt-1 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500 cursor-pointer"
                   />
-                  
+
                   <img
                     src={product.images[0] || "/placeholder.png"}
                     alt={product.name}
@@ -633,7 +710,6 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                     )}
                   </div>
 
-                  
                   <div className="flex items-center gap-2">
                     <Link
                       to={`/admin/products/edit/${product._id}`}
