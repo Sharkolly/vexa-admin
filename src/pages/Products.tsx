@@ -506,6 +506,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                         {product.condition}
                       </td>
 
+hidden
                       <td className="py-3 font-semibold px-4">
                         {/* {renderStatusBadge(
                           product.stockStatus,
@@ -760,6 +761,33 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                       <span>Edit</span>
                     </Link>
 
+
+ <div
+                            className={`p-1.5 rounded-xl hover:text-gray-800 hover:bg-gray-100 ${
+                              product.stock === "out_of_stock"
+                                ? "text-red-600"
+                                : product.stock === "in_stock"
+                                  ? "text-blue-600"
+                                  : "text-orange-600"
+                            }`}
+                            title={`The Stock is ${product.stock}. Tap to change.` }
+                          >
+                            {product.stock === "low_stock" ||  product.stock === 'out_of_stock'  ? (
+                              <PackageX
+                                size={18}
+                                onClick={() =>
+                                  toggleStockStatus(product.stock, product._id)
+                                }
+                              />
+                            ) : (
+                              <PackageCheck
+                                size={18}
+                                onClick={() =>
+                                  toggleStockStatus(product.stock, product._id)
+                                }
+                              />
+                            )}
+                          </div> 
                     <button
                       type="button"
                       onClick={() =>
