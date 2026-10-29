@@ -42,11 +42,11 @@ export const useQueryUserFunction = () => {
 };
 
 export const useQueryProduct = (url: string) => {
-  const { data, error, isLoading } = useQuery({
+  const { data, error, isLoading, refetch } = useQuery({
     queryKey: ["products", url],
     queryFn: getRequest,
   });
-  return { data, error, isLoading };
+  return { data, error, isLoading, refetch };
 };
 // // get single product
 // export const useQueryAllProduct = (url: string) => {

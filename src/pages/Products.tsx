@@ -22,7 +22,7 @@ export interface ProductItem {
   category: string;
   subCategory: string;
   condition: string;
-  stockStatus: "in_stock" | "low_stock" | "out_of_stock";
+  stock: "in_stock" | "low_stock" | "out_of_stock";
   stockQuantity: number;
   images: string[];
   vendorName?: string;
@@ -40,7 +40,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
 }) => {
   const { mutate, isPending, isSuccess, isError } =
     useMutationDeleteProductFunction();
-  const { data } = useQueryProduct(`/admin/product`);
+  const { data, refetch: dataRefetch } = useQueryProduct(`/admin/product`);
   const { mutateAsync } = useMutationEditStickStatusFunction();
   const [showSuccess, setShowSuccess] = useState<boolean | string>("");
   const [message, setMessage] = useState<string>("");
@@ -85,7 +85,8 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
       }, 500);
     }
   };
-  const toggleStcokStatus = (stockStatus: string = 'in_stock', id: string) => {
+  const toggleStockStatus = (stockStatus: string, id: string) => {
+    console.log(stockStatus)
     Swal.fire({
       title:
         stockStatus === "out_of_stock"
@@ -96,13 +97,27 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
           ? "Is this product currently available for customers to purchase?"
           : "Are you sure you want to mark this product as unavailable for customers to purchase?",
       icon: "question",
+
+      // 1. Confirm Button
       confirmButtonText:
         stockStatus === "out_of_stock"
           ? "Yes, Mark as In Stock"
           : "Yes, Mark as Out of Stock",
-      showCancelButton: true,
       confirmButtonColor: "#DC2626",
+
+      denyButtonText:
+        stockStatus === "low_stock"
+          ? "Yes, Mark as In Stock"
+          : "Yes, Mark as Low Stock",
+
+      showDenyButton: true,
+      // denyButtonText: "Mark as Low Stock",
+      denyButtonColor: "#33BF20",
+
+      // 3. Cancel Button
+      showCancelButton: true,
       cancelButtonColor: "#059669",
+
       reverseButtons: true,
       buttonsStyling: false,
 
@@ -111,6 +126,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
         title: "fexa-swal-title",
         htmlContainer: "fexa-swal-text",
         confirmButton: "fexa-swal-confirm",
+        denyButton: "fexa-swal-deny", // Connects to your CSS class for styling
         cancelButton: "fexa-swal-cancel",
         icon: "fexa-swal-icon",
       },
@@ -119,10 +135,21 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
         try {
           await mutateAsync({
             url: `/admin/product/${id}/stock`,
-            stock: stockStatus,
+            stock: stockStatus === "out_of_stock" ? "in_stock" : "out_of_stock",
           });
-
           toast.success("Stock status updated successfully!");
+          dataRefetch();
+        } catch {
+          toast.error("Failed to update stock status.");
+        }
+      } else if (result.isDenied) {
+        try {
+          await mutateAsync({
+            url: `/admin/product/${id}/stock`,
+            stock: stockStatus === "low_stock" ? "in_stock" : "low_stock",
+          });
+          toast.success("Stock status updated to Low Stock!");
+          dataRefetch();
         } catch {
           toast.error("Failed to update stock status.");
         }
@@ -142,7 +169,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
         item.category.toLowerCase() === categoryFilter.toLowerCase();
 
       const matchesStatus =
-        statusFilter === "all" || item.stockStatus === statusFilter;
+        statusFilter === "all" || item.stock === statusFilter;
 
       return matchesSearch && matchesCategory && matchesStatus;
     });
@@ -174,10 +201,9 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
   const stats = useMemo(() => {
     return {
       total: products.length,
-      inStock: products.filter((p) => p.stockStatus === "in_stock").length,
-      lowStock: products.filter((p) => p.stockStatus === "low_stock").length,
-      outOfStock: products.filter((p) => p.stockStatus === "out_of_stock")
-        .length,
+      inStock: products.filter((p) => p.stock === "in_stock").length,
+      lowStock: products.filter((p) => p.stock === "low_stock").length,
+      outOfStock: products.filter((p) => p.stock === "out_of_stock").length,
     };
   }, [products]);
 
@@ -196,10 +222,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
   };
 
   // Status Badge Helper
-  const renderStatusBadge = (
-    status: ProductItem["stockStatus"],
-    qty: number,
-  ) => {
+  const renderStatusBadge = (status: ProductItem["stock"], qty: number) => {
     switch (status) {
       case "in_stock":
         return (
@@ -521,27 +544,27 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                           </Link>
 
                           <div
-                            className={`p-1.5 rounded-xl  hover:text-gray-800 hover:bg-gray-100 ${product.price > 150000 ? "text-red-600 " : " text-blue-600 "} `}
-                            title="Out Of Stock"
+                            className={`p-1.5 rounded-xl hover:text-gray-800 hover:bg-gray-100 ${
+                              product.stock === "out_of_stock"
+                                ? "text-red-600"
+                                : product.stock === "in_stock"
+                                  ? "text-blue-600"
+                                  : "text-orange-600"
+                            }`}
+                            title={`The Stock is ${product.stock}. Tap to change.` }
                           >
-                            {product.price > 150000 ? (
+                            {product.stock === "low_stock" ||  product.stock === 'out_of_stock'  ? (
                               <PackageX
                                 size={18}
                                 onClick={() =>
-                                  toggleStcokStatus(
-                                    product.stockStatus,
-                                    product._id,
-                                  )
+                                  toggleStockStatus(product.stock, product._id)
                                 }
                               />
                             ) : (
                               <PackageCheck
                                 size={18}
                                 onClick={() =>
-                                  toggleStcokStatus(
-                                    product.stockStatus,
-                                    product._id,
-                                  )
+                                  toggleStockStatus(product.stock, product._id)
                                 }
                               />
                             )}
@@ -705,7 +728,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                 <div className="flex items-center justify-between pt-2 border-t border-gray-100 text-xs">
                   <div>
                     {renderStatusBadge(
-                      product.stockStatus,
+                      product.stock,
                       product.stockQuantity,
                     )}
                   </div>

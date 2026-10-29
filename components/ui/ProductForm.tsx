@@ -21,6 +21,7 @@ const ProductForm = (): React.JSX.Element => {
     name: "",
     price: 0,
     tags: "",
+    stock: 'in_stock',
     description: "",
     images: [null, null, null, null],
     video: null,
@@ -65,10 +66,20 @@ const ProductForm = (): React.JSX.Element => {
     >,
   ) => {
     const { name, value } = e.target;
+
+    const updatedValue =
+      name === "stock"
+        ? Number(value) === 0
+          ? "out_of_stock"
+          : Number(value) <= 7
+            ? "low_stock"
+            : "in_stock"
+        : value;
     setProduct((prev) => ({
       ...prev,
-      [name as keyof IProductFormInput]: value,
+      [name as keyof IProductFormInput]: updatedValue,
     }));
+
   };
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
@@ -85,6 +96,7 @@ const ProductForm = (): React.JSX.Element => {
     formData.append("discount", String(product.discount ?? 0));
     formData.append("tags", product.tags || "");
     formData.append("color", product.color);
+    formData.append("stock", product.stock);
     formData.append("condition", product.condition || "Nigerian Used");
 
     product.images.forEach((file) => {
@@ -128,7 +140,7 @@ const ProductForm = (): React.JSX.Element => {
       );
     }
 
-    setTimeout(() => {}, 5500);
+    setTimeout(() => {}, 3500);
 
     try {
       //  if (

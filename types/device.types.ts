@@ -12,6 +12,7 @@ export type IProductFormInput = {
   brand?: string;
   discount?: number;
   color: string;
+  stock: 'in_stock' | 'out_of_stock' | 'low_stock'
   deviceSpecifications?: {
     rom?: number;
     ram?: number;

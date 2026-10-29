@@ -230,10 +230,15 @@ const RightAside = ({
               <span className="text-[11px] font-medium text-gray-400">
                 0 = Out of stock
               </span>
+              <span className="text-[11px] font-medium text-gray-400">
+                &lt; 7 = Low stock
+              </span>
             </div>
             <input
               className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
               placeholder="0"
+              name='stock'
+              onChange={handleOnChange}
               type="number"
             />
           </div>

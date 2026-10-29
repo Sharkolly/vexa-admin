@@ -1,5 +1,5 @@
 .swal2-popup.fexa-swal-popup {
-  width: 450px;
+  width: 550px;
   padding: 28px;
   border-radius: 20px;
   background: #ffffff;
@@ -24,7 +24,7 @@
 }
 
 .fexa-swal-confirm,
-.fexa-swal-cancel {
+.fexa-swal-cancel, .fexa-swal-deny {
     
   border: none;
   border-radius: 10px;
@@ -56,4 +56,10 @@
 
 .swal2-actions {
   gap: 16px;
+}
+
+
+.fexa-swal-deny {
+  background: orange;
+  color: white;
 }
