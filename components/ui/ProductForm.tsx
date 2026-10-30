@@ -86,16 +86,18 @@ const ProductForm = (): React.JSX.Element => {
     e.preventDefault();
 
     setLoading(true);
+
+    console.log(product.category)
     const formData = new FormData();
     formData.append("name", product.name);
     formData.append("description", product.description);
     formData.append("price", product.price.toString());
     formData.append("brand", product.brand || "");
     formData.append("category", product.category);
-    formData.append("subCategory", product.subCategory);
+    formData.append("subCategory", product.subCategory.toLowerCase());
     formData.append("discount", String(product.discount ?? 0));
     formData.append("tags", product.tags || "");
-    formData.append("color", product.color);
+    formData.append("color", product.color.toLowerCase());
     formData.append("stock", product.stock);
     formData.append("condition", product.condition || "Nigerian Used");
 

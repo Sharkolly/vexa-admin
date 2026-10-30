@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { ConfirmationModal } from "../../components/ui/PopUp";
 import { FeedbackModal } from "../../components/ui/Feedback";
 import { useAuthContextStore } from "../../store/useAuthContext";
-import { PackageCheck, PackageX } from "lucide-react";
+import { PackageCheck, PackageX, RefreshCcw } from "lucide-react";
 import Swal from "sweetalert2";
 import "../sweetalert.css";
 import { toast } from "react-hot-toast";
@@ -86,7 +86,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
     }
   };
   const toggleStockStatus = (stockStatus: string, id: string) => {
-    console.log(stockStatus)
+    console.log(stockStatus);
     Swal.fire({
       title:
         stockStatus === "out_of_stock"
@@ -226,16 +226,16 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
     switch (status) {
       case "in_stock":
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-blue-50 text-blue-700 border border-blue-200">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            In Stock ({qty})
+            In Stock {qty}
           </span>
         );
       case "low_stock":
         return (
           <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-700 border border-amber-200">
             <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-            Low Stock ({qty})
+            Low Stock {qty}
           </span>
         );
       case "out_of_stock":
@@ -250,6 +250,9 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
     }
   };
 
+
+
+  const RefreshBtn = () => dataRefetch()
   return (
     <div className="min-h-screen bg-gray-50/50 p-4  max-md:pt-19   xl:pl-70   md:pt-20    w-full xl:pr-10 space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -265,9 +268,9 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
           <p className="text-xs sm:text-sm text-gray-500 mt-1">
             Manage inventory, update prices, monitor stock levels, and edit
             details.
-          </p>
+          </p> 
         </div>
-
+<div className='flex gap-7 items-center'>
         <Link
           to="/product-form"
           type="button"
@@ -288,6 +291,14 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
           </svg>
           <span>Add New Product</span>
         </Link>
+
+        <button 
+        onClick={RefreshBtn}
+          className="inline-flex items-center justify-center gap-2 bg-orange-600 hover:bg-orange-700 text-white font-semibold cursor-pointer  text-xs sm:text-sm px-4 py-2.5 rounded-lg shadow-xs active:scale-[0.98] transition-all">
+            <span> <RefreshCcw size={17} /> </span>
+            Refresh
+            </button>
+      </div>
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
@@ -506,13 +517,11 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                         {product.condition}
                       </td>
 
-hidden
                       <td className="py-3 font-semibold px-4">
-                        {/* {renderStatusBadge(
-                          product.stockStatus,
+                        {renderStatusBadge(
+                          product.stock,
                           product.stockQuantity,
-                        )} */}
-                        Available
+                        )}
                       </td>
 
                       <td className="py-3 px-4 text-right">
@@ -552,9 +561,10 @@ hidden
                                   ? "text-blue-600"
                                   : "text-orange-600"
                             }`}
-                            title={`The Stock is ${product.stock}. Tap to change.` }
+                            title={`The Stock is ${product.stock}. Tap to change.`}
                           >
-                            {product.stock === "low_stock" ||  product.stock === 'out_of_stock'  ? (
+                            {product.stock === "low_stock" ||
+                            product.stock === "out_of_stock" ? (
                               <PackageX
                                 size={18}
                                 onClick={() =>
@@ -572,7 +582,7 @@ hidden
                           </div>
 
                           <Link
-                            to={`/product/${product.slug}`}
+                            to={`https://vexa-shop.vercel.app/products/${product.category}/${product.subCategory}/${product.slug}/${product._id}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             title="View on Store"
@@ -728,10 +738,7 @@ hidden
 
                 <div className="flex items-center justify-between pt-2 border-t border-gray-100 text-xs">
                   <div>
-                    {renderStatusBadge(
-                      product.stock,
-                      product.stockQuantity,
-                    )}
+                    {renderStatusBadge(product.stock, product.stockQuantity)}
                   </div>
 
                   <div className="flex items-center gap-2">
@@ -761,33 +768,61 @@ hidden
                       <span>Edit</span>
                     </Link>
 
+                    <div
+                      className={`p-1.5 rounded-xl hover:text-gray-800 hover:bg-gray-100 ${
+                        product.stock === "out_of_stock"
+                          ? "text-red-600"
+                          : product.stock === "in_stock"
+                            ? "text-blue-600"
+                            : "text-orange-600"
+                      }`}
+                      title={`The Stock is ${product.stock}. Tap to change.`}
+                    >
+                      {product.stock === "low_stock" ||
+                      product.stock === "out_of_stock" ? (
+                        <PackageX
+                          size={18}
+                          onClick={() =>
+                            toggleStockStatus(product.stock, product._id)
+                          }
+                        />
+                      ) : (
+                        <PackageCheck
+                          size={18}
+                          onClick={() =>
+                            toggleStockStatus(product.stock, product._id)
+                          }
+                        />
+                      )}
+                    </div>
 
- <div
-                            className={`p-1.5 rounded-xl hover:text-gray-800 hover:bg-gray-100 ${
-                              product.stock === "out_of_stock"
-                                ? "text-red-600"
-                                : product.stock === "in_stock"
-                                  ? "text-blue-600"
-                                  : "text-orange-600"
-                            }`}
-                            title={`The Stock is ${product.stock}. Tap to change.` }
-                          >
-                            {product.stock === "low_stock" ||  product.stock === 'out_of_stock'  ? (
-                              <PackageX
-                                size={18}
-                                onClick={() =>
-                                  toggleStockStatus(product.stock, product._id)
-                                }
-                              />
-                            ) : (
-                              <PackageCheck
-                                size={18}
-                                onClick={() =>
-                                  toggleStockStatus(product.stock, product._id)
-                                }
-                              />
-                            )}
-                          </div> 
+                    <Link
+                      to={`https://vexa-shop.vercel.app/products/${product.category}/${product.subCategory}/${product.slug}/${product._id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="View on Store"
+                      className="p-1.5 rounded-lg text-gray-500 hover:text-gray-800 hover:bg-gray-100 transition-all"
+                    >
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        />
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                        />
+                      </svg>
+                    </Link>
                     <button
                       type="button"
                       onClick={() =>
