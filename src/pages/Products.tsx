@@ -85,8 +85,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
       }, 500);
     }
   };
-  const toggleStockStatus = (stockStatus: string, id: string) => {
-    console.log(stockStatus);
+  const toggleStockStatus = (stockStatus: string, id: string) => {    
     Swal.fire({
       title:
         stockStatus === "out_of_stock"
