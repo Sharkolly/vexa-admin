@@ -243,7 +243,7 @@ const SignUp = () => {
       setIsError(false);
 
       timerRef.current = setTimeout(() => {
-        // navigate("/login");
+        navigate("/login");
       }, 1500);
     } catch (error: unknown) {
       const err = error as AxiosError<{ message: string; status: boolean }>;
