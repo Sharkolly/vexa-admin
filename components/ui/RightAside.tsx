@@ -106,7 +106,7 @@ const RightAside = ({
             </select>
           </div>
 
-          <div className="space-y-1.5 pt-1">
+          <div className="space-y-1.5 pt-1 hidden ">
             <label className="block font-semibold text-xs uppercase tracking-wider text-gray-700">
               Tags
             </label>

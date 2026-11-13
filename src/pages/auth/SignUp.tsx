@@ -8,6 +8,8 @@ import API from "../../../api/api";
 import { useAuthContextStore } from "../../../store/useAuthContext";
 import { useQueryProduct } from "../../../lib/useQuery";
 import { categories } from "../../../data/categories";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 type userCategoryAndSubCategory = {
   category: string;
@@ -43,13 +45,16 @@ const SignUp = () => {
     name: "Access Bank",
     code: "044",
   });
-  const [accountNumber, setAccountNumber] = useState("");
+  const [accountNumber, setAccountNumber] = useState<string>("");
 
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
+  const [isFetchingBankDetails, setIsFetchingBankDetails] = useState(false);
   const [message, setMessage] = useState("");
   const [isError, setIsError] = useState(false);
+
+  // const [errorBankDetails, setErrorBankDetails] = useState("");
 
   const navigate = useNavigate();
   const timerRef = useRef<number | null>(null);
@@ -59,13 +64,29 @@ const SignUp = () => {
       accountNumber: string,
       bankCode: string,
     ) => {
-      const { data } = await API.post(`/admin/get-user-bank-name`, {
-        accountNumber,
-        bankCode,
-      });
-      setUserBankName(data?.data?.data?.account_name);
+      try {
+        setIsFetchingBankDetails(true);
+        const { data } = await API.post(`/admin/get-user-bank-name`, {
+          accountNumber,
+          bankCode,
+        });
+        setUserBankName(data?.data?.data?.account_name);
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          toast.error(error.response?.data?.success == false ? "Bank details not found, check your credentials well" : '', {
+             style: {
+    minWidth: "350px",
+    maxWidth: "500px",
+    padding: "16px 20px",
+    backgroundColor: 'red',
+    color: 'white' 
+  },
+          }); 
+        }
+      } finally {
+        setIsFetchingBankDetails(false);
+      }
     };
-
     const timeout = setTimeout(() => {
       if (accountNumber.length === 10 && bankName.code) {
         fetchUserAccountName(accountNumber, bankName.code);
@@ -78,10 +99,12 @@ const SignUp = () => {
   const [selectedCategoryAndSubCategory, setSelectedCategoryAndSubCategory] =
     useState<userCategoryAndSubCategory[]>([]);
 
-  const activeCategory = Array.isArray(availableCategories) && availableCategories.find(
-  // const activeCategory = availableCategories.find(
-    (c: { slug: string }) => c.slug === selectedCategory,
-  ); 
+  const activeCategory =
+    Array.isArray(availableCategories) &&
+    availableCategories.find(
+      // const activeCategory = availableCategories.find(
+      (c: { slug: string }) => c.slug === selectedCategory,
+    );
 
   const categoryOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newCat = e.target.value;
@@ -220,7 +243,7 @@ const SignUp = () => {
       setIsError(false);
 
       timerRef.current = setTimeout(() => {
-        navigate("/login");
+        // navigate("/login");
       }, 1500);
     } catch (error: unknown) {
       const err = error as AxiosError<{ message: string; status: boolean }>;
@@ -743,8 +766,9 @@ const SignUp = () => {
                     </button>
                     <button
                       type="button"
+                      disabled={isFetchingBankDetails}
                       onClick={handleNextStep}
-                      className="w-2/3 py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold text-xs tracking-wider uppercase shadow-md shadow-emerald-600/20 active:scale-[0.99] transition-all"
+                      className={` ${isFetchingBankDetails ? 'bg-emerald-400 opacity-50 ' : ''} w-2/3 py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold text-xs tracking-wider uppercase shadow-md shadow-emerald-600/20 active:scale-[0.99] transition-all`}
                     >
                       Proceed to Security &rarr;
                     </button>

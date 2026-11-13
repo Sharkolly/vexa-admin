@@ -91,7 +91,7 @@ const ProductSpecification = ({
       {/* Electronics Technical Specs (Conditional) */}
       {(product.category?.toLowerCase() === "electronics" ||
         product.category?.toLowerCase() === "electronic") && (
-        <div className="mt-6 space-y-6 pt-6 border-t border-gray-100">
+        <div className="mt-6 space-y-6 pt-6 border-t hidden border-gray-100">
           <div className="flex items-center justify-between">
             <span className="text-xs font-extrabold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-lg ring-1 ring-emerald-100">
               Electronics Specifications
@@ -99,7 +99,7 @@ const ProductSpecification = ({
           </div>
 
           {/* Hardware Specs Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5" id="tech-specs">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 " id="tech-specs">
             <div className="flex flex-col gap-1.5">
               <label className="font-semibold text-xs uppercase tracking-wider text-gray-700">
                 RAM Capacity
