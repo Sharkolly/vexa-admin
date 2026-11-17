@@ -99,10 +99,11 @@ export const AdminVendorProfile: React.FC = () => {
     <div className="min-h-screen md:pt-20 max-md:px-8 bg-slate-50 xl:pr-10 xl:pl-70  font-sans text-slate-900">
       <div className="w-full    mx-auto space-y-8">
         <div className="relative bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden">
-          <div className="h-44 sm:h-56 w-full relative bg-slate-900">
+          <div className="h-46 sm:h-60  w-full relative bg-slate-900">
             <img
               //   src={profile.bannerUrl}
-              src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&auto=format&fit=crop&q=80"
+              // src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&auto=format&fit=crop&q=80"
+              src="/images/fexa-light-logo.svg"
               alt="Store Banner"
               className="w-full h-full object-cover opacity-80"
             />
@@ -114,9 +115,10 @@ export const AdminVendorProfile: React.FC = () => {
               <div className="relative group">
                 <img
                   //   src={profile.avatarUrl}
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80"
+                  // src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80" 
+                  src="/images/fexa-dark-logo.svg"
                   alt={user?.businessName}
-                  className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl object-cover border-4 border-white bg-white shadow-md"
+                  className="w-28 h-28 sm:w-35 sm:h-35  rounded-2xl object-cover border-4 border-emerald-500 bg-white shadow-md"
                 />
                 <button
                   type="button"
