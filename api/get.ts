@@ -48,3 +48,20 @@ export const fetchProperties = async ({ pageParam = 1 }) => {
   );
   return res.data;
 };
+
+
+
+export const fetchProductsByCategory = async (
+  product: string = '',
+  page: number
+) => { 
+  console.log(product) 
+  const endpoint = `/admin/products?product=${(
+    product ?? ""
+  ).toLowerCase()}&page=${page}&limit=4`;
+  // const endpoint = `/admin/product`;
+
+  const res = await API(endpoint);
+
+  return res.data;
+};

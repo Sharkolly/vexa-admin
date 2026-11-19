@@ -190,6 +190,7 @@ export const AdminVendorProfile: React.FC = () => {
                   <Link
                     className=""
                     to={`https://vexa-shop.vercel.app/vendor/${user?._id}/${user?.businessName}`}
+                    target="_blank"
                   >
                   <button
                     className={`flex-1 sm:flex-initial cursor-pointer gap-2 px-5 py-1.5  rounded-xl font-semibold text-sm transition-all shadow-sm active:scale-95 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200`}

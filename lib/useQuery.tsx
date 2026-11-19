@@ -2,10 +2,11 @@ import {
   useQuery,
   useMutation,
   useQueryClient,
+  keepPreviousData,
   // useInfiniteQuery,
 } from "@tanstack/react-query";
 import { postLoginForm } from "../api/post";
-import { getRequest } from "../api/get";
+import { fetchProductsByCategory, getRequest } from "../api/get";
 
 import { AxiosError } from "axios";
 import API from "../api/api";
@@ -39,6 +40,27 @@ export const useQueryUserFunction = () => {
   });
 
   return { data, error, isLoading, refetch };
+};
+
+export const useVendorProduct = (product: string | undefined, page: number) => {
+  const { data, refetch, isLoading, isFetching } = useQuery({
+    queryKey: ["products", product, page],
+
+    queryFn: () =>
+      // fetchProductsByCategory(product, page),
+      fetchProductsByCategory(product ?? "", page),
+
+    // enabled: !!product || !!page,
+    // enabled: !!product,
+    placeholderData: keepPreviousData,
+  });
+
+  return {
+    data,
+    refetch,
+    isLoading,
+    isFetching,
+  };
 };
 
 export const useQueryProduct = (url: string) => {
@@ -94,16 +116,14 @@ export const useMutationAdminAddProductFunction = () => {
 export const useMutationEditStickStatusFunction = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async ({
-      url,
-      stock,
-    }: {
-      url: string;
-      stock: string
-    }) => {
-      const response = await API.patch(url, {stock}, {
-        withCredentials: true,
-      });
+    mutationFn: async ({ url, stock }: { url: string; stock: string }) => {
+      const response = await API.patch(
+        url,
+        { stock },
+        {
+          withCredentials: true,
+        },
+      );
       return response.data;
     },
     onSuccess: () => {
