@@ -44,7 +44,6 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
 }) => {
   const { mutate, isPending, isSuccess, isError } =
     useMutationDeleteProductFunction();
-  // const { data, refetch: dataRefetch } = useQueryProduct(`/admin/product`);
   const [currentPage, setCurrentPage] = useState(1);
   const {
     data,
@@ -61,9 +60,6 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
   useEffect(() => {
     refetch();
   }, []);
-
-  // const productsDetails: {status: string, currentPage: number, totalPages: number, totalProducts: number, data: ProductItem[]} = data || {};
-  // const products: ProductItem[] = data?.data || [];
 
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
@@ -85,22 +81,23 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
     data: ProductItem[];
   } | null>(null);
 
-  const handleSearch = useCallback(async (searchQuery: string) => {
-    
-    try {
-      const res = await API(
-        `/admin/products?product=${searchQuery}&page=${currentPage}&limit=4`,
-      );
-      // setSearchData(res.data?.data || []);
-      console.log(searchQuery)
-      setSearchData(res.data || []);
-      // setTotalPages(res.data?.totalPages || 1);
-      setCurrentPage(res.data?.currentPage || 1);
-    } catch (error) {
-      const errorMessage = error as AxiosError<{ message: string }>;
-      console.error(errorMessage.message);
-    }
-  }, [query, currentPage]); 
+  const handleSearch = useCallback(
+    async (searchQuery: string) => {
+      try {
+        const res = await API(
+          `/admin/products?product=${searchQuery}&page=${currentPage}&limit=4`,
+        );
+        console.log(searchQuery);
+        setSearchData(res.data || []);
+        // setTotalPages(res.data?.totalPages || 1);
+        setCurrentPage(res.data?.currentPage || 1);
+      } catch (error) {
+        const errorMessage = error as AxiosError<{ message: string }>;
+        console.error(errorMessage.message);
+      }
+    },
+    [query, currentPage],
+  );
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -121,7 +118,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
   // ? (searchData ?? data?.data ?? [])
   // : (data?.data ?? []);
 
-  console.log(displayedSearchData?.totalProducts);
+  console.log(displayedSearchData?.data);
 
   const handleDelete = async (productId: string) => {
     try {
@@ -368,6 +365,9 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
     setQuery(e.target.value);
   };
 
+  const navigateToLink = (link: string) => {
+    window.location.href = link;
+  };
   return (
     <div>
       {isLoading || isFetching ? (
@@ -426,10 +426,11 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
             </div>
           </div>
 
-
-<div >
-  <h2 className='mb-0 hidden  font-semibol text-lg text-gray-500'>Products Stats</h2>
-</div>
+          <div>
+            <h2 className="mb-0 hidden  font-semibol text-lg text-gray-500">
+              Products Stats
+            </h2>
+          </div>
           <div className="grid grid-cols-2 lg:grid-cols-5  gap-3 sm:gap-4">
             <div className="bg-white border border-gray-200/80 p-3.5 sm:p-4 rounded-xl shadow-2xs">
               <p className="text-[11px] font-semibold text-gray-500 uppercase tracking-wider">
@@ -558,7 +559,7 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-gray-50/80 border-b border-gray-200 text-[11px] font-bold text-gray-500 uppercase tracking-wider">
-                    <th className="py-3 px-4 w-10">
+                    <th className="py-3 px-3 w-10">
                       <input
                         type="checkbox"
                         checked={
@@ -569,12 +570,12 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                         className="rounded border-gray-300 text-emerald-600 focus:ring-emerald-500 cursor-pointer"
                       />
                     </th>
-                    <th className="py-3 px-4">Product</th>
-                    <th className="py-3 px-4">Category</th>
-                    <th className="py-3 px-4">Price</th>
-                    <th className="py-3 px-4">Condition</th>
-                    <th className="py-3 px-4">Stock</th>
-                    <th className="py-3 px-4 text-right">Actions</th>
+                    <th className="py-3 px-3">Product</th>
+                    <th className="py-3 px-3">Category</th>
+                    <th className="py-3 px-3">Price</th>
+                    <th className="py-3 px-3 max-lg:hidden">Condition</th>
+                    <th className="py-3 px-3">Stock</th>
+                    <th className="py-3 px-3 text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100 text-xs text-gray-700">
@@ -593,11 +594,17 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                       return (
                         <tr
                           key={product._id}
-                          className={`hover:bg-gray-50/60 transition-colors ${
+                          title="View product in store"
+                          onClick={() =>
+                            navigateToLink(
+                              `https://vexa-shop.vercel.app/products/${product.category}/${product.subCategory}/${product.slug}/${product._id}`,
+                            )
+                          }
+                          className={`hover:bg-gray-200/60  cursor-pointer transition-colors ${
                             isSelected ? "bg-emerald-50/30" : ""
                           }`}
                         >
-                          <td className="py-3 px-4">
+                          <td className="py-3 px-3">
                             <input
                               type="checkbox"
                               checked={isSelected}
@@ -606,15 +613,15 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                             />
                           </td>
 
-                          <td className="py-3 px-4">
-                            <div className="flex items-center gap-3">
+                          <td className="py-3 px-3">
+                            <div className="flex items-center gap-3 truncate">
                               <img
                                 src={product.images[0] || "/placeholder.png"}
                                 alt={product.name}
                                 loading="lazy"
                                 className="w-15 h-15 rounded-sm object-cover border border-gray-200 bg-gray-50 flex-shrink-0"
                               />
-                              <div className="max-w-xs">
+                              <div className="truncate max-w-[80px]">
                                 <h3 className="font-semibold text-gray-900 truncate hover:text-emerald-600 transition-colors">
                                   {product.name}
                                 </h3>
@@ -635,16 +642,16 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                             </div>
                           </td>
 
-                          <td className="py-3 px-4" title={product._id}>
-                            <div className="capitalize font-medium text-gray-800">
+                          <td className="py-3 px-3" title={product._id}>
+                            <div className="capitalize truncate font-medium text-gray-800">
                               {product.category}
                             </div>
-                            <div className="text-[11px] text-gray-400 capitalize">
+                            <div className="text-[11px] truncate text-gray-400 capitalize">
                               {product.subCategory}
                             </div>
                           </td>
 
-                          <td className="py-3 px-4">
+                          <td className="py-3 px-3">
                             <div className="font-bold text-gray-900">
                               {formatNaira(product.price)}
                             </div>
@@ -655,18 +662,18 @@ export const AdminProductList: React.FC<AdminProductListProps> = ({
                             )}
                           </td>
 
-                          <td className="py-3 px-4 font-medium text-gray-600">
+                          <td className="py-3 px-3 font-medium max-lg:hidden text-gray-600">
                             {product.condition}
                           </td>
 
-                          <td className="py-3 font-semibold px-4">
+                          <td className="py-3 truncate  font-semibold px-3">
                             {renderStatusBadge(
                               product.stock,
                               product.stockQuantity,
                             )}
                           </td>
 
-                          <td className="py-3 px-4 text-right">
+                          <td className="py-3 px-3 text-right">
                             <div className="flex items-center justify-end gap-1.5">
                               <Link
                                 to={`/edit-product/${user?._id}/${product._id}`}

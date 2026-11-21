@@ -3,8 +3,8 @@ export type IProductFormInput = {
   slug?: string;
   name: string;
   price: number;
-  category: string;
-  subCategory: string;
+  category: string | undefined;
+  subCategory: string | undefined;
   tags?: string
   description: string;
   images: (File | string | null)[];

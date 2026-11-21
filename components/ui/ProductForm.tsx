@@ -7,11 +7,17 @@ import ProductSpecification from "./ProductSpecification";
 import RightAside from "./RightAside";
 import { FeedbackModal } from "./Feedback";
 import type { AxiosError } from "axios";
-import { useMutationAdminAddProductFunction } from "../../lib/useQuery";
-
+import { useMutationAdminAddProductFunction, useQueryProduct } from "../../lib/useQuery";
+import Loader from "../Loader";
+ 
 const ProductForm = (): React.JSX.Element => {
   const { mutateAsync } = useMutationAdminAddProductFunction();
+   const { data, isLoading} = useQueryProduct("/admin/selected-categories");
+
+   const categories_and_subCategories: {subCategories: string[], categories: string[]} | null = data?.data || null
   const [loading, setLoading] = useState(false);
+
+  // console.log(categories_and_subCategories)
   const [showSuccess, setShowSuccess] = useState<boolean | undefined>(undefined);
   const [message, setMessage] = useState<string>("");
 
@@ -22,11 +28,11 @@ const ProductForm = (): React.JSX.Element => {
     price: 0,
     tags: "",
     stock: 'in_stock',
-    description: "",
+    description: "",  
     images: [null, null, null, null],
     video: null,
-    category: "Electronics",
-    subCategory: "Phones",
+    category: '',
+subCategory: '',
     brand: "",
     discount: 0,
     color: "",
@@ -50,6 +56,8 @@ const ProductForm = (): React.JSX.Element => {
     condition: "UK Used",
     size: "",
   });
+
+  console.log(product.category)
 
   const [videoPreviewUrl, setVideoPreviewUrl] = useState<string | null>(null);
   const videoPlayerRef = useRef<HTMLVideoElement | null>(null);
@@ -87,15 +95,16 @@ const ProductForm = (): React.JSX.Element => {
 
     setLoading(true);
 
-    console.log(product.category)
+    // console.log(product.category)
+    console.log(product)
     const formData = new FormData();
     formData.append("name", product.name);
     formData.append("description", product.description);
     formData.append("price", product.price.toString());
     formData.append("brand", product.brand || "");
-    formData.append("category", product.category);
-    formData.append("subCategory", product.subCategory.toLowerCase());
-    formData.append("discount", String(product.discount ?? 0));
+    formData.append("category", product.category || '');
+    formData.append("subCategory", product.subCategory?.toLowerCase() || '');
+    formData.append("discount", String(product.discount ?? 0)); 
     formData.append("tags", product.tags || "");
     formData.append("color", product.color.toLowerCase());
     formData.append("stock", product.stock);
@@ -186,6 +195,10 @@ const ProductForm = (): React.JSX.Element => {
       setLoading(false);
     }
   };
+
+
+  if(isLoading) return <Loader/>
+
 
   return (
     <form
@@ -290,6 +303,7 @@ const ProductForm = (): React.JSX.Element => {
           handleOnChange={handleOnChange}
           product={product}
           setProduct={setProduct}
+          categories_and_subCategories={categories_and_subCategories}
         />
         <div className="bg-white p-4 rounded-2xl border border-gray-200/80 shadow-xs space-y-3">
           <button

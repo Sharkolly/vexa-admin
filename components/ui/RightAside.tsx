@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { IoClose } from "react-icons/io5";
 import { LuLightbulb } from "react-icons/lu";
 import { FiLayers, FiDollarSign } from "react-icons/fi";
-import { categories } from "../../data/categories";
+// import { categories } from "../../data/categories";
 import type { IProductFormInput } from "../../types/device.types";
 
 type RightSideProps = {
@@ -13,38 +13,53 @@ type RightSideProps = {
   ) => void;
   product: IProductFormInput;
   setProduct: React.Dispatch<React.SetStateAction<IProductFormInput>>;
+  categories_and_subCategories: {
+    subCategories: string[];
+    categories: string[];
+  } | null;
 };
 
 const RightAside = ({
   handleOnChange,
-  // product,
+  categories_and_subCategories,
+  product,
   setProduct,
-}: RightSideProps): React.JSX.Element => {
-  const [selectedCategory, setSelectedCategory] = useState(categories[0].slug);
-  const [selectedSub, setSelectedSub] = useState(
-    categories[0].subCategories[0].slug,
-  );
+}: RightSideProps) => {
+  // const [selectedCategory, setSelectedCategory] = useState(categories_and_subCategories?.categories[0]);
+  // const [selectedSub, setSelectedSub] = useState(
+  //   categories_and_subCategories?.subCategories[0],
+  // );
 
-  const activeCategory = categories.find(
-    (c: { slug: string }) => c.slug === selectedCategory,
-  );
+  // const activeCategory = categories.find(
+  //   (c: { slug: string }) => c.slug === selectedCategory,
+  // );
+
 
   const categoryOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newCat = e.target.value;
-    setSelectedCategory(newCat);
+    console.log(newCat);
+    // setSelectedCategory(newCat);
 
-    const newCategoryObj = categories.find(
-      (c: { slug: string }) => c.slug === newCat,
-    );
-
-    if (!newCategoryObj) return;
-    setSelectedSub(newCategoryObj.subCategories[0].slug);
     setProduct((prev) => ({
       ...prev,
       category: newCat,
-      subCategory: newCategoryObj.subCategories[0].slug,
     }));
+    console.log(product);
   };
+  const subCategoryOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newSub = e.target.value;
+    console.log(newSub);
+    // setSelectedSub(newSub);
+
+    setProduct((prev) => ({
+      ...prev,
+      subCategory: newSub,
+    }));
+
+    console.log(product);
+  };
+
+  // };
 
   return (
     <div className="flex flex-col gap-6">
@@ -68,18 +83,33 @@ const RightAside = ({
             </label>
             <select
               className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
-              value={selectedCategory}
+              value={product.category}
+              // value={product.category}
               name="category"
               onChange={(e) => {
                 categoryOnChange(e);
                 handleOnChange(e);
               }}
             >
-              {categories.map((category: { slug: string; name: string }) => (
+              {/* {categories.map((category: { slug: string; name: string }) => (
                 <option key={category.slug} value={category.slug}>
                   {category.name}
                 </option>
-              ))}
+              ))} */}
+               <option value="" className='lowercase hidden' disabled>
+    Select a category
+  </option>
+              {categories_and_subCategories?.categories?.map(
+                (category: string) => (
+                  <option
+                    key={category}
+                    value={category}
+                    className="capitalize "
+                  >
+                    {category}
+                  </option>
+                ),
+              )}
             </select>
           </div>
 
@@ -89,17 +119,29 @@ const RightAside = ({
             </label>
             <select
               className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all cursor-pointer"
-              value={selectedSub}
+              value={product.subCategory}
               name="subCategory"
               onChange={(e) => {
-                setSelectedSub(e.target.value);
+                // setSelectedSub(e.target.value);
                 handleOnChange(e);
+                subCategoryOnChange(e);
               }}
             >
-              {activeCategory?.subCategories.map(
+              {/* {activeCategory?.subCategories.map(
                 (sub: { slug: string; name: string }) => (
                   <option key={sub.slug} value={sub.slug}>
                     {sub.name}
+                  </option>
+                ),
+              )} */}
+              {/* <option value="">Select Sub Category</option> */}
+                  <option value="" className='lowercase hidden' disabled>
+    Select a sub category
+  </option>
+              {categories_and_subCategories?.subCategories?.map(
+                (sub: string) => (
+                  <option key={sub} value={sub} className="capitalize ">
+                    {sub}
                   </option>
                 ),
               )}
@@ -237,7 +279,7 @@ const RightAside = ({
             <input
               className="w-full bg-gray-50/50 border border-gray-200 focus:bg-white focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/10 outline-none text-slate-900 text-sm rounded-xl font-medium p-3.5 transition-all placeholder:text-gray-400"
               placeholder="0"
-              name='stock'
+              name="stock"
               onChange={handleOnChange}
               type="number"
             />
